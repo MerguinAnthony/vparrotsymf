@@ -1,0 +1,27 @@
+<header>
+<style>
+    .header-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .header-img {
+      width: 200px;
+      justify-self: center;
+    }
+
+    a {
+      width: 150px;
+      text-align: center;
+      justify-self: end;
+    }
+  </style>
+  <div class="header-content">
+    <h1>{{header_title}}</h1>
+    <img class="header-img" src="assets/img/Logo.svg" alt="logo">
+    <a href="/templates/login/login.html.twig">{{header_btn}}</a>
+  </div>
+</header>
+
