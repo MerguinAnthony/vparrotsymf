@@ -41,16 +41,24 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
 
         // line 1
         echo "<header>
+
+
 <style>
+
     .header-content {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       align-items: center;
       padding: 0 20px;
+      margin-top: 5px;
+    }
+
+    h1 {
+      text-align: center;
     }
 
     .header-img {
-      width: 200px;
+      height: 100px;
       justify-self: center;
     }
 
@@ -59,18 +67,48 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
       text-align: center;
       justify-self: end;
     }
+
+    a:hover {
+  color: white;
+}
+
+    @media (max-width: 768px) {
+      .header-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: center;
+        padding: 0;
+      }
+
+      h1{
+        display:none;
+        }
+
+      .header-img {
+        width: 100%;
+        height: auto;
+        justify-self: center;
+      }
+
+      a {
+        display:none;
+      }
+    }
   </style>
+
+
   <div class=\"header-content\">
     <h1>";
-        // line 22
-        echo twig_escape_filter($this->env, (isset($context["header_title"]) || array_key_exists("header_title", $context) ? $context["header_title"] : (function () { throw new RuntimeError('Variable "header_title" does not exist.', 22, $this->source); })()), "html", null, true);
+        // line 59
+        echo twig_escape_filter($this->env, (isset($context["header_title"]) || array_key_exists("header_title", $context) ? $context["header_title"] : (function () { throw new RuntimeError('Variable "header_title" does not exist.', 59, $this->source); })()), "html", null, true);
         echo "</h1>
     <img class=\"header-img\" src=\"assets/img/Logo.svg\" alt=\"logo\">
     <a href=\"/templates/login/login.html.twig\">";
-        // line 24
-        echo twig_escape_filter($this->env, (isset($context["header_btn"]) || array_key_exists("header_btn", $context) ? $context["header_btn"] : (function () { throw new RuntimeError('Variable "header_btn" does not exist.', 24, $this->source); })()), "html", null, true);
+        // line 61
+        echo twig_escape_filter($this->env, (isset($context["header_btn"]) || array_key_exists("header_btn", $context) ? $context["header_btn"] : (function () { throw new RuntimeError('Variable "header_btn" does not exist.', 61, $this->source); })()), "html", null, true);
         echo "</a>
   </div>
+  
 </header>
 
 ";
@@ -94,22 +132,30 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
 
     public function getDebugInfo()
     {
-        return array (  71 => 24,  66 => 22,  43 => 1,);
+        return array (  108 => 61,  103 => 59,  43 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<header>
+
+
 <style>
+
     .header-content {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       align-items: center;
       padding: 0 20px;
+      margin-top: 5px;
+    }
+
+    h1 {
+      text-align: center;
     }
 
     .header-img {
-      width: 200px;
+      height: 100px;
       justify-self: center;
     }
 
@@ -118,14 +164,44 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
       text-align: center;
       justify-self: end;
     }
+
+    a:hover {
+  color: white;
+}
+
+    @media (max-width: 768px) {
+      .header-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: center;
+        padding: 0;
+      }
+
+      h1{
+        display:none;
+        }
+
+      .header-img {
+        width: 100%;
+        height: auto;
+        justify-self: center;
+      }
+
+      a {
+        display:none;
+      }
+    }
   </style>
+
+
   <div class=\"header-content\">
     <h1>{{header_title}}</h1>
     <img class=\"header-img\" src=\"assets/img/Logo.svg\" alt=\"logo\">
     <a href=\"/templates/login/login.html.twig\">{{header_btn}}</a>
   </div>
+  
 </header>
 
-", "partials/_header.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/templates/partials/_header.html.twig");
+", "partials/_header.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/templates/partials/_header.html.twig");
     }
 }

@@ -58,13 +58,13 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         // line 10
         echo "    </head>
     <body>
-    ";
+        ";
         // line 12
         $this->displayBlock('header', $context, $blocks);
-        // line 15
+        // line 16
         echo "        ";
         $this->displayBlock('body', $context, $blocks);
-        // line 16
+        // line 18
         echo "    </body>
 </html>
 ";
@@ -128,8 +128,13 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
         // line 13
-        echo "    ";
+        echo "            ";
         $this->loadTemplate("partials/_header.html.twig", "base.html.twig", 13)->display($context);
+        // line 14
+        echo "            ";
+        $this->loadTemplate("partials/_nav.html.twig", "base.html.twig", 14)->display($context);
+        echo " 
+        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -138,7 +143,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
 
     }
 
-    // line 15
+    // line 16
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -148,6 +153,8 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
+        // line 17
+        echo "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -163,7 +170,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
 
     public function getDebugInfo()
     {
-        return array (  142 => 15,  131 => 13,  121 => 12,  109 => 7,  99 => 6,  80 => 5,  68 => 16,  65 => 15,  63 => 12,  59 => 10,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  157 => 17,  147 => 16,  134 => 14,  131 => 13,  121 => 12,  109 => 7,  99 => 6,  80 => 5,  68 => 18,  65 => 16,  63 => 12,  59 => 10,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -179,12 +186,14 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         {% endblock %}
     </head>
     <body>
-    {% block header %}
-    {% include \"partials/_header.html.twig\" %}
-{% endblock %}
-        {% block body %}{% endblock %}
+        {% block header %}
+            {% include \"partials/_header.html.twig\" %}
+            {% include \"partials/_nav.html.twig\" %} 
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
     </body>
 </html>
-", "base.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/templates/base.html.twig");
+", "base.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/templates/base.html.twig");
     }
 }

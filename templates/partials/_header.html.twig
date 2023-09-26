@@ -1,14 +1,22 @@
 <header>
+
+
 <style>
+
     .header-content {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       align-items: center;
       padding: 0 20px;
+      margin-top: 5px;
+    }
+
+    h1 {
+      text-align: center;
     }
 
     .header-img {
-      width: 200px;
+      height: 100px;
       justify-self: center;
     }
 
@@ -17,11 +25,41 @@
       text-align: center;
       justify-self: end;
     }
+
+    a:hover {
+  color: white;
+}
+
+    @media (max-width: 768px) {
+      .header-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: center;
+        padding: 0;
+      }
+
+      h1{
+        display:none;
+        }
+
+      .header-img {
+        width: 100%;
+        height: auto;
+        justify-self: center;
+      }
+
+      a {
+        display:none;
+      }
+    }
   </style>
+
+
   <div class="header-content">
     <h1>{{header_title}}</h1>
     <img class="header-img" src="assets/img/Logo.svg" alt="logo">
     <a href="/templates/login/login.html.twig">{{header_btn}}</a>
   </div>
+  
 </header>
 
