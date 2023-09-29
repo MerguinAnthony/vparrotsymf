@@ -102,7 +102,10 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
         // line 59
         echo twig_escape_filter($this->env, (isset($context["header_title"]) || array_key_exists("header_title", $context) ? $context["header_title"] : (function () { throw new RuntimeError('Variable "header_title" does not exist.', 59, $this->source); })()), "html", null, true);
         echo "</h1>
-    <img class=\"header-img\" src=\"assets/img/Logo.svg\" alt=\"logo\">
+    <img class=\"header-img\" src=\"";
+        // line 60
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/Logo.svg"), "html", null, true);
+        echo "\" alt=\"logo\">
     <a href=\"/templates/login/login.html.twig\">";
         // line 61
         echo twig_escape_filter($this->env, (isset($context["header_btn"]) || array_key_exists("header_btn", $context) ? $context["header_btn"] : (function () { throw new RuntimeError('Variable "header_btn" does not exist.', 61, $this->source); })()), "html", null, true);
@@ -132,7 +135,7 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
 
     public function getDebugInfo()
     {
-        return array (  108 => 61,  103 => 59,  43 => 1,);
+        return array (  111 => 61,  107 => 60,  103 => 59,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -196,7 +199,7 @@ class __TwigTemplate_4e3c61d879ca46944daaafcc65d8047f extends Template
 
   <div class=\"header-content\">
     <h1>{{header_title}}</h1>
-    <img class=\"header-img\" src=\"assets/img/Logo.svg\" alt=\"logo\">
+    <img class=\"header-img\" src=\"{{asset('assets/img/Logo.svg')}}\" alt=\"logo\">
     <a href=\"/templates/login/login.html.twig\">{{header_btn}}</a>
   </div>
   

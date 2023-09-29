@@ -11,9 +11,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home.index', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('home.html.twig', [
+        return $this->render('pages/home.html.twig', [
             'header_title' => 'Garage Vincent Parrot',
-            'header_btn' => 'S\'identifier',
+            'nav_item1' => 'Services',
+            'nav_item2' => 'Ventes véhicules',
+            'nav_item3' => 'Avis',
+            'nav_item4' => 'Contactez-nous',
+            'nav_item5' => 'S\'identifier',
         ]);
     }
 }

@@ -1,0 +1,40 @@
+<header>
+
+<style>
+
+    h1 {
+      background-color: var(--clr-primary);
+      text-align: center;
+      color: var(--clr-secondary);
+      margin-bottom: 0;
+    }
+
+    .header-img {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+
+      .header-content {
+        background: none;
+      }
+
+      h1{
+        display: none;
+      }
+
+      .header-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        justify-self: center;
+      }
+    }
+  </style>
+
+  <div class="header-content">
+    <h1>{{header_title}}</h1>
+    <img class="header-img" src="{{asset('assets/img/Logo.svg')}}" alt="logo">
+  </div>
+  
+</header>
