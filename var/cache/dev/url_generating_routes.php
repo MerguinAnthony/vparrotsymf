@@ -16,7 +16,9 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
-    'app_back' => [[], ['_controller' => 'App\\Controller\\BackController::index'], [], [['text', '/back']], [], [], []],
-    'app_back_service' => [[], ['_controller' => 'App\\Controller\\BackServiceController::index'], [], [['text', '/back/service']], [], [], []],
     'home.index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
+    'app_vente_vehicule' => [[], ['_controller' => 'App\\Controller\\VenteVehiculeController::index'], [], [['text', '/back/gestion-des-ventes']], [], [], []],
+    'app_vente_vehicule_new' => [[], ['_controller' => 'App\\Controller\\VenteVehiculeController::new'], [], [['text', '/back/gestion-des-ventes/nouveau']], [], [], []],
+    'app_vente_vehicule_edit' => [['id'], ['_controller' => 'App\\Controller\\VenteVehiculeController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-ventes/edition']], [], [], []],
+    'app_vente_vehicule_delete' => [['id'], ['_controller' => 'App\\Controller\\VenteVehiculeController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-ventes/suppression']], [], [], []],
 ];

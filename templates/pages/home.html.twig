@@ -1,9 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %}Accueil | V.Parrot{% endblock %}
-        {% block frontheader %}
-            {% include "partials/front/_header.html.twig" %}
-            {% include "partials/front/_nav.html.twig" %} 
-        {% endblock %}
+
 {% block body %}
-    
+    {% include "partials/_services.html.twig" %}
+    {% include "partials/_ventes.html.twig" %}
 {% endblock %}

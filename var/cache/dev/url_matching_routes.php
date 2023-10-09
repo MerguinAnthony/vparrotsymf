@@ -14,9 +14,9 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/back' => [[['_route' => 'app_back', '_controller' => 'App\\Controller\\BackController::index'], null, null, null, false, false, null]],
-        '/back/service' => [[['_route' => 'app_back_service', '_controller' => 'App\\Controller\\BackServiceController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/back/gestion-des-ventes' => [[['_route' => 'app_vente_vehicule', '_controller' => 'App\\Controller\\VenteVehiculeController::index'], null, null, null, false, false, null]],
+        '/back/gestion-des-ventes/nouveau' => [[['_route' => 'app_vente_vehicule_new', '_controller' => 'App\\Controller\\VenteVehiculeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -35,6 +35,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
+                .'|/back/gestion\\-des\\-ventes/(?'
+                    .'|edition/([^/]++)(*:215)'
+                    .'|suppression/([^/]++)(*:243)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -44,8 +48,10 @@ return [
         116 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        159 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        215 => [[['_route' => 'app_vente_vehicule_edit', '_controller' => 'App\\Controller\\VenteVehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        243 => [
+            [['_route' => 'app_vente_vehicule_delete', '_controller' => 'App\\Controller\\VenteVehiculeController::delete'], ['id'], ['GET' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

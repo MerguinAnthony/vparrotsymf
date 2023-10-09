@@ -29,8 +29,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
-            'frontheader' => [$this, 'block_frontheader'],
-            'backheader' => [$this, 'block_backheader'],
+            'header' => [$this, 'block_header'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -56,19 +55,19 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         ";
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 10
-        echo "    </head>
+        // line 9
+        echo "        <link rel=\"icon\" href=\"";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/Favicon.png"), "html", null, true);
+        echo "\">
+    </head>
     <body>
         ";
         // line 12
-        $this->displayBlock('frontheader', $context, $blocks);
-        // line 13
-        echo "        ";
-        $this->displayBlock('backheader', $context, $blocks);
-        // line 14
+        $this->displayBlock('header', $context, $blocks);
+        // line 16
         echo "        ";
         $this->displayBlock('body', $context, $blocks);
-        // line 15
+        // line 17
         echo "    </body>
 </html>
 ";
@@ -90,7 +89,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Accueil | V.Parrot";
+        echo twig_escape_filter($this->env, (isset($context["title_page"]) || array_key_exists("title_page", $context) ? $context["title_page"] : (function () { throw new RuntimeError('Variable "title_page" does not exist.', 5, $this->source); })()), "html", null, true);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -110,13 +109,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 7
-        echo "        <link rel=\"icon\" href=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/Favicon.png"), "html", null, true);
-        echo "\">
-        <link rel=\"stylesheet\" href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/styles/style.css"), "html", null, true);
-        echo "\">
+        echo "        <link rel=\"stylesheet\" href=\"assets/styles/style_general.css\">
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -127,15 +120,23 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
     }
 
     // line 12
-    public function block_frontheader($context, array $blocks = [])
+    public function block_header($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "frontheader"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "frontheader"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
+        // line 13
+        echo "            ";
+        $this->loadTemplate("partials/_header.html.twig", "base.html.twig", 13)->display($context);
+        // line 14
+        echo "            ";
+        $this->loadTemplate("partials/_nav.html.twig", "base.html.twig", 14)->display($context);
+        // line 15
+        echo "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -144,25 +145,7 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
 
     }
 
-    // line 13
-    public function block_backheader($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "backheader"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "backheader"));
-
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-    }
-
-    // line 14
+    // line 16
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -185,9 +168,14 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  166 => 14,  148 => 13,  130 => 12,  118 => 8,  113 => 7,  103 => 6,  84 => 5,  72 => 15,  69 => 14,  66 => 13,  64 => 12,  60 => 10,  58 => 6,  54 => 5,  48 => 1,);
+        return array (  149 => 16,  139 => 15,  136 => 14,  133 => 13,  123 => 12,  112 => 7,  102 => 6,  83 => 5,  71 => 17,  68 => 16,  66 => 12,  59 => 9,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -196,15 +184,17 @@ class __TwigTemplate_3994b5ff96d42bc3ac661ea5acb6e2cd extends Template
 <html>
     <head>
         <meta charset=\"UTF-8\">
-        <title>{% block title %}Accueil | V.Parrot{% endblock %}</title>
+        <title>{% block title %}{{title_page}}{% endblock %}</title>
         {% block stylesheets %}
-        <link rel=\"icon\" href=\"{{asset('assets/img/Favicon.png')}}\">
-        <link rel=\"stylesheet\" href=\"{{asset('assets/styles/style.css')}}\">
+        <link rel=\"stylesheet\" href=\"assets/styles/style_general.css\">
         {% endblock %}
+        <link rel=\"icon\" href=\"{{asset('assets/img/Favicon.png')}}\">
     </head>
     <body>
-        {% block frontheader %}{% endblock %}
-        {% block backheader %}{% endblock %}
+        {% block header %}
+            {% include \"partials/_header.html.twig\" %}
+            {% include \"partials/_nav.html.twig\" %}
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>

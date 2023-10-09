@@ -1,0 +1,93 @@
+<style>
+.vente{
+    background-color: var(--clr-secondary);
+    height: auto;
+}
+
+.h1-vent{
+  text-align: center;
+  color: var(--clr-tertiary);  
+}
+
+.ranges{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--clr-tertiary);
+  height: auto;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 var(--clr-primary);
+  margin-bottom: 50px;
+}
+
+.filter-title{
+  color: var(--clr-secondary);
+  font-family: var(--font2);
+  font-size: 2rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media  screen and (min-width: 768px) {
+  .vente{
+    height: 100vh;
+}
+}
+</style>
+<section class="vente" id="ventes">
+<h1 class="h1-vent">{{h1_vent}}</h1>
+  <div class="ranges">
+  <h2 class="filter-title">Filtres</h2>
+  <label for="price-max-label">Prix maximum</label>
+    <input id="id-input-price" type="range"min="0" max="500000">
+    <span id="id-span-price" class="price-max">0</span>
+  <label for="km-max-label">Kilomètres maximum</label>
+    <input id="id-input-km" type="range" min="0" max="1000000">
+    <span id="id-span-km" class="km-max">0</span>
+  <label for="year-max-label">Année minimum</label>
+    <input id="id-input-year" type="range" min="1800" max="2024">
+    <span id="id-span-year" class="year-max">0</span>
+  </div>
+  {% for car in cars %}
+  <div class="card">
+    <div class="card-img">
+    </div>
+    <div class="card-info">
+      <h3>{{car.brand}} {{car.model}}</h3>
+      <p>{{car.price}} €</p>
+      <p>{{car.mileage}} km</p>
+      <p>{{car.year}}</p>
+      <p>{{car.description}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<script>
+
+//prix max
+const inputPrice = document.getElementById('id-input-price');
+const spanPrice = document.getElementById('id-span-price');
+
+inputPrice.addEventListener('input', function(){
+  spanPrice.innerHTML = inputPrice.value;
+})
+//km max
+const inputKm = document.getElementById('id-input-km');
+const spanKm = document.getElementById('id-span-km');
+
+inputKm.addEventListener('input', function(){
+  spanKm.innerHTML = inputKm.value;
+})
+//year max
+const inputYear = document.getElementById('id-input-year');
+const spanYear = document.getElementById('id-span-year');
+
+inputYear.addEventListener('input', function(){
+  spanYear.innerHTML = inputYear.value;
+})
+
+</script>

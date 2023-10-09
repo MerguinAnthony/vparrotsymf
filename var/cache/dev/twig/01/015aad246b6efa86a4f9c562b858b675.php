@@ -752,6 +752,6 @@ class __TwigTemplate_7cb33d2a0389470c401147cdc8f95e7e extends Template
         </div>
     </div>
 {% endblock %}
-", "@WebProfiler/Profiler/layout.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
+", "@WebProfiler/Profiler/layout.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
     }
 }

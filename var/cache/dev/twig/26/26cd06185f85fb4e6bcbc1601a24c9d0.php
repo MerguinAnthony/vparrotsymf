@@ -243,6 +243,6 @@ class __TwigTemplate_ca751c0b4862b551530110afefefb97d extends Template
         </div>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/exception.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
+", "@WebProfiler/Collector/exception.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
     }
 }

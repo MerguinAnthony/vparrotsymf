@@ -20,9 +20,6 @@ class VparService
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $img = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -36,18 +33,6 @@ class VparService
     public function setText(string $text): static
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function getImg()
-    {
-        return $this->img;
-    }
-
-    public function setImg($img): static
-    {
-        $this->img = $img;
 
         return $this;
     }

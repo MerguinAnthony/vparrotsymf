@@ -434,6 +434,6 @@ class __TwigTemplate_1ca734b576a7533923f6e20f2e188fcf extends Template
     {%- set widget_class = widget_class|default('mr-2') -%}
     {{- parent() -}}
 {%- endblock radio_widget -%}
-", "tailwind_2_layout.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_2_layout.html.twig");
+", "tailwind_2_layout.html.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_2_layout.html.twig");
     }
 }

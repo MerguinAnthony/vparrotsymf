@@ -219,6 +219,6 @@ class __TwigTemplate_1ede1ee41ecded92e33cacd3340ae9ce extends Template
     word-wrap: break-word;
     word-break: break-all;
 }
-", "@WebProfiler/Profiler/open.css.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.css.twig");
+", "@WebProfiler/Profiler/open.css.twig", "/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.css.twig");
     }
 }
