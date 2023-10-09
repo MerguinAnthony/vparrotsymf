@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8876c2c75c3abe2e1679bffbfe74f62aa3f3e114',
+        'reference' => '7b9f24557a5a8d044092ce653910ae92ceeacd1c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8876c2c75c3abe2e1679bffbfe74f62aa3f3e114',
+            'reference' => '7b9f24557a5a8d044092ce653910ae92ceeacd1c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -188,7 +188,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'knplabs/knp-components' => array(
             'pretty_version' => 'v4.2.0',

@@ -37,7 +37,7 @@ class VenteVehiculeController extends AbstractController
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
             'nav_item5' => 'Gestion des ventes',
-            'nav_item6' => 'Gestion des avis',
+            'nav_item6' => 'Gestion des avis clients',
             'vehicles' => $vehicles,
         ]);
     }
@@ -76,7 +76,7 @@ class VenteVehiculeController extends AbstractController
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
             'nav_item5' => 'Gestion des ventes',
-            'nav_item6' => 'Gestion des avis',
+            'nav_item6' => 'Gestion des avis clients',
             'form' => $form->createView(),
         ]);
     }
@@ -106,7 +106,7 @@ class VenteVehiculeController extends AbstractController
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
             'nav_item5' => 'Gestion des ventes',
-            'nav_item6' => 'Gestion des avis',
+            'nav_item6' => 'Gestion des avis clients',
             'form' => $form->createView(),
         ]);
     }

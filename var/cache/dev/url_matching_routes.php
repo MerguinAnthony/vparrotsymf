@@ -15,6 +15,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/connexion' => [[['_route' => 'app_security', '_controller' => 'App\\Controller\\SecurityController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/back/gestion-des-ventes' => [[['_route' => 'app_vente_vehicule', '_controller' => 'App\\Controller\\VenteVehiculeController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-ventes/nouveau' => [[['_route' => 'app_vente_vehicule_new', '_controller' => 'App\\Controller\\VenteVehiculeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],

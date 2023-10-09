@@ -17,6 +17,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'home.index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
+    'app_security' => [[], ['_controller' => 'App\\Controller\\SecurityController::index'], [], [['text', '/connexion']], [], [], []],
     'app_vente_vehicule' => [[], ['_controller' => 'App\\Controller\\VenteVehiculeController::index'], [], [['text', '/back/gestion-des-ventes']], [], [], []],
     'app_vente_vehicule_new' => [[], ['_controller' => 'App\\Controller\\VenteVehiculeController::new'], [], [['text', '/back/gestion-des-ventes/nouveau']], [], [], []],
     'app_vente_vehicule_edit' => [['id'], ['_controller' => 'App\\Controller\\VenteVehiculeController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-ventes/edition']], [], [], []],

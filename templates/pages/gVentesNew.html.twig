@@ -59,12 +59,29 @@ h2{
     color: red;
     font-weight: bold;
 }
-.btn{
-
-    margin: 10px auto;
+.btn-submit{
     display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0;
 
 }
+#vehicles_submit{
+    background: var(--clr-primary);
+    color: var(--clr-secondary);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#vehicles_submit:hover{
+    background: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    transition: 0.5s;
+}
+
 @media only screen and (max-width: 767px) {	
 .content{
     height: auto;
@@ -183,7 +200,7 @@ h2{
       <div class="form-error">
         {{form_errors(form.description)}}
       </div>
-      <div class="btn">
+      <div class="btn-submit">
       {{ form_row (form.submit) }}
       </div>
     </div>
