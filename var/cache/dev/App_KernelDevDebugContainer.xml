@@ -346,6 +346,13 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\EmployeeController" class="App\Controller\EmployeeController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\EmployeeController"/>
+      </call>
+    </service>
     <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -373,6 +380,9 @@
     <service id="App\EntityListener\UserListener" class="App\EntityListener\UserListener" autowire="true" autoconfigure="true">
       <tag name="doctrine.orm.entity_listener"/>
       <argument type="service" id="security.user_password_hasher"/>
+    </service>
+    <service id="App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -416,7 +426,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.93Ikyyt"/>
+      <argument type="service" id=".service_locator.9C5vR4n"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1281,6 +1291,7 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\AddemployeeType</argument>
         <argument>App\Form\VehiclesType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -3055,7 +3066,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.93Ikyyt"/>
+      <argument type="service" id=".service_locator.9C5vR4n"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <argument type="service" id="request_stack"/>
@@ -3533,7 +3544,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.WJla5lx"/>
+      <argument type="service" id=".service_locator.sA5LLXg"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -6734,6 +6745,9 @@
       <tag name="twig.runtime"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6745,6 +6759,8 @@
     <service id=".abstract.instanceof.App\Controller\VenteVehiculeController" class="App\Controller\VenteVehiculeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -7127,6 +7143,26 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.yGuNzrW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
+        <argument key="user" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.V71r_w4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.iJFRmZA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="user" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.YzD15QU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7147,12 +7183,6 @@
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.V71r_w4" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.b1oUMSC" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7160,9 +7190,13 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.93Ikyyt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.9C5vR4n" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\EmployeeController::add" type="service_closure" id=".service_locator.V71r_w4"/>
+        <argument key="App\Controller\EmployeeController::delete" type="service_closure" id=".service_locator.iJFRmZA"/>
+        <argument key="App\Controller\EmployeeController::edit" type="service_closure" id=".service_locator.iJFRmZA"/>
+        <argument key="App\Controller\EmployeeController::index" type="service_closure" id=".service_locator.yGuNzrW"/>
         <argument key="App\Controller\HomeController::index" type="service_closure" id=".service_locator.YzD15QU"/>
         <argument key="App\Controller\SecurityController::index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\VenteVehiculeController::delete" type="service_closure" id=".service_locator.b1oUMSC"/>
@@ -7173,6 +7207,10 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\EmployeeController:add" type="service_closure" id=".service_locator.V71r_w4"/>
+        <argument key="App\Controller\EmployeeController:delete" type="service_closure" id=".service_locator.iJFRmZA"/>
+        <argument key="App\Controller\EmployeeController:edit" type="service_closure" id=".service_locator.iJFRmZA"/>
+        <argument key="App\Controller\EmployeeController:index" type="service_closure" id=".service_locator.yGuNzrW"/>
         <argument key="App\Controller\HomeController:index" type="service_closure" id=".service_locator.YzD15QU"/>
         <argument key="App\Controller\SecurityController:index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\VenteVehiculeController:delete" type="service_closure" id=".service_locator.b1oUMSC"/>
@@ -7336,9 +7374,10 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.WJla5lx" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.sA5LLXg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\AddemployeeType" type="service_closure" id="App\Form\AddemployeeType"/>
         <argument key="App\Form\VehiclesType" type="service_closure" id="App\Form\VehiclesType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
@@ -7800,6 +7839,12 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
+    </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\EmployeeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\EmployeeController"/>
+      <argument>App\Controller\EmployeeController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\HomeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\HomeController"/>
@@ -9135,7 +9180,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.93Ikyyt"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.9C5vR4n"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9156,9 +9201,11 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
-    <service id=".service_locator.myIX8mx" alias=".service_locator.93Ikyyt"/>
+    <service id=".service_locator.IvJGRJB" alias=".service_locator.yGuNzrW"/>
+    <service id=".service_locator.8UqdCRr" alias=".service_locator.iJFRmZA"/>
+    <service id=".service_locator.dl.5ikE" alias=".service_locator.9C5vR4n"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.2kLbtHO" alias=".service_locator.WJla5lx"/>
+    <service id=".service_locator.RxYjsXx" alias=".service_locator.sA5LLXg"/>
     <service id=".service_locator.jij13qc" alias=".service_locator.PBToVFE"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
@@ -9179,10 +9226,12 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.JJIXCHF" alias=".service_locator.yGuNzrW"/>
+    <service id=".service_locator.6k5RJBU" alias=".service_locator.V71r_w4"/>
+    <service id=".service_locator._XOJC2K" alias=".service_locator.iJFRmZA"/>
     <service id=".service_locator.fkj8D3Q" alias=".service_locator.YzD15QU"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.zKPWy.U" alias=".service_locator.6Gf0ew4"/>
-    <service id=".service_locator.6k5RJBU" alias=".service_locator.V71r_w4"/>
     <service id=".service_locator.Oa5KcuI" alias=".service_locator.b1oUMSC"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.O2p6Lk7"/>
     <service id=".service_locator.dGUCsbe" alias=".service_locator.oR77BOj"/>

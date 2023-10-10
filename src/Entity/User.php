@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email()]
-    #[Assert\NotBlank()]
+
     private ?string $email = null;
 
     #[ORM\Column]
@@ -32,7 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank()]
     private ?string $password = null;
 
     private ?string $plainPassword = null;
@@ -41,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $fristname = null;
+    private ?string $firstname = null;
 
     #[ORM\Column(length: 50)]
     private ?string $function = null;
@@ -142,14 +141,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFristname(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->fristname;
+        return $this->firstname;
     }
 
-    public function setFristname(string $fristname): static
+    public function setFirstname(string $fristname): static
     {
-        $this->fristname = $fristname;
+        $this->firstname = $fristname;
 
         return $this;
     }

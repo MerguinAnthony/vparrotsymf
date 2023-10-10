@@ -1,0 +1,288 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title_page}}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/bootstrap.min.css')}}">
+{% endblock %}
+
+{% block header %}
+{% include "partials/back/_header.html.twig" %}
+{% include "partials/back/_nav.html.twig" %}
+{% endblock %}
+{% block body %}
+<style>
+.content-vente{
+    height: auto;
+}
+h1{
+    text-align: center;
+    color: black;
+    margin: 0 auto;
+    padding: 10px 0;
+}    
+h2{
+    text-align: center;
+    color: var(--clr-secondary);
+    margin: 0 auto;
+    padding: 0 0 10px 0;
+}
+.list-vehicles{
+    text-align: center;
+    color: var(--clr-secondary);
+    margin: 20px 0;
+}
+table{
+margin:20px auto;
+text-align: center;
+width: 90vw;
+border-collapse: collapse;
+border: 1px solid
+}
+thead{
+background-color: var(--clr-secondary);
+color: white
+}
+th,td{
+    padding:8px 0
+}
+.td-denom{
+    text-align: left;
+}
+.th-denom,.td-denom{
+    width: 35%;
+}
+.th-price,.td-price{.
+    width: 10%;
+}
+.th-date,.td-date{
+    width: 15%;
+}
+.th-modi,.td-modi{
+    width: 10%;
+}
+.btn-modi{
+    display: block;
+    width: 90px;
+    font-size: 16px;
+    font-family: var(--font2);
+    color: var(--clr-tertiary);
+    text-decoration: none;
+    border: 1px solid #EE7E21;
+    background-color: #EE7E21;
+    text-align: center;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+.th-supr,.td-supr{
+    width: 10%;
+}
+.btn-supr{
+    display: block;
+    width: 90px;
+    font-size: 16px;
+    font-family: var(--font2);
+    color: var(--clr-tertiary);
+    text-decoration: none;
+    border: 1px solid var(--clr-secondary);
+    background-color: var(--clr-secondary);
+    text-align: center;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+td:nth-child(1){
+    text-align: left;
+    padding-left: 10px;
+}
+tbody tr:nth-child(even) {
+background-color: var(--clr-primary);
+}
+tbody tr:nth-child(odd) {
+background-color: var(--clr-tertiary);
+}
+
+.pagination{
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    font-family: var(--font2);
+}
+
+.pagination a{
+    color: var(--clr-secondary);
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid var(--clr-secondary);
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.pagination a:hover{
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+}
+
+.count{
+    text-align: center;
+    margin: 5px 0;
+    font-family: var(--font2);
+    color: var(--clr-secondary);
+}
+
+#sortDenom, #sortPrice, #sortDate{
+    cursor: pointer;
+    float: left;
+    padding-left: 10px;
+}
+.addBtn {
+        display: block; 
+        width: 250px;
+        font-size: 16px;
+        color: black;
+        font-family: var(--font2);
+        color: var(--clr-tertiary);
+        text-decoration: none;
+        border: 1px solid var(--clr-secondary);
+        padding: 5px 20px;
+        background-color: var(--clr-secondary);
+        text-align: center;
+        margin: 0 auto; 
+    }
+    .addBtn:hover{
+        background-color: var(--clr-primary);
+        color: var(--clr-secondary);
+        box-shadow: 0 0 10px var(--clr-secondary);
+        transition: 0.5s;
+    }
+@media only screen and (max-width: 767px) {	
+.content-vente{
+    height: auto;
+}
+
+table, 
+thead, 
+tbody, 
+th, 
+td, 
+tr{ 	
+display: block	
+}
+thead tr { 
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+td { 
+position: relative;
+padding-left: 50%; 
+white-space: normal;
+text-align: left
+}
+td:before { 
+position: absolute;
+top: 6px;
+left: 6px;
+width: 45%; 
+padding-right: 10px; 
+font-weight: bold;
+white-space: nowrap;
+text-align:left;
+content: attr(data-title);
+}
+}
+</style>
+<div class="content-vente">
+    <h1>Gestion des véhicules</h1>
+    <div class="content-info">
+      {% for message in app.flashes('success') %}
+      <div class="alert alert-success mt-4 text-center w-50 mx-auto">
+      {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <h2 class="list-vehicles">Véhicules en stock</h2>
+    <a href="{{ path('app_vente_vehicule_new') }}" class="addBtn">Ajouter un nouveau véhicule</a>
+    <div class="count">
+    Il y a actuellement {{ vehicles.getTotalItemCount }} voitures à vendre
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="th-date"><a id="sortDate"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Date d'ajout</th>
+                <th class="th-denom"><a id="sortDenom"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Dénomination</th>
+                <th class="th-price"><a id="sortPrice"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Prix</th>
+                <th class="th-modi">Modifier</th>
+                <th class="th-supr">Supprimer</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td class="td-date">{{vehicle.adddate|date('d/m/Y')}}</td>
+                <td class="td-denom">{{vehicle.brand}} {{vehicle.model}} {{vehicle.year}} {{vehicle.power}}cv {{vehicle.fiscalpower}}cv {{vehicle.mileage}}km {{vehicle.energy}}</td>
+                <td class="td-price">{{vehicle.price}}€</td>
+                <td class="th-modi"><a href="{{ path('app_vente_vehicule_edit', {id: vehicle.id }) }}" class="btn btn-modi">modifier</a></td>
+                <td class="th-supr"><a href="{{ path('app_vente_vehicule_delete', {id: vehicle.id }) }}" class="btn btn-supr">Supprimer</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(vehicles) }}
+    </div>
+</div>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+    const table = document.querySelector("table");
+    const tableBody = table.querySelector("tbody");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+    let currentSortColumn = null;
+    let sortDirection = "asc";
+
+    function parseDate(dateString) {
+        const [day, month, year] = dateString.split("/");
+        return new Date(`${year}-${month}-${day}`);
+    }
+
+    function sortByColumn(columnIndex) {
+        if (currentSortColumn === columnIndex) {
+            sortDirection = sortDirection === "asc" ? "desc" : "asc";
+        } else {
+            sortDirection = "asc";
+        }
+
+        rows.sort((a, b) => {
+            const cellA = a.querySelectorAll("td")[columnIndex].textContent;
+            const cellB = b.querySelectorAll("td")[columnIndex].textContent;
+
+            if (columnIndex === 2) { // Colonne des prix
+                const priceA = parseFloat(cellA.replace("€", "").replace(",", ""));
+                const priceB = parseFloat(cellB.replace("€", "").replace(",", ""));
+                return (priceA - priceB) * (sortDirection === "asc" ? 1 : -1);
+            } else if (columnIndex === 0) { // Colonne des dates (exemple : première colonne)
+                const dateA = parseDate(cellA);
+                const dateB = parseDate(cellB);
+                return (dateA - dateB) * (sortDirection === "asc" ? 1 : -1);
+            } else {
+                return cellA.localeCompare(cellB) * (sortDirection === "asc" ? 1 : -1);
+            }
+        });
+
+        currentSortColumn = columnIndex;
+
+        tableBody.innerHTML = "";
+        rows.forEach(row => tableBody.appendChild(row));
+    }
+
+    const headers = table.querySelectorAll(".th-date, .th-denom, .th-price");
+    headers.forEach((header, columnIndex) => {
+        header.addEventListener("click", () => {
+            sortByColumn(columnIndex);
+        });
+    });
+});
+</script>
+{% endblock %}
+

@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Form\VehiclesType;
 use App\Entity\VparVehicle;
-use App\Repository\VparVehicleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\VparVehicleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +30,7 @@ class VenteVehiculeController extends AbstractController
 
 
 
-        return $this->render('pages/gVentes.html.twig', [
+        return $this->render('pages/vente/gVentes.html.twig', [
             'title_page' => 'Gestion des ventes | V.Parrot',
             'nav_item1' => 'Retour vers le site',
             'nav_item2' => 'Gestion des employés',
@@ -69,7 +69,7 @@ class VenteVehiculeController extends AbstractController
             return $this->redirectToRoute('app_vente_vehicule');
         }
 
-        return $this->render('pages/gVentesNew.html.twig', [
+        return $this->render('pages/vente/gVentesNew.html.twig', [
             'title_page' => 'Ajout d\'un véhicule | V.Parrot',
             'nav_item1' => 'Retour vers le site',
             'nav_item2' => 'Gestion des employés',
@@ -99,7 +99,7 @@ class VenteVehiculeController extends AbstractController
             return $this->redirectToRoute('app_vente_vehicule');
         }
 
-        return $this->render('pages/gVentesEdit.html.twig', [
+        return $this->render('pages/vente/gVentesEdit.html.twig', [
             'title_page' => 'Modification d\'un véhicule | V.Parrot',
             'nav_item1' => 'Retour vers le site',
             'nav_item2' => 'Gestion des employés',
