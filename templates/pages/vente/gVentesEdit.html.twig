@@ -3,208 +3,157 @@
 {% block title %}{{ title_page }}{% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/styles/general_backoffice.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/styles/general_form_backoffice.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/styles/add_modify_form_backoffice.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/styles/button_backoffice.css') }}">
 {% endblock %}
 
 {% block header %}
-  {% include "partials/back/_header.html.twig" %}
-  {% include "partials/back/_nav.html.twig" %}
+
+  {% include "partials/_header.html.twig" %}
+  {% include "partials/_nav_back.html.twig" %}
 {% endblock %}
 
 {% block body %}
-<style>
-.content{
-    background: var(--clr-primary);
-    height: 100vh;
-}
-h1{
-    text-align: center;
-    color: black;
-    margin: 0 auto;
-    padding: 20px 0;
-}    
-h2{
-    text-align: center;
-    color: var(--clr-secondary);
-    margin: 0 auto;
-    padding: 0 0 20px 0;
-}
-
-.addVehiForm{
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background: var(--clr-secondary);
-    border-radius: none;
-    box-shadow: 0 0 10px black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-}
-.form-group{
-    margin: 0 auto;
-    text-align: center;
-}
-.form-label{
-    color: var(--clr-primary);
-    font-weight: bold;
-}
-.form-input{
-    margin-top: 10px;
-}
-.form-error{
-    color: red;
-    font-weight: bold;
-}
-.btn-submit{
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px 0;
-}
-#vehicles_submit{
-    background: var(--clr-primary);
-    color: var(--clr-secondary);
-    border: none;
-    border-radius: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-#vehicles_submit:hover{
-    background: var(--clr-secondary);
-    color: var(--clr-primary);
-    border: 1px solid var(--clr-primary);
-    transition: 0.5s;
-}
-@media only screen and (max-width: 767px) {	
-.content{
-    height: auto;
-}
-}
-</style>
-<div class="content">
-<h1>Gestion des véhicules</h1>
-<h2>Modification d'un véhicule à la vente</h2>
-<section class="addVehiForm">
+<div class="container">
+<h1>{{ h1_edit }}</h1>
+<h2>{{ h2_edit }}</h2>
 {{ form_start(form) }}
-    <div class="form-error">
-    {{  form_errors(form) }}
-    </div>
-    <div class="row">
-      <div class="col form-group">
+      <div class="form-group">
         <div class="form-label">
-          {{form_label(form.brand)}}
+          {{ form_label(form.brand) }}
         </div>
         <div class="form-input">
-          {{form_widget(form.brand)}}
+          {{ form_widget(form.brand) }}
         </div>
         <div class="form-error">
-          {{form_errors(form.brand)}}
+          {{ form_errors(form.brand) }}
         </div>
       </div>
-      <div class="col form-group">
+      <div class="form-group">
         <div class="form-label">
-          {{form_label(form.model)}}
+          {{ form_label(form.model) }}
         </div>
         <div class="form-input">
-          {{form_widget(form.model)}}
+          {{ form_widget(form.model) }}
         </div>
         <div class="form-error">
-          {{form_errors(form.model)}}
+          {{ form_errors(form.model) }}
         </div>
       </div>
-        <div class="col form-group">
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.year) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.year) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.year) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.mileage) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.mileage) }}
+        </div>
+        <div class "form-error">
+          {{ form_errors(form.mileage) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.energy) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.energy) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.energy) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.power) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.power) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.power) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.fiscalpower) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.fiscalpower) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.fiscalpower) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.price) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.price) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.price) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.description) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.description) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.description) }}
+        </div>
+      </div>
+      {% for i in 1..3 %}
+        <div class="form-group">
           <div class="form-label">
-            {{form_label(form.year)}}
+            {{ form_label(form['image' ~ i]) }}
           </div>
           <div class="form-input">
-            {{form_widget(form.year)}}
+            {{ form_widget(form['image' ~ i]) }}
           </div>
           <div class="form-error">
-            {{form_errors(form.year)}}
+            {{ form_errors(form['image' ~ i]) }}
           </div>
         </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <div class="form-label">
-          {{form_label(form.mileage)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.mileage)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.mileage)}}
-        </div>
-      </div>
-      <div class="col form-group">
-        <div class="form-label">
-          {{form_label(form.energy)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.energy)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.energy)}}
-        </div>
-      </div>
-      <div class="col form-group">
-        <div class="form-label">
-          {{form_label(form.power)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.power)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.power)}}
-        </div>
+      {% endfor %}
+      <div class="addBtn">
+        {{ form_row(form.submit) }}
       </div>
     </div>
-    <div class="row">
-      <div class="col form-group">
-        <div class="form-label">
-          {{form_label(form.fiscalpower)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.fiscalpower)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.fiscalpower)}}
-        </div>
-      </div>
-      <div class="col form-group">
-        <div class="form-label">
-          {{form_label(form.price)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.price)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.price)}}
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">
-        {{form_label(form.description)}}
-      </div>
-      <div class="form-input">
-        {{form_widget(form.description)}}
-      </div>
-      <div class="form-error">
-        {{form_errors(form.description)}}
-      </div>
-      <div class="btn-submit">
-      {{ form_row (form.submit) }}
-      </div>
-    </div>
-
-
-{{ form_end(form) }}
-</section>
+    {{ form_end(form) }}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const downloadLinks = document.querySelectorAll('a[download]');
+  downloadLinks.forEach(link => {
+    if (link.textContent.toLowerCase().trim() === 'download') {
+      link.textContent = 'Télécharger';
+    }
+  });
+
+  const deleteLabels = document.querySelectorAll('label[for$="_delete"]');
+
+  deleteLabels.forEach(label => {
+    if (label.textContent.toLowerCase().trim() === 'delete?') {
+      label.textContent = 'Supprimer';
+    }
+  });
+});
+</script>
 {% endblock %}

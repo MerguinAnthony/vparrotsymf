@@ -1,207 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{title_page}}{% endblock %}
+{% block title %}
+    {{title_page}}
+{% endblock %}
+
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/sort_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/table_backoffice.css')}}">
 {% endblock %}
 
 {% block header %}
-{% include "partials/back/_header.html.twig" %}
-{% include "partials/back/_nav.html.twig" %}
+    {{ parent() }}
+    {% include "partials/_nav_back.html.twig" %}
 {% endblock %}
+
 {% block body %}
-<style>
-.content-vente{
-    height: auto;
-}
-h1{
-    text-align: center;
-    color: black;
-    margin: 0 auto;
-    padding: 10px 0;
-}    
-h2{
-    text-align: center;
-    color: var(--clr-secondary);
-    margin: 0 auto;
-    padding: 0 0 10px 0;
-}
-.list-vehicles{
-    text-align: center;
-    color: var(--clr-secondary);
-    margin: 20px 0;
-}
-table{
-margin:20px auto;
-text-align: center;
-width: 90vw;
-border-collapse: collapse;
-border: 1px solid
-}
-thead{
-background-color: var(--clr-secondary);
-color: white
-}
-th,td{
-    padding:8px 0
-}
-.th-modi,.td-modi{
-    width: 10%;
-}
-.btn-modi{
-    display: block;
-    width: 90px;
-    font-size: 16px;
-    font-family: var(--font2);
-    color: var(--clr-tertiary);
-    text-decoration: none;
-    border: 1px solid #EE7E21;
-    background-color: #EE7E21;
-    text-align: center;
-    margin: 0 auto;
-    transition: 0.5s;
-}
-.th-supr,.td-supr{
-    width: 10%;
-}
-.btn-supr{
-    display: block;
-    width: 90px;
-    font-size: 16px;
-    font-family: var(--font2);
-    color: var(--clr-tertiary);
-    text-decoration: none;
-    border: 1px solid var(--clr-secondary);
-    background-color: var(--clr-secondary);
-    text-align: center;
-    margin: 0 auto;
-    transition: 0.5s;
-}
-td:nth-child(1){
-    text-align: left;
-    padding-left: 10px;
-}
-tbody tr:nth-child(even) {
-background-color: var(--clr-primary);
-}
-tbody tr:nth-child(odd) {
-background-color: var(--clr-tertiary);
-}
-
-.pagination{
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-    font-family: var(--font2);
-}
-
-.pagination a{
-    color: var(--clr-secondary);
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid var(--clr-secondary);
-    border-radius: 5px;
-    margin: 0 5px;
-}
-
-.pagination a:hover{
-    background-color: var(--clr-secondary);
-    color: var(--clr-primary);
-}
-
-.count{
-    text-align: center;
-    margin: 5px 0;
-    font-family: var(--font2);
-    color: var(--clr-secondary);
-}
-
-#sortLastname, #sortFirstname, #sortFunction{
-    cursor: pointer;
-    float: left;
-    padding-left: 10px;
-}
-.addBtn {
-        display: block; 
-        width: 250px;
-        font-size: 16px;
-        color: black;
-        font-family: var(--font2);
-        color: var(--clr-tertiary);
-        text-decoration: none;
-        border: 1px solid var(--clr-secondary);
-        padding: 5px 20px;
-        background-color: var(--clr-secondary);
-        text-align: center;
-        margin: 0 auto; 
-    }
-    .addBtn:hover{
-        background-color: var(--clr-primary);
-        color: var(--clr-secondary);
-        box-shadow: 0 0 10px var(--clr-secondary);
-        transition: 0.5s;
-    }
-@media only screen and (max-width: 767px) {	
-.content-vente{
-    height: auto;
-}
-
-table, 
-thead, 
-tbody, 
-th, 
-td, 
-tr{ 	
-display: block	
-}
-thead tr { 
-position: absolute;
-top: -9999px;
-left: -9999px;
-}
-td { 
-position: relative;
-padding-left: 50%; 
-white-space: normal;
-text-align: left
-}
-td:before { 
-position: absolute;
-top: 6px;
-left: 6px;
-width: 45%; 
-padding-right: 10px; 
-font-weight: bold;
-white-space: nowrap;
-text-align:left;
-content: attr(data-title);
-}
-}
-</style>
-<div class="content-vente">
-    <h1>Gestion des employés</h1>
-    <div class="content-info">
-      {% for message in app.flashes('success') %}
-      <div class="alert alert-success mt-4 text-center w-50 mx-auto">
-      {{ message }}
-      </div>
-      {% endfor %}
+<div class="container">
+    <h1>{{ h1_index }}</h1>
+        {% for message in app.flashes('success') %}
+    <div class="pop-up-good">
+            {{ message }}
     </div>
-    <h2 class="list-vehicles">Employés au sein de l'entreprise</h2>
-    <a href="{{ path('app_registration') }}" class="addBtn">Ajouter un nouvel employé</a>
+        {% endfor %}
+    </div>
+    <h2 class="list-vehicles">{{ h2_index }}</h2>
+    <a href="{{ path('app_registration') }}" class="addBtn">{{ add_btn }}</a>
     <div class="count">
-    Il y a actuellement {{ users.getTotalItemCount }} employés dans l'entreprise.
+        {{ count_employee }} {{ users.getTotalItemCount }}
     </div>
     <table>
         <thead>
             <tr>
-                <th><a id="sortlastname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Nom</th>
-                <th><a id="sortFirstname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Prénom</th>
-                <th><a id="sortFuction"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>Poste</th>
-                <th>E-mail</th>
-                <th class="th-modi">Modifier</th>
-                <th class="th-supr">Supprimer</th>
+                <th><a id="sortlastname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_lastname }}</th>
+                <th><a id="sortFirstname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_firstname }}</th>
+                <th><a id="sortFuction"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_function }}</th>
+                <th>{{ th_email }}</th>
+                <th class="th-modify"></th>
+                <th class="th-delete"></th>
                 
             </tr>
         </thead>
@@ -212,8 +50,8 @@ content: attr(data-title);
                 <td>{{user.firstname}}</td>
                 <td>{{user.function}}</td>
                 <td>{{user.email}}</td>
-                <td class="th-modi"><a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-modi">modifier</a></td>
-                <td class="th-supr"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-supr">Supprimer</a></td>
+                <td class="th-modify"><a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-modify">{{ td_modify }}</a></td>
+                <td class="th-delete"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-delete">{{ td_delete }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -222,41 +60,9 @@ content: attr(data-title);
         {{ knp_pagination_render(users) }}
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const table = document.querySelector("table");
-    const tableBody = table.querySelector("tbody");
-    const rows = Array.from(tableBody.querySelectorAll("tr"));
 
-    let currentSortColumn = null;
-    let sortDirection = "asc";
+{% endblock %}
 
-    function sortByColumn(columnIndex) {
-        if (currentSortColumn === columnIndex) {
-            sortDirection = sortDirection === "asc" ? "desc" : "asc";
-        } else {
-            sortDirection = "asc";
-        }
-
-        rows.sort((a, b) => {
-            const cellA = a.querySelectorAll("td")[columnIndex].textContent;
-            const cellB = b.querySelectorAll("td")[columnIndex].textContent;
-
-            return cellA.localeCompare(cellB) * (sortDirection === "asc" ? 1 : -1);
-        });
-
-        currentSortColumn = columnIndex;
-
-        tableBody.innerHTML = "";
-        rows.forEach((row) => tableBody.appendChild(row));
-    }
-
-    const headers = table.querySelectorAll("#sortlastname, #sortFirstname, #sortFuction");
-    headers.forEach((header, columnIndex) => {
-        header.addEventListener("click", () => {
-            sortByColumn(columnIndex);
-        });
-    });
-});
-</script>
+{% block javascripts %}
+    <script src="{{asset('assets/js/sort_backoffice.js')}}"></script>
 {% endblock %}

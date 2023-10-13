@@ -17,8 +17,10 @@ return [
         '/back/gestion-des-employes' => [[['_route' => 'app_employee', '_controller' => 'App\\Controller\\EmployeeController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-employes/nouveau' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\EmployeeController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/back/gestion-des-horaires' => [[['_route' => 'app_horaires', '_controller' => 'App\\Controller\\HorairesController::index'], null, null, null, false, false, null]],
         '/connexion' => [[['_route' => 'app_security', '_controller' => 'App\\Controller\\SecurityController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/deconnexion' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, ['GET' => 0], null, false, false, null]],
+        '/back/gestion-des-services' => [[['_route' => 'app_services', '_controller' => 'App\\Controller\\ServicesController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-ventes' => [[['_route' => 'app_vente_vehicule', '_controller' => 'App\\Controller\\VenteVehiculeController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-ventes/nouveau' => [[['_route' => 'app_vente_vehicule_new', '_controller' => 'App\\Controller\\VenteVehiculeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
@@ -44,9 +46,10 @@ return [
                         .'|edition/([^/]++)(*:220)'
                         .'|suppression/([^/]++)(*:248)'
                     .')'
+                    .'|horaires/edition/([^/]++)(*:282)'
                     .'|ventes/(?'
-                        .'|edition/([^/]++)(*:283)'
-                        .'|suppression/([^/]++)(*:311)'
+                        .'|edition/([^/]++)(*:316)'
+                        .'|suppression/([^/]++)(*:344)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -61,8 +64,9 @@ return [
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         220 => [[['_route' => 'app_gestion_employee_edit', '_controller' => 'App\\Controller\\EmployeeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
         248 => [[['_route' => 'app_gestion_employee_delete', '_controller' => 'App\\Controller\\EmployeeController::delete'], ['id'], ['GET' => 0], null, false, true, null]],
-        283 => [[['_route' => 'app_vente_vehicule_edit', '_controller' => 'App\\Controller\\VenteVehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        311 => [
+        282 => [[['_route' => 'app_gestion_horaires_edit', '_controller' => 'App\\Controller\\HorairesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        316 => [[['_route' => 'app_vente_vehicule_edit', '_controller' => 'App\\Controller\\VenteVehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        344 => [
             [['_route' => 'app_vente_vehicule_delete', '_controller' => 'App\\Controller\\VenteVehiculeController::delete'], ['id'], ['GET' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

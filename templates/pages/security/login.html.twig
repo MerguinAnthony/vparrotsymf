@@ -1,33 +1,40 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{title_page}}{% endblock %}
-
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('assets/styles/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}">
+{% block title %}
+  {{title_page}}
 {% endblock %}
 
-{% block header %}{% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/connect_form_backoffice.css')}}">
+{% endblock %}
+
+{% block header %}
+  {% include "partials/_header.html.twig" %}
+{% endblock %}
 
 {% block body %}
-  <div class="container">
-  <h1 class="mt-4">Formulaire de connexion</h1>
-  {% if error %}
-  <div class="alert alert-danger">
-  {{  error.messageKey|trans(error.messageData, 'security') }}
-</div>
-  {% endif %}
+<div class="container">
+  <h1>{{ h1_index }}</h1>
+    {% if bad_credentials %}
+      <div class="pop-up-bad">
+        {{ bad_credentials_message }}
+      </div>
+    {% endif %}
   <form action="{{ path('app_security') }}" method="post">
+    <h2>{{ h2_index }}</h2>
     <div class="form-group">
-      <label for="username" class="form-label mt-4">Adresse email</label>
-      <input type="email" class="form-control" id="username" placeholder="exemple@vparrot.fr" name="_username" value="{{last_username}}">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="username">{{ connec_email }}</label>
+      <input type="email" id="username" placeholder="exemple@vparrot.fr" name="_username" value="{{last_username}}">
+      <small id="emailHelp">{{ connec_warning }}</small>
     </div>
     <div class="form-group">
-      <label for="password" class="form-label mt-4">Mot de passe</label>
-      <input type="password" class="form-control" id="password" placeholder="********" autocomplete="off" name="_password">
+      <label for="password">{{ connec_password }}</label>
+      <input type="password" id="password" placeholder="********" autocomplete="off" name="_password">
     </div>
-    <button type="submit" class="btn-connect">Se connecter</button>
+    <div class="form-group">
+      <button type="submit">{{ connec_submit }}</button>
+    </div>
   </form>
-  </div>
+</div>
 {% endblock %}

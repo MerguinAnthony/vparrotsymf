@@ -7,8 +7,11 @@ use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: VparVehicleRepository::class)]
+#[Vich\Uploadable]
 class VparVehicle
 {
     #[ORM\Id]
@@ -47,8 +50,26 @@ class VparVehicle
     #[Assert\Positive()]
     private ?float $price = null;
 
+    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName1')]
+    private ?File $image1 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName1 = null;
+
+    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName2')]
+    private ?File $image2 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName2 = null;
+
+    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName3')]
+    private ?File $image3 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName3 = null;
+
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeImmutable $addDate = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -163,14 +184,92 @@ class VparVehicle
         return $this;
     }
 
-    public function getAddDate(): ?\DateTimeImmutable
+    public function setImage1(?File $image1 = null): void
     {
-        return $this->addDate;
+        $this->image1 = $image1;
+
+        if (null !== $image1) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function setAddDate(\DateTimeImmutable $addDate): static
+    public function getImage1(): ?File
     {
-        $this->addDate = $addDate;
+        return $this->image1;
+    }
+
+    public function setImageName1(?string $imageName1): void
+    {
+        $this->imageName1 = $imageName1;
+    }
+
+    public function getImageName1(): ?string
+    {
+        return $this->imageName1;
+    }
+
+    public function setImage2(?File $image2 = null): void
+    {
+        $this->image2 = $image2;
+
+        if (null !== $image2) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImage2(): ?File
+    {
+        return $this->image2;
+    }
+
+    public function setImageName2(?string $imageName2): void
+    {
+        $this->imageName2 = $imageName2;
+    }
+
+    public function getImageName2(): ?string
+    {
+        return $this->imageName2;
+    }
+
+    public function setImage3(?File $image3 = null): void
+    {
+        $this->image3 = $image3;
+
+        if (null !== $image3) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImage3(): ?File
+    {
+        return $this->image3;
+    }
+
+    public function setImageName3(?string $imageName3): void
+    {
+        $this->imageName3 = $imageName3;
+    }
+
+    public function getImageName3(): ?string
+    {
+        return $this->imageName3;
+    }
+
+    public function getAddDate(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setAddDate(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

@@ -1,0 +1,27 @@
+.pagination {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-family: var(--font2);
+}
+
+.pagination a {
+  color: var(--clr-secondary);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid var(--clr-secondary);
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.pagination a:hover {
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
+}
+
+.count {
+  text-align: center;
+  margin: 5px 0;
+  font-family: var(--font2);
+  color: var(--clr-secondary);
+}

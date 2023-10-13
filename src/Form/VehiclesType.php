@@ -7,6 +7,7 @@ use Assert\Length;
 use App\Entity\VparVehicle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -71,6 +72,28 @@ class VehiclesType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ]
+            ])
+            ->add('image1', VichImageType::class, [
+                'label' => 'Image 1',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+            ])
+            ->add('image2', VichImageType::class, [
+                'label' => 'Image 2',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+            ])
+            ->add('image3', VichImageType::class, [
+                'label' => 'Image 3',
+                'required' => false,
+
+                'attr' => [
+                    'class' => 'form-control'
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',

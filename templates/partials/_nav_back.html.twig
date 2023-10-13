@@ -1,0 +1,24 @@
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/nav.css')}}"> 
+{% endblock %}
+
+<input id="toggle" type="checkbox"></input>
+
+<label for="toggle" class="hamburger">
+  <div class="top-bun"></div>
+  <div class="meat"></div>
+  <div class="bottom-bun"></div>
+</label>
+
+<div class="nav">
+  <div class="nav-wrapper">
+    <nav><a href="{{ path('home.index') }}">{{nav_item1}}</a>
+      <a href="{{ path('app_vente_vehicule') }}">{{nav_item2}}</a>
+      <a href="{{ path('app_services') }}">{{nav_item3}}</a>
+      <a href="{{ path('app_horaires') }}">{{nav_item4}}</a>
+      <a href="{{ path('app_employee') }}">{{nav_item5}}</a>
+      <a href="#">{{nav_item6}}</a>
+      <a href="{{ path('app_logout') }}">{{nav_item7}}</a>
+    </nav>
+  </div>
+</div>

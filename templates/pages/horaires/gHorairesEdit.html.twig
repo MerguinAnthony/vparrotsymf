@@ -1,0 +1,105 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title_page }}{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/add_modify_form_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/general_form_backoffice.css')}}">
+{% endblock %}
+
+{% block header %}
+  {% include "partials/_header.html.twig" %}
+  {% include "partials/_nav_back.html.twig" %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>{{ h1_edit }}</h1>
+<h2>{{ h2_edit }}</h2>
+{{ form_start(form) }}
+    <div class="form-error">
+    {{  form_errors(form) }}
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.monday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.monday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.monday)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.tuesday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.tuesday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.tuesday)}}
+        </div>
+      </div><div class="form-group">
+        <div class="form-label">
+          {{form_label(form.wednesday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.wednesday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.wednesday)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.thursday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.thursday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.thursday)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.friday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.friday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.friday)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.saturday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.saturday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.saturday)}}
+        </div>
+      </div><div class="form-group">
+        <div class="form-label">
+          {{form_label(form.sunday)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.sunday)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.sunday)}}
+        </div>
+      </div>
+      <div class="addBtn">
+      {{ form_row (form.submit) }}
+      </div>
+    </div>
+{{ form_end(form) }}
+</div>
+{% endblock %}

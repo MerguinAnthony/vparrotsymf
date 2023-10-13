@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{title_page}}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/sort_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/table_backoffice.css')}}">
+{% endblock %}
+
+{% block header %}
+    {% include "partials/_header.html.twig" %}
+    {% include "partials/_nav_back.html.twig" %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ h1_index }}</h1>
+        {% for message in app.flashes('success') %}
+    <div class="pop-up-good">
+            {{ message }}
+    </div>
+        {% endfor %}
+    </div>
+    <h2>{{ h2_index }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>{{ th_1 }}</th>
+                <th>{{ th_2 }}</th>
+                <th>{{ th_3 }}</th>
+                <th>{{ th_4 }}</th>
+                <th>{{ th_5 }}</th>
+                <th>{{ th_6 }}</th>
+                <th>{{ th_7 }}</th>
+                <th class="th-modify"></th>     
+            </tr>
+        </thead>
+        <tbody>
+        <!-- schedules-->
+        {% for schedule in schedules %}
+            <tr>
+                {% if schedule.id == 1 %}
+                    <td>Ouverture matin</td>
+                {% elseif schedule.id == 2 %}
+                    <td>Fermeture matin</td>
+                {% elseif schedule.id == 3 %}
+                    <td>Ouverture après-midi</td>
+                {% elseif schedule.id == 4 %}
+                    <td>Fermeture après-midi</td>
+                {% endif %} 
+                <td>{{ schedule.monday }}h</td>
+                <td>{{ schedule.tuesday }}h</td>
+                <td>{{ schedule.wednesday }}h</td>
+                <td>{{ schedule.thursday }}h</td>
+                <td>{{ schedule.friday }}h</td>
+                <td>{{ schedule.saturday }}h</td>
+                <td>{{ schedule.sunday }}h</td>
+                <td class="td-modify"><a href="{{ path('app_gestion_horaires_edit', {id: schedule.id }) }}" class="btn-modify">Modifier</a>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    var table = document.querySelector('table');
+    var tr = table.querySelectorAll('tr');
+    var td = table.querySelectorAll('td');
+    for (var i = 0; i < td.length; i++) {
+        if (td[i].innerHTML == 'h') {
+            td[i].innerHTML = 'Fermé';
+        }
+    }
+</script>
+{% endblock %}
