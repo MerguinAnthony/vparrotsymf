@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\ServicesType;
+use App\Form\ServiceType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\VparServiceRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,7 @@ class ServicesController extends AbstractController
             'nav_item5' => 'Gestion des employés',
             'nav_item6' => 'Gestion des avis clients',
             'nav_item7' => 'Déconnexion',
-            'h1_index' => 'Gestion des Services',
+            'h1_index' => 'Gestion des services',
             'h2_index' => 'Service actuellement proposés',
             'add_btn' => 'Ajouter un nouveau service',
             'th_name' => 'Nom du service',
@@ -35,6 +35,41 @@ class ServicesController extends AbstractController
             'td_modify' => 'Modifier',
             'td_delete' => 'Supprimer',
             'services' => $services->findAll(),
+        ]);
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/back/gestion-des-services/edition/{id}', name: 'app_services_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, VparServiceRepository $service, EntityManagerInterface $em, int $id): Response
+    {
+
+        $service = $service->find($id);
+
+        $form = $this->createForm(ServiceType::class, $service);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($service);
+            $em->flush();
+
+            $this->addFlash('success', 'Le service a bien été modifié !');
+
+            return $this->redirectToRoute('app_services');
+        }
+        return $this->render('pages/services/gServicesEdit.html.twig', [
+            'title_page' => 'modification des services | V.Parrot',
+            'nav_item1' => 'Retour vers le site',
+            'nav_item2' => 'Gestion des ventes',
+            'nav_item3' => 'Gestion des services',
+            'nav_item4' => 'Gestion des horaires',
+            'nav_item5' => 'Gestion des employés',
+            'nav_item6' => 'Gestion des avis clients',
+            'nav_item7' => 'Déconnexion',
+            'h1_edit' => 'Gestion des services',
+            'h2_edit' => 'Modification d\'un service',
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -122,7 +122,7 @@ class EmployeeController extends AbstractController
             'nav_item5' => 'Gestion des employés',
             'nav_item6' => 'Gestion des avis clients',
             'nav_item7' => 'Déconnexion',
-            'h1_edit' => 'Gestion des véhicules',
+            'h1_edit' => 'Gestion des employés',
             'h2_edit' => 'Modifier un employé',
             'form' => $form->createView(),
         ]);

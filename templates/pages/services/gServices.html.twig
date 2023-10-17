@@ -6,10 +6,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/table_backoffice.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}"> 
     <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/sort_backoffice.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}"> 
 {% endblock %}
 
 {% block header %}
@@ -30,18 +30,18 @@
         <thead>
             <tr>
                 <th>{{ th_img }}</th>
-                <th><a id="sortName"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_name }}</th>
-                <th><a id="sortText"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_text }}</th>
+                <th>{{ th_name }}<a id="sortName"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
+                <th>{{ th_text }}<a id="sortText"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
                 <th class="th-modi"></th>
             </tr>
         </thead>
         <tbody>
             {% for service in services %}
             <tr>
-                <td class="td-img"><img src="{{asset('assets/img_uploads/' ~ service.imageName)}}" alt="image service"></td>
+                <td class="td-img"><img src="{{asset('assets/img_uploads/' ~ service.image)}}" alt="image service"></td>
                 <td>{{ service.title }}</td>
                 <td>{{ service.text }}</td>
-                <td class="th-modi"><a  class="btn btn-modify">{{ td_modify }}</a></td>
+                <td class="th-modi"><a href="{{ path('app_services_edit', {'id': service.id}) }}" class="btn btn-modify">{{ td_modify }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

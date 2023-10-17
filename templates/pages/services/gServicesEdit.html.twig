@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title_page }}{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/add_modify_form_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/general_form_backoffice.css')}}">
+{% endblock %}
+
+{% block header %}
+  {% include "partials/_header.html.twig" %}
+  {% include "partials/_nav_back.html.twig" %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>{{ h1_edit }}</h1>
+<h2>{{ h2_edit }}</h2>
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    <div class="form-error">
+    {{  form_errors(form) }}
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.title)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.title)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.title)}}
+        </div>
+      </div><div class="form-group">
+        <div class="form-label">
+          {{form_label(form.text)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.text)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.text)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.imageFile)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.imageFile)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.imageFile)}}
+        </div>
+      </div>
+      <div>
+      {{ form_row (form.submit) }}
+      </div>
+    </div>
+{{ form_end(form) }}
+</div>
+{% endblock %}

@@ -52,8 +52,9 @@ class VehiclesType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'rows' => 10,
+                    'cols' => 40,
+                ],
             ])
             ->add('power', IntegerType::class, [
                 'label' => 'Puissance',
@@ -98,7 +99,7 @@ class VehiclesType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'addBtn',
                 ]
             ]);
     }

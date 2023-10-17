@@ -6,10 +6,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/sort_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/table_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}">
 {% endblock %}
 
 {% block header %}
@@ -34,9 +34,9 @@
     <table>
         <thead>
             <tr>
-                <th><a id="sortlastname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_lastname }}</th>
-                <th><a id="sortFirstname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_firstname }}</th>
-                <th><a id="sortFuction"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a>{{ th_function }}</th>
+                <th>{{ th_lastname }}<a id="sortlastname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
+                <th>{{ th_firstname }}<a id="sortFirstname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
+                <th>{{ th_function }}<a id="sortFuction"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
                 <th>{{ th_email }}</th>
                 <th class="th-modify"></th>
                 <th class="th-delete"></th>

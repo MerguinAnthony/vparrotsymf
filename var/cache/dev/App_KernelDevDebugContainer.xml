@@ -253,20 +253,36 @@
     <parameter key="knp_paginator.page_limit">null</parameter>
     <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
     <parameter key="vich_uploader.mappings" type="collection">
-      <parameter key="Image" type="collection">
-        <parameter key="uri_prefix">/assets/img_uploads/</parameter>
-        <parameter key="upload_destination">/Users/anthonymerguin/Documents/projet/vparrotsymf/public/assets/img_uploads/</parameter>
+      <parameter key="VehiclesImage" type="collection">
+        <parameter key="uri_prefix">/assets/img_uploads/vehicles/</parameter>
+        <parameter key="upload_destination">/Users/anthonymerguin/Documents/projet/vparrotsymf/public/assets/img_uploads/vehicles/</parameter>
         <parameter key="namer" type="collection">
-          <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.Image</parameter>
+          <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.VehiclesImage</parameter>
           <parameter key="options" type="collection"/>
         </parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="delete_on_remove">true</parameter>
         <parameter key="directory_namer" type="collection">
           <parameter key="service">null</parameter>
           <parameter key="options">null</parameter>
         </parameter>
-        <parameter key="delete_on_remove">true</parameter>
-        <parameter key="delete_on_update">true</parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
+      <parameter key="ServicesImage" type="collection">
+        <parameter key="uri_prefix">/assets/img_uploads/services/</parameter>
+        <parameter key="upload_destination">/Users/anthonymerguin/Documents/projet/vparrotsymf/public/assets/img_uploads/services/</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.ServicesImage</parameter>
+          <parameter key="options" type="collection"/>
+        </parameter>
         <parameter key="inject_on_load">false</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
         <parameter key="db_driver">orm</parameter>
       </parameter>
     </parameter>
@@ -376,6 +392,13 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\AvisController" class="App\Controller\AvisController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\AvisController"/>
+      </call>
+    </service>
     <service id="App\Controller\EmployeeController" class="App\Controller\EmployeeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -431,10 +454,17 @@
     <service id="App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\VparAvisRepository" class="App\Repository\VparAvisRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -477,7 +507,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.EEfLLNq"/>
+      <argument type="service" id=".service_locator.gmyCdMD"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1345,6 +1375,7 @@
       <argument type="collection">
         <argument>App\Form\AddemployeeType</argument>
         <argument>App\Form\SchedulesType</argument>
+        <argument>App\Form\ServiceType</argument>
         <argument>App\Form\VehiclesType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -3145,7 +3176,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.EEfLLNq"/>
+      <argument type="service" id=".service_locator.gmyCdMD"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <argument type="service" id="request_stack"/>
@@ -3623,7 +3654,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.q8y9yPM"/>
+      <argument type="service" id=".service_locator.VOc3Sh_"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4707,13 +4738,19 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.L3bdLm6"/>
+      <argument type="service" id=".service_locator.ycvY1fJ"/>
       <argument type="collection">
         <argument type="collection">
           <argument type="collection">
             <argument>preUpdate</argument>
           </argument>
-          <argument>vich_uploader.listener.clean.Image</argument>
+          <argument>vich_uploader.listener.clean.VehiclesImage</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preUpdate</argument>
+          </argument>
+          <argument>vich_uploader.listener.clean.ServicesImage</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
@@ -4761,25 +4798,49 @@
           <argument type="collection">
             <argument>preRemove</argument>
           </argument>
-          <argument>vich_uploader.listener.remove.Image</argument>
+          <argument>vich_uploader.listener.remove.VehiclesImage</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
             <argument>postFlush</argument>
           </argument>
-          <argument>vich_uploader.listener.remove.Image</argument>
+          <argument>vich_uploader.listener.remove.VehiclesImage</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
             <argument>prePersist</argument>
           </argument>
-          <argument>vich_uploader.listener.upload.Image</argument>
+          <argument>vich_uploader.listener.upload.VehiclesImage</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
             <argument>preUpdate</argument>
           </argument>
-          <argument>vich_uploader.listener.upload.Image</argument>
+          <argument>vich_uploader.listener.upload.VehiclesImage</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preRemove</argument>
+          </argument>
+          <argument>vich_uploader.listener.remove.ServicesImage</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postFlush</argument>
+          </argument>
+          <argument>vich_uploader.listener.remove.ServicesImage</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>prePersist</argument>
+          </argument>
+          <argument>vich_uploader.listener.upload.ServicesImage</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preUpdate</argument>
+          </argument>
+          <argument>vich_uploader.listener.upload.ServicesImage</argument>
         </argument>
       </argument>
     </service>
@@ -4873,7 +4934,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.6pqId99"/>
+      <argument type="service" id=".service_locator.m5LPPii"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6918,7 +6979,10 @@
       <tag name="twig.runtime"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
-    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer.Image" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer.VehiclesImage" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer.ServicesImage" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
       <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
     </service>
     <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter"/>
@@ -7158,29 +7222,55 @@
       <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
     </service>
     <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
-    <service id="vich_uploader.listener.clean.Image" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+    <service id="vich_uploader.listener.clean.VehiclesImage" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
       <tag name="doctrine.event_listener" event="preUpdate" priority="50"/>
-      <argument>Image</argument>
+      <argument>VehiclesImage</argument>
       <argument type="service" id="vich_uploader.adapter.orm"/>
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
-    <service id="vich_uploader.listener.remove.Image" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+    <service id="vich_uploader.listener.remove.VehiclesImage" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
       <tag name="doctrine.event_listener" event="preRemove" priority="0"/>
       <tag name="doctrine.event_listener" event="postFlush" priority="0"/>
-      <argument>Image</argument>
+      <argument>VehiclesImage</argument>
       <argument type="service" id="vich_uploader.adapter.orm"/>
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
-    <service id="vich_uploader.listener.upload.Image" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+    <service id="vich_uploader.listener.upload.VehiclesImage" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
       <tag name="doctrine.event_listener" event="prePersist" priority="0"/>
       <tag name="doctrine.event_listener" event="preUpdate" priority="0"/>
-      <argument>Image</argument>
+      <argument>VehiclesImage</argument>
       <argument type="service" id="vich_uploader.adapter.orm"/>
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
+    <service id="vich_uploader.listener.clean.ServicesImage" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <tag name="doctrine.event_listener" event="preUpdate" priority="50"/>
+      <argument>ServicesImage</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.ServicesImage" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <tag name="doctrine.event_listener" event="preRemove" priority="0"/>
+      <tag name="doctrine.event_listener" event="postFlush" priority="0"/>
+      <argument>ServicesImage</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.ServicesImage" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <tag name="doctrine.event_listener" event="prePersist" priority="0"/>
+      <tag name="doctrine.event_listener" event="preUpdate" priority="0"/>
+      <argument>ServicesImage</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AvisController" class="App\Controller\AvisController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AvisController" class="App\Controller\AvisController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AvisController" class="App\Controller\AvisController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\EmployeeController" class="App\Controller\EmployeeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7205,10 +7295,14 @@
     <service id=".abstract.instanceof.App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\VehiclesType" class="App\Form\VehiclesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VparAvisRepository" class="App\Repository\VparAvisRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\VparAvisRepository" class="App\Repository\VparAvisRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VparHourRepository" class="App\Repository\VparHourRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\VparHourRepository" class="App\Repository\VparHourRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VparServiceRepository" class="App\Repository\VparServiceRepository" autowire="true" abstract="true"/>
@@ -7589,6 +7683,13 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.m1mQcJR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
+        <argument key="vparAvis" type="service_closure" id="App\Repository\VparAvisRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.yGuNzrW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7641,6 +7742,13 @@
         <argument key="services" type="service_closure" id="App\Repository\VparServiceRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.EaURg11" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="service" type="service_closure" id="App\Repository\VparServiceRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.6Gf0ew4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7655,9 +7763,10 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.EEfLLNq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gmyCdMD" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\AvisController::index" type="service_closure" id=".service_locator.m1mQcJR"/>
         <argument key="App\Controller\EmployeeController::add" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController::delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController::edit" type="service_closure" id=".service_locator.iJFRmZA"/>
@@ -7666,6 +7775,7 @@
         <argument key="App\Controller\HorairesController::edit" type="service_closure" id=".service_locator.XVUpos5"/>
         <argument key="App\Controller\HorairesController::index" type="service_closure" id=".service_locator.bKkqHbb"/>
         <argument key="App\Controller\SecurityController::index" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\ServicesController::edit" type="service_closure" id=".service_locator.EaURg11"/>
         <argument key="App\Controller\ServicesController::index" type="service_closure" id=".service_locator.SxzRFOT"/>
         <argument key="App\Controller\VenteVehiculeController::delete" type="service_closure" id=".service_locator.b1oUMSC"/>
         <argument key="App\Controller\VenteVehiculeController::edit" type="service_closure" id=".service_locator.b1oUMSC"/>
@@ -7675,6 +7785,7 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\AvisController:index" type="service_closure" id=".service_locator.m1mQcJR"/>
         <argument key="App\Controller\EmployeeController:add" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController:delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController:edit" type="service_closure" id=".service_locator.iJFRmZA"/>
@@ -7683,6 +7794,7 @@
         <argument key="App\Controller\HorairesController:edit" type="service_closure" id=".service_locator.XVUpos5"/>
         <argument key="App\Controller\HorairesController:index" type="service_closure" id=".service_locator.bKkqHbb"/>
         <argument key="App\Controller\SecurityController:index" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\ServicesController:edit" type="service_closure" id=".service_locator.EaURg11"/>
         <argument key="App\Controller\ServicesController:index" type="service_closure" id=".service_locator.SxzRFOT"/>
         <argument key="App\Controller\VenteVehiculeController:delete" type="service_closure" id=".service_locator.b1oUMSC"/>
         <argument key="App\Controller\VenteVehiculeController:edit" type="service_closure" id=".service_locator.b1oUMSC"/>
@@ -7845,11 +7957,12 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.q8y9yPM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.VOc3Sh_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AddemployeeType" type="service_closure" id="App\Form\AddemployeeType"/>
         <argument key="App\Form\SchedulesType" type="service_closure" id="App\Form\SchedulesType"/>
+        <argument key="App\Form\ServiceType" type="service_closure" id="App\Form\ServiceType"/>
         <argument key="App\Form\VehiclesType" type="service_closure" id="App\Form\VehiclesType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
@@ -7945,7 +8058,7 @@
       <argument type="service" id="http_client.uri_template"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
     </service>
-    <service id=".service_locator.L3bdLm6" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ycvY1fJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
@@ -7954,9 +8067,12 @@
         <argument key="doctrine.orm.listeners.lock_store_schema_listener" type="service_closure" id="doctrine.orm.listeners.lock_store_schema_listener"/>
         <argument key="doctrine.orm.listeners.pdo_session_handler_schema_listener" type="service_closure" id="doctrine.orm.listeners.pdo_session_handler_schema_listener"/>
         <argument key="doctrine.orm.messenger.doctrine_schema_listener" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_listener"/>
-        <argument key="vich_uploader.listener.clean.Image" type="service_closure" id="vich_uploader.listener.clean.Image"/>
-        <argument key="vich_uploader.listener.remove.Image" type="service_closure" id="vich_uploader.listener.remove.Image"/>
-        <argument key="vich_uploader.listener.upload.Image" type="service_closure" id="vich_uploader.listener.upload.Image"/>
+        <argument key="vich_uploader.listener.clean.ServicesImage" type="service_closure" id="vich_uploader.listener.clean.ServicesImage"/>
+        <argument key="vich_uploader.listener.clean.VehiclesImage" type="service_closure" id="vich_uploader.listener.clean.VehiclesImage"/>
+        <argument key="vich_uploader.listener.remove.ServicesImage" type="service_closure" id="vich_uploader.listener.remove.ServicesImage"/>
+        <argument key="vich_uploader.listener.remove.VehiclesImage" type="service_closure" id="vich_uploader.listener.remove.VehiclesImage"/>
+        <argument key="vich_uploader.listener.upload.ServicesImage" type="service_closure" id="vich_uploader.listener.upload.ServicesImage"/>
+        <argument key="vich_uploader.listener.upload.VehiclesImage" type="service_closure" id="vich_uploader.listener.upload.VehiclesImage"/>
       </argument>
     </service>
     <service id=".service_locator.UC65mK2" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7965,10 +8081,11 @@
         <argument key="App\EntityListener\UserListener" type="service_closure" id="App\EntityListener\UserListener"/>
       </argument>
     </service>
-    <service id=".service_locator.6pqId99" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.m5LPPii" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="App\Repository\VparAvisRepository" type="service_closure" id="App\Repository\VparAvisRepository"/>
         <argument key="App\Repository\VparHourRepository" type="service_closure" id="App\Repository\VparHourRepository"/>
         <argument key="App\Repository\VparServiceRepository" type="service_closure" id="App\Repository\VparServiceRepository"/>
         <argument key="App\Repository\VparVehicleRepository" type="service_closure" id="App\Repository\VparVehicleRepository"/>
@@ -8333,6 +8450,12 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
+    </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\AvisController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\AvisController"/>
+      <argument>App\Controller\AvisController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\EmployeeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\EmployeeController"/>
@@ -9717,7 +9840,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.EEfLLNq"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.gmyCdMD"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9738,13 +9861,15 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
+    <service id=".service_locator.WYK1Hn3" alias=".service_locator.m1mQcJR"/>
     <service id=".service_locator.IvJGRJB" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator.8UqdCRr" alias=".service_locator.iJFRmZA"/>
     <service id=".service_locator.v.kaYh7" alias=".service_locator.XVUpos5"/>
-    <service id=".service_locator.xoa0bpH" alias=".service_locator.EEfLLNq"/>
+    <service id=".service_locator.prgro6Y" alias=".service_locator.EaURg11"/>
+    <service id=".service_locator.B9V4Eiu" alias=".service_locator.gmyCdMD"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.p0cckGK" alias=".service_locator.q8y9yPM"/>
-    <service id=".service_locator.savgNd8" alias=".service_locator.L3bdLm6"/>
+    <service id=".service_locator.u69D7jT" alias=".service_locator.VOc3Sh_"/>
+    <service id=".service_locator.jd_pIC." alias=".service_locator.ycvY1fJ"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
     <service id="validator" alias="debug.validator"/>
@@ -9764,6 +9889,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.JPaNfBN" alias=".service_locator.m1mQcJR"/>
     <service id=".service_locator.JJIXCHF" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator.6k5RJBU" alias=".service_locator.V71r_w4"/>
     <service id=".service_locator._XOJC2K" alias=".service_locator.iJFRmZA"/>
@@ -9772,6 +9898,7 @@
     <service id=".service_locator.2O4T09b" alias=".service_locator.XVUpos5"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.csdGYF0" alias=".service_locator.SxzRFOT"/>
+    <service id=".service_locator.ui1enPv" alias=".service_locator.EaURg11"/>
     <service id=".service_locator.zKPWy.U" alias=".service_locator.6Gf0ew4"/>
     <service id=".service_locator.Oa5KcuI" alias=".service_locator.b1oUMSC"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.O2p6Lk7"/>

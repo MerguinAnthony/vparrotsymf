@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
 #[ORM\Entity]
 #[Vich\Uploadable]
 class VparService
@@ -26,12 +27,11 @@ class VparService
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
-    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName')]
-    private ?File $image = null;
+    #[Vich\UploadableField(mapping: 'ServicesImage', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
-    private ?string $imageName = null;
-
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -73,30 +73,29 @@ class VparService
 
         return $this;
     }
-
-    public function setImage1(?File $image = null): void
+    public function setImageFile(?File $imageFile = null): void
     {
-        $this->image = $image;
+        $this->imageFile = $imageFile;
 
-        if (null !== $image) {
+        if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
-    public function getImage(): ?File
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
-    }
-
-    public function setImageName(?string $imageName): void
-    {
-        $this->imageName = $imageName;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
     }
 }

@@ -1,0 +1,15 @@
+#sortDenom,
+#sortPrice,
+#sortDate,
+#sortText,
+#sortName,
+#sortlastname,
+#sortFirstname,
+#sortfirstname,
+#sortRank,
+#sortFuction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

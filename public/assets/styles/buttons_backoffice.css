@@ -1,0 +1,53 @@
+.btn-modify,
+.btn-appr,
+.btn-delete {
+  display: block;
+  width: 90px;
+  font-size: 16px;
+  font-family: var(--font2);
+  text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+  transition: 0.5s;
+}
+
+.btn-modify {
+  color: var(--clr-tertiary);
+  border: 1px solid #ee7e21;
+  background-color: #ee7e21;
+}
+
+.btn-appr {
+  color: var(--clr-quaternary);
+  border: 1px solid #5db220;
+  background-color: #5db220;
+}
+
+.btn-delete {
+  color: var(--clr-tertiary);
+  border: 1px solid var(--clr-secondary);
+  background-color: var(--clr-secondary);
+}
+
+.addBtn,
+.connect-btn {
+  display: block;
+  width: 250px;
+  font-size: 16px;
+  color: black;
+  font-family: var(--font2);
+  color: var(--clr-tertiary);
+  text-decoration: none;
+  border: 1px solid var(--clr-secondary);
+  padding: 5px 20px;
+  background-color: var(--clr-secondary);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.addBtn:hover {
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
+  box-shadow: 0 0 10px var(--clr-secondary);
+  transition: 0.5s;
+}

@@ -50,19 +50,19 @@ class VparVehicle
     #[Assert\Positive()]
     private ?float $price = null;
 
-    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName1')]
+    #[Vich\UploadableField(mapping: 'VehiclesImage', fileNameProperty: 'imageName1')]
     private ?File $image1 = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName1 = null;
 
-    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName2')]
+    #[Vich\UploadableField(mapping: 'VehiclesImage', fileNameProperty: 'imageName2')]
     private ?File $image2 = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName2 = null;
 
-    #[Vich\UploadableField(mapping: 'Image', fileNameProperty: 'imageName3')]
+    #[Vich\UploadableField(mapping: 'VehiclesImage', fileNameProperty: 'imageName3')]
     private ?File $image3 = null;
 
     #[ORM\Column(nullable: true)]

@@ -6,10 +6,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/button_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/sort_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/table_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}">
 {% endblock %}
 
 {% block header %}
@@ -72,7 +72,7 @@
     var tr = table.querySelectorAll('tr');
     var td = table.querySelectorAll('td');
     for (var i = 0; i < td.length; i++) {
-        if (td[i].innerHTML == 'h') {
+        if (td[i].innerHTML == '0h'|| td[i].innerHTML == 'h') {
             td[i].innerHTML = 'Fermé';
         }
     }
