@@ -12,13 +12,22 @@
 
 <div class="nav">
   <div class="nav-wrapper">
-    <nav><a href="{{ path('home.index') }}">{{nav_item1}}</a>
+    <nav>
+    <!-- if #[IsGranted('ROLE_ADMIN')] in controller -->
+    {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('home.index') }}">{{nav_item1}}</a>
       <a href="{{ path('app_vente_vehicule') }}">{{nav_item2}}</a>
       <a href="{{ path('app_services') }}">{{nav_item3}}</a>
       <a href="{{ path('app_horaires') }}">{{nav_item4}}</a>
       <a href="{{ path('app_employee') }}">{{nav_item5}}</a>
       <a href="{{ path('app_avis') }}">{{nav_item6}}</a>
       <a href="{{ path('app_logout') }}">{{nav_item7}}</a>
+    {% else %}
+      <a href="{{ path('home.index') }}">{{nav_item1}}</a>
+      <a href="{{ path('app_vente_vehicule') }}">{{nav_item2}}</a>
+      <a href="{{ path('app_avis') }}">{{nav_item6}}</a>
+      <a href="{{ path('app_logout') }}">{{nav_item7}}</a>
+    {% endif %}
     </nav>
   </div>
 </div>

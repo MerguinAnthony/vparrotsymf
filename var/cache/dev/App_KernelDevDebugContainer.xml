@@ -451,6 +451,9 @@
     <service id="App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -507,7 +510,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.gmyCdMD"/>
+      <argument type="service" id=".service_locator.kC5dMMp"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1374,6 +1377,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\AddemployeeType</argument>
+        <argument>App\Form\AvisType</argument>
         <argument>App\Form\SchedulesType</argument>
         <argument>App\Form\ServiceType</argument>
         <argument>App\Form\VehiclesType</argument>
@@ -3176,7 +3180,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.gmyCdMD"/>
+      <argument type="service" id=".service_locator.kC5dMMp"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <argument type="service" id="request_stack"/>
@@ -3654,7 +3658,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.VOc3Sh_"/>
+      <argument type="service" id=".service_locator.BiAc0yh"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -7293,6 +7297,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\AddemployeeType" class="App\Form\AddemployeeType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AvisType" class="App\Form\AvisType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\SchedulesType" class="App\Form\SchedulesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" abstract="true"/>
@@ -7690,17 +7696,31 @@
         <argument key="vparAvis" type="service_closure" id="App\Repository\VparAvisRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.yGuNzrW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator._8GhZyl" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="paginator" type="service_closure" id="knp_paginator"/>
-        <argument key="user" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="vparAvis" type="service_closure" id="App\Repository\VparAvisRepository"/>
       </argument>
     </service>
     <service id=".service_locator.V71r_w4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.4bEQHTU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="avis" type="service_closure" id="App\Repository\VparAvisRepository"/>
+        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.yGuNzrW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
+        <argument key="user" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.iJFRmZA" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7763,10 +7783,14 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.gmyCdMD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.kC5dMMp" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\AvisController::approve" type="service_closure" id=".service_locator._8GhZyl"/>
+        <argument key="App\Controller\AvisController::delete" type="service_closure" id=".service_locator.4bEQHTU"/>
+        <argument key="App\Controller\AvisController::desapprove" type="service_closure" id=".service_locator._8GhZyl"/>
         <argument key="App\Controller\AvisController::index" type="service_closure" id=".service_locator.m1mQcJR"/>
+        <argument key="App\Controller\AvisController::new" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController::add" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController::delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController::edit" type="service_closure" id=".service_locator.iJFRmZA"/>
@@ -7785,7 +7809,11 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\AvisController:approve" type="service_closure" id=".service_locator._8GhZyl"/>
+        <argument key="App\Controller\AvisController:delete" type="service_closure" id=".service_locator.4bEQHTU"/>
+        <argument key="App\Controller\AvisController:desapprove" type="service_closure" id=".service_locator._8GhZyl"/>
         <argument key="App\Controller\AvisController:index" type="service_closure" id=".service_locator.m1mQcJR"/>
+        <argument key="App\Controller\AvisController:new" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController:add" type="service_closure" id=".service_locator.V71r_w4"/>
         <argument key="App\Controller\EmployeeController:delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController:edit" type="service_closure" id=".service_locator.iJFRmZA"/>
@@ -7957,10 +7985,11 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.VOc3Sh_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.BiAc0yh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AddemployeeType" type="service_closure" id="App\Form\AddemployeeType"/>
+        <argument key="App\Form\AvisType" type="service_closure" id="App\Form\AvisType"/>
         <argument key="App\Form\SchedulesType" type="service_closure" id="App\Form\SchedulesType"/>
         <argument key="App\Form\ServiceType" type="service_closure" id="App\Form\ServiceType"/>
         <argument key="App\Form\VehiclesType" type="service_closure" id="App\Form\VehiclesType"/>
@@ -9840,7 +9869,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.gmyCdMD"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.kC5dMMp"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9862,13 +9891,14 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
     <service id=".service_locator.WYK1Hn3" alias=".service_locator.m1mQcJR"/>
+    <service id=".service_locator.BX1Bxa3" alias=".service_locator._8GhZyl"/>
     <service id=".service_locator.IvJGRJB" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator.8UqdCRr" alias=".service_locator.iJFRmZA"/>
     <service id=".service_locator.v.kaYh7" alias=".service_locator.XVUpos5"/>
     <service id=".service_locator.prgro6Y" alias=".service_locator.EaURg11"/>
-    <service id=".service_locator.B9V4Eiu" alias=".service_locator.gmyCdMD"/>
+    <service id=".service_locator.PNBRhZL" alias=".service_locator.kC5dMMp"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.u69D7jT" alias=".service_locator.VOc3Sh_"/>
+    <service id=".service_locator.9uv2JU2" alias=".service_locator.BiAc0yh"/>
     <service id=".service_locator.jd_pIC." alias=".service_locator.ycvY1fJ"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
@@ -9890,8 +9920,10 @@
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
     <service id=".service_locator.JPaNfBN" alias=".service_locator.m1mQcJR"/>
-    <service id=".service_locator.JJIXCHF" alias=".service_locator.yGuNzrW"/>
+    <service id=".service_locator.gIi.Qh2" alias=".service_locator._8GhZyl"/>
     <service id=".service_locator.6k5RJBU" alias=".service_locator.V71r_w4"/>
+    <service id=".service_locator.7TGZNfN" alias=".service_locator.4bEQHTU"/>
+    <service id=".service_locator.JJIXCHF" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator._XOJC2K" alias=".service_locator.iJFRmZA"/>
     <service id=".service_locator.fkj8D3Q" alias=".service_locator.YzD15QU"/>
     <service id=".service_locator.8YGI612" alias=".service_locator.bKkqHbb"/>

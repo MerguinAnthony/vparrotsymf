@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title_page }}{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/add_modify_form_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/general_form_backoffice.css')}}">
+{% endblock %}
+
+{% block header %}
+  {% include "partials/_header.html.twig" %}
+  {% include "partials/_nav_back.html.twig" %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>{{ h1_new }}</h1>
+<h2>{{ h2_new }}</h2>
+{{ form_start(form) }}
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.lastname)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.lastname)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.lastname)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.firstname)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.firstname)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.firstname)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.rank)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.rank)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.rank)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.message)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.message)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.message)}}
+        </div>
+      </div>
+      {{ form_row (form.submit) }}
+    </div>
+{{ form_end(form) }}
+</div>
+{% endblock %}
+

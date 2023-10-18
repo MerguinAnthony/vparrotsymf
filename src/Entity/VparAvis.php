@@ -38,6 +38,8 @@ class VparAvis
     private ?string $message = null;
 
     #[ORM\Column]
+    #[Assert\Type(type: 'bool')]
+    #[Assert\NotNull]
     private ?bool $approve = null;
 
     public function getId(): ?int
@@ -54,6 +56,12 @@ class VparAvis
     {
         $this->Date = $date;
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setDateValue()
+    {
+        $this->Date = new \DateTimeImmutable();
     }
 
     public function getLastname(): ?string

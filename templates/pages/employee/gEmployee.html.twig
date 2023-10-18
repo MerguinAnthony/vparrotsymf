@@ -6,7 +6,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}">
@@ -27,7 +27,7 @@
         {% endfor %}
     </div>
     <h2 class="list-vehicles">{{ h2_index }}</h2>
-    <a href="{{ path('app_registration') }}" class="addBtn">{{ add_btn }}</a>
+    <a href="{{ path('app_registration') }}" id="addemployee_submit">{{ add_btn }}</a>
     <div class="count">
         {{ count_employee }} {{ users.getTotalItemCount }}
     </div>

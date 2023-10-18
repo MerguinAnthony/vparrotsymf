@@ -30,7 +30,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        for ($v = 0; $v < 5; $v++) {
+        for ($v = 0; $v < 10; $v++) {
             $vehicle = new VparVehicle();
             $vehicle->setBrand($this->faker->word())
                 ->setModel($this->faker->word())
@@ -92,7 +92,7 @@ class AppFixtures extends Fixture
                 ->setFirstname($this->faker->firstName())
                 ->setRank($this->faker->numberBetween(0, 5))
                 ->setMessage($this->faker->text(200))
-                ->setApprove($this->faker->boolean());
+                ->setApprove(false);
 
             $manager->persist($avis);
         }

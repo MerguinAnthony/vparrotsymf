@@ -9,6 +9,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * Security For Access To Back Office
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
     #[Route('/connexion', name: 'app_security', methods: ['GET', 'POST'])]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {

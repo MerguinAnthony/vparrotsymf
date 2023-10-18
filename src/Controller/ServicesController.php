@@ -13,6 +13,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ServicesController extends AbstractController
 {
+
+    /**
+     * BackOffice Services Management
+     *
+     * @param VparServiceRepository $services
+     * @return Response
+     */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/back/gestion-des-services', name: 'app_services')]
     public function index(VparServiceRepository $services): Response
@@ -38,6 +45,14 @@ class ServicesController extends AbstractController
         ]);
     }
 
+
+    /**
+     * BackOffice Services Management
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/back/gestion-des-services/edition/{id}', name: 'app_services_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, VparServiceRepository $service, EntityManagerInterface $em, int $id): Response

@@ -5,7 +5,7 @@
 {% block stylesheets %}
   <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
   <link rel="stylesheet" href="{{asset('assets/styles/add_modify_form_backoffice.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}">
   <link rel="stylesheet" href="{{asset('assets/styles/general_form_backoffice.css')}}">
 {% endblock %}
 
@@ -53,9 +53,7 @@
           {{form_errors(form.imageFile)}}
         </div>
       </div>
-      <div>
       {{ form_row (form.submit) }}
-      </div>
     </div>
 {{ form_end(form) }}
 </div>

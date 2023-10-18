@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{{ asset('assets/styles/general_backoffice.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/styles/general_form_backoffice.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/styles/add_modify_form_backoffice.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/styles/button_backoffice.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/styles/btn_backoffice.css') }}">
 {% endblock %}
 
 {% block header %}
@@ -131,9 +131,7 @@
           </div>
         </div>
       {% endfor %}
-      <div class="addBtn">
         {{ form_row(form.submit) }}
-      </div>
     </div>
     {{ form_end(form) }}
 </div>

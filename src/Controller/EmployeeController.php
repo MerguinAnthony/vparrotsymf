@@ -15,6 +15,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EmployeeController extends AbstractController
 {
+
+    /**
+     * BackOffice Employee Management
+     *
+     * @param UserRepository $user
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/back/gestion-des-employes', name: 'app_employee')]
     #[IsGranted('ROLE_ADMIN')]
     public function index(UserRepository $user, PaginatorInterface $paginator, Request $request): Response
@@ -49,7 +58,13 @@ class EmployeeController extends AbstractController
         ]);
     }
 
-
+    /**
+     * BackOffice Employee Management
+     * 
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/back/gestion-des-employes/nouveau', name: 'app_registration', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function add(Request $request, EntityManagerInterface $manager): Response
@@ -128,6 +143,14 @@ class EmployeeController extends AbstractController
         ]);
     }
 
+    /**
+     * BackOffice Employee Management
+     * 
+     * @param UserRepository $user
+     * @param integer $id
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/back/gestion-des-employes/suppression/{id}', name: 'app_gestion_employee_delete', methods: ['GET'])]
     public function delete(UserRepository $user, int $id, EntityManagerInterface $manager): Response

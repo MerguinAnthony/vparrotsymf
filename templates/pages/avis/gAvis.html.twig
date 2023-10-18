@@ -6,7 +6,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/buttons_backoffice.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}"> 
     <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}"> 
     <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}"> 
     <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}"> 
@@ -26,7 +26,7 @@
     </div>
         {% endfor %}
     <h2 class="list-vehicles">{{ h2_index }}</h2>
-    <a  class="addBtn">{{ add_btn }}</a>
+    <a href="{{ path('app_avis_new') }}" id="avis_submit">{{ add_btn }}</a>
     <div class="count">
         {{ count_vehicles }} {{ avis.getTotalItemCount }}
     </div>
@@ -39,7 +39,6 @@
                 <th class="th-rank">{{ td_rank }}<a id="sortRank"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
                 <th class="th-message">{{ td_message }}</th>
                 <th class="th-appr"></th>
-                <th class="th-modi"></th>
                 <th class="th-supr"></th>
                 
             </tr>
@@ -52,9 +51,12 @@
                 <td class="td-firstname">{{ avi.firstname }}</td>
                 <td class="td-rank">{{ avi.rank }}</td>
                 <td class="td-message">{{ avi.message}}</td>
-                <td class="td-appr"><a href="{{ path('app_vente_vehicule_edit', {id: avi.id }) }}" class="btn-appr">{{ td_approve }}</a></td>
-                <td class="td-modi"><a href="{{ path('app_vente_vehicule_edit', {id: avi.id }) }}" class="btn-modify">{{ td_modify }}</a></td>
-                <td class="td-supr"><a href="{{ path('app_vente_vehicule_delete', {id: avi.id }) }}" class="btn-delete">{{ td_delete }}</a></td>
+                {% if avi.approve == 1 %}
+                    <td class="td-desappr"><a href="{{ path('app_avis_desapprove', {id: avi.id }) }}" class="btn-desappr">{{ td_desappr }}</a></td>
+                {% else %}
+                    <td class="td-appr"><a href="{{ path('app_avis_approve', {id: avi.id }) }}" class="btn-appr">{{ td_approve }}</a></td>
+                {% endif %}
+                <td class="td-supr"><a href="{{ path('app_avis_delete', {id: avi.id }) }}" class="btn-delete">{{ td_delete }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

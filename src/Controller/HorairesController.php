@@ -9,9 +9,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HorairesController extends AbstractController
 {
+
+    /**
+     * BackOffice Schedules Management
+     *
+     * @param VparHourRepository $schedules
+     * @return Response
+     */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('back/gestion-des-horaires', name: 'app_horaires')]
     public function index(VparHourRepository $schedules): Response
     {
@@ -38,6 +47,14 @@ class HorairesController extends AbstractController
         ]);
     }
 
+    /**
+     * BackOffice Schedules Management
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('back/gestion-des-horaires/edition/{id}', name: 'app_gestion_horaires_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, VparHourRepository $schedules, EntityManagerInterface $em, int $id): Response
     {

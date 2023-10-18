@@ -16,40 +16,25 @@ class AddemployeeType extends AbstractType
         $builder
             ->add('email', TextType::class, [
                 'label' => 'E-mail',
-                'attr' => [
-                    'class' => 'form-control mt-4'
-                ]
             ])
             ->add('plainPassword', TextType::class, [
                 'label' => 'Mot de passe',
-                'attr' => [
-                    'class' => 'form-control mt-4'
-                ]
+
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
-                'attr' => [
-                    'class' => 'form-control mt-4'
-                ]
+
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
-                'attr' => [
-                    'class' => 'form-control mt-4'
-                ]
+
             ])
             ->add('function', TextType::class, [
                 'label' => 'Poste de travail',
-                'attr' => [
-                    'class' => 'form-control mt-4'
-                ]
+
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
-                'attr' => [
-                    'placeholder' => 'Ajouter',
-                    'class' => 'btn-primary mt-4'
-                ]
             ]);
     }
 
