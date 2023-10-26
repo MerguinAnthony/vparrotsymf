@@ -30,7 +30,7 @@ class VparAvis
     private ?string $firstname = null;
 
     #[ORM\Column]
-    #[Assert\range(min: 0, max: 5)]
+    #[Assert\Range(min: 0, max: 5)]
     private ?int $rank = null;
 
     #[ORM\Column(type: Types::TEXT)]

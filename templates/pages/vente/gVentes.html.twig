@@ -45,7 +45,7 @@
         <tbody>
             {% for vehicle in vehicles %}
             <tr>
-                <td class="td-img"><img src="{{ asset('assets/img_uploads/' ~ vehicle.imageName1) }}" alt="photo du véhicule"></td>
+                <td class="td-img"><img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule"></td>
                 <td class="td-date">{{vehicle.adddate|date('d/m/Y')}}</td>
                 <td class="td-denom">{{vehicle.brand}} {{vehicle.model}} {{vehicle.year}} {{vehicle.power}}cv {{vehicle.fiscalpower}}cv {{vehicle.mileage}}km {{vehicle.energy}}</td>
                 <td class="td-price">{{vehicle.price}}€</td>

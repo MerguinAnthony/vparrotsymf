@@ -510,7 +510,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.kC5dMMp"/>
+      <argument type="service" id=".service_locator.0jg0iKa"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3180,7 +3180,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.kC5dMMp"/>
+      <argument type="service" id=".service_locator.0jg0iKa"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <argument type="service" id="request_stack"/>
@@ -7730,11 +7730,13 @@
         <argument key="user" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.YzD15QU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.RkgG3zP" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="VparAvis" type="service_closure" id="App\Repository\VparAvisRepository"/>
         <argument key="VparService" type="service_closure" id="App\Repository\VparServiceRepository"/>
         <argument key="VparVehicle" type="service_closure" id="App\Repository\VparVehicleRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
     <service id=".service_locator.bKkqHbb" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7783,7 +7785,7 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.kC5dMMp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.0jg0iKa" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AvisController::approve" type="service_closure" id=".service_locator._8GhZyl"/>
@@ -7795,7 +7797,7 @@
         <argument key="App\Controller\EmployeeController::delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController::edit" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController::index" type="service_closure" id=".service_locator.yGuNzrW"/>
-        <argument key="App\Controller\HomeController::index" type="service_closure" id=".service_locator.YzD15QU"/>
+        <argument key="App\Controller\HomeController::index" type="service_closure" id=".service_locator.RkgG3zP"/>
         <argument key="App\Controller\HorairesController::edit" type="service_closure" id=".service_locator.XVUpos5"/>
         <argument key="App\Controller\HorairesController::index" type="service_closure" id=".service_locator.bKkqHbb"/>
         <argument key="App\Controller\SecurityController::index" type="service_closure" id=".service_locator.rSTd.nA"/>
@@ -7818,7 +7820,7 @@
         <argument key="App\Controller\EmployeeController:delete" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController:edit" type="service_closure" id=".service_locator.iJFRmZA"/>
         <argument key="App\Controller\EmployeeController:index" type="service_closure" id=".service_locator.yGuNzrW"/>
-        <argument key="App\Controller\HomeController:index" type="service_closure" id=".service_locator.YzD15QU"/>
+        <argument key="App\Controller\HomeController:index" type="service_closure" id=".service_locator.RkgG3zP"/>
         <argument key="App\Controller\HorairesController:edit" type="service_closure" id=".service_locator.XVUpos5"/>
         <argument key="App\Controller\HorairesController:index" type="service_closure" id=".service_locator.bKkqHbb"/>
         <argument key="App\Controller\SecurityController:index" type="service_closure" id=".service_locator.rSTd.nA"/>
@@ -9869,7 +9871,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.kC5dMMp"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.0jg0iKa"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9894,9 +9896,10 @@
     <service id=".service_locator.BX1Bxa3" alias=".service_locator._8GhZyl"/>
     <service id=".service_locator.IvJGRJB" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator.8UqdCRr" alias=".service_locator.iJFRmZA"/>
+    <service id=".service_locator.ycicGOK" alias=".service_locator.RkgG3zP"/>
     <service id=".service_locator.v.kaYh7" alias=".service_locator.XVUpos5"/>
     <service id=".service_locator.prgro6Y" alias=".service_locator.EaURg11"/>
-    <service id=".service_locator.PNBRhZL" alias=".service_locator.kC5dMMp"/>
+    <service id=".service_locator.Ok5j1Kh" alias=".service_locator.0jg0iKa"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.9uv2JU2" alias=".service_locator.BiAc0yh"/>
     <service id=".service_locator.jd_pIC." alias=".service_locator.ycvY1fJ"/>
@@ -9925,7 +9928,7 @@
     <service id=".service_locator.7TGZNfN" alias=".service_locator.4bEQHTU"/>
     <service id=".service_locator.JJIXCHF" alias=".service_locator.yGuNzrW"/>
     <service id=".service_locator._XOJC2K" alias=".service_locator.iJFRmZA"/>
-    <service id=".service_locator.fkj8D3Q" alias=".service_locator.YzD15QU"/>
+    <service id=".service_locator.nkuOX8_" alias=".service_locator.RkgG3zP"/>
     <service id=".service_locator.8YGI612" alias=".service_locator.bKkqHbb"/>
     <service id=".service_locator.2O4T09b" alias=".service_locator.XVUpos5"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>

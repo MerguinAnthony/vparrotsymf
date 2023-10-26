@@ -74,6 +74,12 @@ class VehiclesType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            ->add('gearbox', TextType::class, [
+                'label' => 'Boite de vitesse',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('image1', VichImageType::class, [
                 'label' => 'Image 1',
                 'required' => false,

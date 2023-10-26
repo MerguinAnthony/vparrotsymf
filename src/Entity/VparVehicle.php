@@ -71,6 +71,10 @@ class VparVehicle
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[Assert\EqualTo('manuelle' | 'automatique')]
+    #[ORM\Column(length: 50)]
+    private ?string $gearbox = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -270,6 +274,18 @@ class VparVehicle
     public function setAddDate(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getGearbox(): ?string
+    {
+        return $this->gearbox;
+    }
+
+    public function setGearbox(string $gearbox): static
+    {
+        $this->gearbox = $gearbox;
 
         return $this;
     }

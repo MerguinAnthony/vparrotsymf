@@ -118,6 +118,17 @@
           {{ form_errors(form.description) }}
         </div>
       </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{ form_label(form.gearbox) }}
+        </div>
+        <div class="form-input">
+          {{ form_widget(form.gearbox) }}
+        </div>
+        <div class="form-error">
+          {{ form_errors(form.gearbox) }}
+        </div>
+      </div>
       {% for i in 1..3 %}
         <div class="form-group">
           <div class="form-label">

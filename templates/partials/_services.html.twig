@@ -1,7 +1,3 @@
-
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{asset('assets/styles/services.css')}}"> 
-{% endblock %}
 <section class="serv" id="services">
   <h1 class="h1-serv">{{h1_serv}}</h1>
   <div>
@@ -11,7 +7,7 @@
       <p class="art-para">{{services[0].text}}</p>
     </div>
     <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/' ~ services[0].imageFile) }}" alt="clef">
+      <img src="{{ asset('assets/img_uploads/services/' ~ services[0].image) }}" alt="clef">
     </div>
   </article>
   <article class="article article-reverse">
@@ -20,7 +16,7 @@
       <p class="art-para">{{services[1].text}}</p>
     </div>
     <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/' ~ services[1].imageFile) }}" alt="clef">
+      <img src="{{ asset('assets/img_uploads/services/' ~ services[1].image) }}" alt="clef">
     </div>
   </article>
   <article class="article">
@@ -29,7 +25,7 @@
       <p class="art-para">{{services[2].text}}</p>
     </div>
     <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/' ~ services[2].imageFile) }}" alt="clef">
+      <img src="{{ asset('assets/img_uploads/services/' ~ services[2].image) }}" alt="clef">
     </div>
   </article>
   </div>

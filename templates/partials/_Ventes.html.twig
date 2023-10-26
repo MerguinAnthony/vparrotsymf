@@ -1,93 +1,448 @@
 <style>
-.vente{
-    background-color: var(--clr-secondary);
-    height: auto;
+.ventes {
+  background-color: var(--clr-secondary);
+  margin: 0 auto;
+  width: 100%;
+}
+.vente {
+  background-color: var(--clr-secondary);
+  height: 100%;
+  width: 70%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-.h1-vent{
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--clr-secondary);
+  color: var(--clr-tertiary);
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
-  color: var(--clr-tertiary);  
 }
 
-.ranges{
+.cars {
+  display: flex;
+  flex-direction: columns;
+  justify-content: space-around;
+  align-items: space-around;
+  width: 30%;
+  margin: 0 auto; 
+
+}
+
+.h1-vent {
+  text-align: center;
+  color: var(--clr-tertiary);
+}
+
+.card {
+  display: block;
+  background-color: var(--clr-primary);
+  width: 100%;
+  margin: 0 auto;
+  
+
+}
+
+.card-img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-img img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin: 0 2rem;
+}
+
+.card-info h3 {
+  font-size: 1.5rem;
+  color: var(--clr-secondary);
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.card-info p {
+  color: var(--clr-quaternary);
+  text-transform: capitalize;
+}
+
+.card-price {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  background-color: var(--clr-tertiary);
-  height: auto;
-  width: 70%;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 var(--clr-primary);
-  margin-bottom: 50px;
+  margin: 20px auto;
 }
 
-.filter-title{
+.card-price p {
   color: var(--clr-secondary);
-  font-family: var(--font2);
-  font-size: 2rem;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-@media  screen and (min-width: 768px) {
-  .vente{
-    height: 100vh;
+.card-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  cursor: pointer;
 }
+
+.card-btn a {
+  padding: 0.5rem 1rem;
+  background-color: var(--clr-secondary);
+  color: var(--clr-tertiary);
+  text-decoration: none;
+  font-weight: bold;
+  margin: 20px auto;
 }
+
+.card-btn a:hover {
+  background-color: var(--clr-tertiary);
+  color: var(--clr-secondary);
+  transition: 0.3s ease-in-out;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  left: 50%; /* Centrer horizontalement */
+  top: 50vh; /* Centrer verticalement */
+  height: 80%;
+  background-color: var(--clr-primary);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--clr-secondary);
+  color: var(--clr-tertiary);
+}
+
+.modal-header h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal-header button {
+  background-color: var(--clr-secondary);
+  border: none;
+  color: var(--clr-tertiary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-header button:hover {
+  color: var(--clr-primary);
+  transition: 0.3s ease-in-out;
+}
+
+.modal-imgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.modal-imgs img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  margin: 20px auto;
+}
+
+.modal-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--clr-secondary);
+  background: var(--clr-tertiary);
+  padding: 1rem 2rem;
+  width: 90%;
+  margin: 20px auto;
+  box-shadow: 0 0 10px var(--clr-secondary);
+}
+
+.
+.modal-main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:0 auto;
+}
+
+.modal-main-info p {
+  color: var(--clr-quaternary);
+  text-transform: capitalize;
+  margin: 0.5rem 0;
+}
+
+.modal-main-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: var(--clr-secondary);
+}
+
+.modal-main-price p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal-main-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.modal-main-btn a {
+  padding: 0.5rem 1rem;
+  background-color: var(--clr-secondary);
+  color: var(--clr-tertiary);
+  text-decoration: none;
+  font-weight: bold;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.modal-main-btn a:hover {
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
+  transition: 0.3s ease-in-out;
+}
+
+.pagi{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--clr-secondary);
+}
+.pagination {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-family: var(--font2);
+
+}
+
+.pagination span {
+  color: var(--clr-tertiary);
+}
+
+.pagination a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid var(--clr-primary);
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.pagination a:hover {
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
+}
+@media screen and (min-width: 768px) {
+  .ventes{
+  height: 100vh;
+  }
+
+  .h1-vent {
+    margin: 20px auto;
+  }
+  .count {
+    margin: 10px auto;
+  }
+  .card {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+    height: auto;
+    background-color: var(--clr-primary);
+    box-shadow: 0 0 10px var(--clr-secondary);
+  }
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--clr-tertiary);
+  color: var(--clr-secondary);
+}
+.modal-header h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.modal-header button {
+  background-color: var(--clr-tertiary);
+  border: none;
+  color: var(--clr-secondary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal-header button:hover {
+  color: var(--clr-primary);
+  transition: 0.3s ease-in-out;
+}
+
+  .modal {
+    position: absolute;
+    z-index: 1000;
+    left: 15%;
+    top: 135vh;
+    width: 70%;
+    height: 80%;
+    box-shadow: 0 0 10px var(--clr-tertiary);
+    margin
+  }
+  .modal-imgs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  }
+.modal-imgs img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  margin: 20px auto;
+  }
+.modal-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--clr-secondary);
+  background: var(--clr-tertiary);
+  padding: 1rem 2rem;
+  width: 90%;
+  margin: 20px auto;
+  box-shadow: 0 0 10px var(--clr-secondary);
+  }
+
+}
+
 </style>
-<section class="vente" id="ventes">
-<h1 class="h1-vent">{{h1_vent}}</h1>
-  <div class="ranges">
-  <h2 class="filter-title">Filtres</h2>
-  <label for="price-max-label">Prix maximum</label>
-    <input id="id-input-price" type="range"min="0" max="500000">
-    <span id="id-span-price" class="price-max">0</span>
-  <label for="km-max-label">Kilomètres maximum</label>
-    <input id="id-input-km" type="range" min="0" max="1000000">
-    <span id="id-span-km" class="km-max">0</span>
-  <label for="year-max-label">Année minimum</label>
-    <input id="id-input-year" type="range" min="1800" max="2024">
-    <span id="id-span-year" class="year-max">0</span>
-  </div>
-  {% for car in cars %}
-  <div class="card">
-    <div class="card-img">
+
+
+<div class="ventes">
+  <section class="vente" id="ventes">
+    <h1 class="h1-vent">
+      Ventes
+    </h1>
+    <div class="count">
+      {{ cars.getTotalItemCount }} {{ count_vehicles }}
     </div>
-    <div class="card-info">
-      <h3>{{car.brand}} {{car.model}}</h3>
-      <p>{{car.price}} €</p>
-      <p>{{car.mileage}} km</p>
-      <p>{{car.year}}</p>
-      <p>{{car.description}}</p>
+    {% for car in cars %}
+    <div class="card">
+      <div class="card-img">
+        <img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule">
+      </div>
+      <div class="card-info">
+        <h3>{{car.brand}} {{car.model}} {{car.power}} ch </h3>
+        <p>Année : {{car.year}}</p>
+        <p>Carburant : {{car.energy}}</p>
+        <p>Kilometrage : {{car.mileage}} km</p>
+      </div>
+      <div class="card-price">
+        <p>{{car.price}} €</p>
+      </div>
+      <div id="openModal_{{car.id}}" class="card-btn">
+        <a>En savoir plus</a>
+      </div>
     </div>
-  </div>
-  {% endfor %}
-</section>
+    <div id="modal_{{car.id}}" class="modal">
+    <div class="modal-header">
+      <h5>{{car.brand}} {{car.model}}</h5>
+      <button type="button" id="closeModal_{{car.id}}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+      <div class="modal-imgs">
+        <img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule">
+        <img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" alt="photo du véhicule">
+        <img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" alt="photo du véhicule">
+      </div>
+      <div class="modal-main">
+        <div class="modal-main-info">
+          <p>Année : {{car.year}}</p>
+          <p>Carburant : {{car.energy}}</p>
+          <p>Kilometrage : {{car.mileage}} km</p>
+          <p>Boite de vitesse : {{car.gearbox}}</p>
+          <p>Puissance : {{car.power}} ch</p>
+          <p>Puissance fiscal : {{car.fiscalpower}} ch</p>
+          <p>Description : {{car.description}}</p>
+        </div>
+        <div class="modal-main-price">
+          <p>{{car.price}} €</p>
+        </div>
+        <div class="modal-main-btn">
+          <a >Nous contacter</a>
+        </div>
+      </div>    
+    </div>
+    {% endfor %}
+  <section class="pagi">
+    <div>
+      {{ knp_pagination_render(cars) }}
+    </div>
+  </section>
+  </section>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  let activeModal = null;
 
-//prix max
-const inputPrice = document.getElementById('id-input-price');
-const spanPrice = document.getElementById('id-span-price');
+  {% for car in cars %}
+  const openModal_{{car.id}} = document.getElementById('openModal_{{car.id}}');
+  const modal_{{car.id}} = document.getElementById('modal_{{car.id}}');
+  const closeModal_{{car.id}} = document.getElementById('closeModal_{{car.id}}');
 
-inputPrice.addEventListener('input', function(){
-  spanPrice.innerHTML = inputPrice.value;
-})
-//km max
-const inputKm = document.getElementById('id-input-km');
-const spanKm = document.getElementById('id-span-km');
+  openModal_{{car.id}}.addEventListener('click', () => {
 
-inputKm.addEventListener('input', function(){
-  spanKm.innerHTML = inputKm.value;
-})
-//year max
-const inputYear = document.getElementById('id-input-year');
-const spanYear = document.getElementById('id-span-year');
+    if (activeModal) {
+      activeModal.style.display = 'none';
+    }
+  
+    modal_{{car.id}}.style.display = 'block';
+    activeModal = modal_{{car.id}};
+  });
 
-inputYear.addEventListener('input', function(){
-  spanYear.innerHTML = inputYear.value;
-})
-
+  closeModal_{{car.id}}.addEventListener('click', () => {
+    modal_{{car.id}}.style.display = 'none';
+    activeModal = null;
+  });
+  {% endfor %}
+});
 </script>

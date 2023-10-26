@@ -29,7 +29,7 @@ class VenteVehiculeController extends AbstractController
     {
 
         $vehicles = $paginator->paginate(
-            $VparVehicle->findAll(),
+            $VparVehicle->findBy([], ['updatedAt' => 'DESC']),
             $request->query->getInt('page', 1),
             5
         );

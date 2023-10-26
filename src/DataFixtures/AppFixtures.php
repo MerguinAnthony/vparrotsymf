@@ -29,24 +29,6 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-
-        for ($v = 0; $v < 10; $v++) {
-            $vehicle = new VparVehicle();
-            $vehicle->setBrand($this->faker->word())
-                ->setModel($this->faker->word())
-                ->setYear($this->faker->numberBetween(1990, 2021))
-                ->setMileage($this->faker->numberBetween(0, 200000))
-                ->setEnergy($this->faker->word())
-                ->setDescription($this->faker->text(200))
-                ->setPower($this->faker->numberBetween(50, 500))
-                ->setFiscalpower($this->faker->numberBetween(1, 50))
-                ->setPrice($this->faker->numberBetween(1000, 20000))
-                ->setAddDate(new DateTimeImmutable())
-                ->setImageName1('https://picsum.photos/200/300');
-            $manager->persist($vehicle);
-        }
-
-
         $services1 = new VparService();
         $services1->setTitle('Mécanique')
             ->setText($this->faker->text(200))
