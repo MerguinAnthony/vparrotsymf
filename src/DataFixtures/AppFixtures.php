@@ -81,13 +81,13 @@ class AppFixtures extends Fixture
 
         for ($h = 0; $h < 4; $h++) {
             $hours = new VparHour();
-            $hours->setMonday($this->faker->numberBetween(0, 24))
-                ->setTuesday($this->faker->numberBetween(0, 24))
-                ->setWednesday($this->faker->numberBetween(0, 24))
-                ->setThursday($this->faker->numberBetween(0, 24))
-                ->setFriday($this->faker->numberBetween(0, 24))
-                ->setSaturday($this->faker->numberBetween(0, 24))
-                ->setSunday($this->faker->numberBetween(0, 24));
+            $hours->setMonday(new DateTimeImmutable('08:00:00'))
+                ->setTuesday(new DateTimeImmutable('08:00:00'))
+                ->setWednesday(new DateTimeImmutable('08:00:00'))
+                ->setThursday(new DateTimeImmutable('08:00:00'))
+                ->setFriday(new DateTimeImmutable('08:00:00'))
+                ->setSaturday(new DateTimeImmutable('08:00:00'))
+                ->setSunday(new DateTimeImmutable('08:00:00'));
 
             $manager->persist($hours);
         }

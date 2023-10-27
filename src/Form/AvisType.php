@@ -45,10 +45,6 @@ class AvisType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
             ]);
-
-        $builder->add('Date', DateType::class, [
-            'mapped' => false,
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

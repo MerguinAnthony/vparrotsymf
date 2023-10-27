@@ -4,64 +4,36 @@ namespace App\Form;
 
 use App\Entity\VparHour;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class SchedulesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('monday', IntegerType::class, [
+            ->add('monday', TimeType::class, [
                 'label' => 'Lundi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('tuesday', IntegerType::class, [
+            ->add('tuesday', TimeType::class, [
                 'label' => 'Mardi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('wednesday', IntegerType::class, [
+            ->add('wednesday', TimeType::class, [
                 'label' => 'Mercredi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('thursday', IntegerType::class, [
+            ->add('thursday', TimeType::class, [
                 'label' => 'Jeudi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('friday', IntegerType::class, [
+            ->add('friday', TimeType::class, [
                 'label' => 'Vendredi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('saturday', IntegerType::class, [
+            ->add('saturday', TimeType::class, [
                 'label' => 'Samedi',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
-            ->add('sunday', IntegerType::class, [
+            ->add('sunday', TimeType::class, [
                 'label' => 'Dimanche',
-                'attr' => [
-                    'min' => 0,
-                    'max' => 24,
-                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

@@ -1,2 +1,166 @@
+<style>
+footer{
+  border-top: 1px solid var(--clr-secondary);
+  padding-top: 1rem;
+  }
+
+.maps{
+  width:70%; 
+  height: 450px; 
+  margin: 0 auto;
+  }
+
+.main-footer{
+  width:100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px 0;
+  }
+
+.logo-footer{
+  height:75px;
+  text-align: center; 
+  }
+
+.logo-footer img{
+  height: 100%;
+  }
+
+.contact-footer{
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-template-rows: 50px 25px;
+  grid-template-areas: 
+    "icon1 text1"
+    "icon2 text2";
+  justify-content: start;
+  align-items: center;
+  padding: 30px;
+  text-align: left;
+  }
+
+.contact-footer p{
+  margin: 0;
+  }
+
+.p-adress{
+  grid-area: text1;
+  }
+
+.p-tel{
+  grid-area: text2;
+  }
+
+.contact-footer img{
+  height: 20px;
+  }
+
+.img-adress{
+  grid-area: icon1;
+  }
+
+.img-tel{
+  grid-area: icon2;
+  }
+  
+  .calendar-footer{
+  display: grid;
+  grid-template-columns: 30px 100px 200px;
+  grid-template-rows: repeat(7, 25px);
+  grid-template-areas:
+    "icon3 day1  dayValue"
+    " . day2 dayValue"
+    " . day3 dayValue"
+    " . day4 dayValue"
+    " . day5 dayValue"
+    " . day6 dayValue"
+    " . day7 dayValue";
+  justify-content: start;
+  align-items: center;
+  text-align: left;
+  padding: 30px;
+  }
+
+.calendar-footer img{
+  height: 20px;
+  grid-area: icon3;
+  }
+
+.day1, .day2, .day3, .day4, .day5, .day6, .day7{
+  font-weight: bold;
+  }
+
+@media  screen and (min-width: 768px) {
+
+.main-footer{
+  width:400px;
+  }
+}
+
+
+</style>
 <footer>
+	<section class="maps">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92456.97242131893!2d1.4328424499999999!3d43.600703249999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aebb6fec7552ff%3A0x406f69c2f411030!2sToulouse!5e0!3m2!1sfr!2sfr!4v1698392659068!5m2!1sfr!2sfr"
+			width="100%"
+			height="450"
+			style="border:0;"
+			allowfullscreen=""
+			loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</section>
+  <section class="main-footer">
+    <div class="logo-footer">
+      <img 
+        class="header-img" 
+        src="{{asset('assets/img/logo-final-png.png')}}" 
+        alt="logo"
+      >
+    </div>
+    <div class="contact-footer">
+      <img 
+        class="img-adress" 
+        src="{{asset('assets/img/location-pin_2776067.png')}}" 
+        alt="logo"
+      >
+      <p class="p-adress">
+        1 rue de la paix<br>31000 Toulouse
+      </p>
+      <img 
+        class="img-tel" 
+        src="{{asset('assets/img/smartphone_329446.png')}}" 
+        alt="logo"
+      >
+      <p class="p-tel">
+        05 61 23 45 67
+      </p>
+    </div>
+    <div class="calendar-footer">
+      <img 
+        class="img-calendar" 
+        src="{{asset('assets/img/open_267488.png')}}" 
+        alt="logo"
+      >
+      <p class="day1">Lundi</p>
+      <p class="dayValue">{{ hour[0].monday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].monday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].monday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].monday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day2">Mardi</p>
+      <p class="dayValue">{{ hour[0].tuesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].tuesday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].tuesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].tuesday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day3">Mercredi</p>
+      <p class="dayValue">{{ hour[0].wednesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].wednesday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].wednesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].wednesday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day4">Jeudi</p>
+      <p class="dayValue">{{ hour[0].thursday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].thursday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].thursday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].thursday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day5">Vendredi</p>
+      <p class="dayValue">{{ hour[0].friday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].friday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].friday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].friday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day6">Samedi</p>
+      <p class="dayValue">{{ hour[0].saturday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].saturday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].saturday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].saturday|date('H:i')|replace({':': 'h'}) }}</p>
+      <p class="."></p>
+      <p class="day7">Dimanche</p>
+      <p class="dayValue">{{ hour[0].sunday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].sunday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].sunday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].sunday|date('H:i')|replace({':': 'h'}) }}</p>
+    </div>
+  </section>
 </footer>

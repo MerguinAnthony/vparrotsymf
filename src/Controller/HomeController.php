@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+
+use App\Form\AvisType;
 use App\Entity\VparAvis;
 use App\Repository\VparAvisRepository;
+use App\Repository\VparHourRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\VparServiceRepository;
 use App\Repository\VparVehicleRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -14,8 +18,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home.index', methods: ['GET'])]
-    public function index(VparServiceRepository $VparService, VparVehicleRepository $VparVehicle, VparAvisRepository $VparAvis, Request $request, PaginatorInterface $paginator): Response
+    #[Route('/', name: 'home.index', methods: ['GET', 'POST'])]
+    public function index(EntityManagerInterface $manager, VparServiceRepository $VparService, VparVehicleRepository $VparVehicle, VparAvisRepository $VparAvis, VparHourRepository $VparHour, Request $request, PaginatorInterface $paginator): Response
     {
 
         $vehicles = $paginator->paginate(
@@ -26,7 +30,23 @@ class HomeController extends AbstractController
 
         $services = $VparService->findAll();
 
-        $avis = $VparAvis->findBy(['approve' => true], ['Date' => 'DESC'], 3);
+        $avisA = $VparAvis->findBy(['approve' => true], ['Date' => 'ASC'], 3);
+
+        $hour = $VparHour->findAll();
+
+        $avis = new VparAvis();
+        $form = $this->createForm(AvisType::class, $avis);
+        $avis->setApprove(false);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $avis = $form->getData();
+            $avis->setDate(new \DateTimeImmutable());
+            $manager->persist($avis);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_avis');
+        }
 
 
         return $this->render('pages/home.html.twig', [
@@ -40,7 +60,9 @@ class HomeController extends AbstractController
             'count_vehicles' => 'véhicules vous attendent actuellement !',
             'services' => $services,
             'cars' => $vehicles,
-            'avis' => $avis,
+            'avis' => $avisA,
+            'hour' => $hour,
+            'form' => $form->createView(),
         ]);
     }
 }

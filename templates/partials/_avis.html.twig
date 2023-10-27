@@ -6,15 +6,30 @@
     align-items: center;
     margin: 0 auto;
     height: auto;
+    background: var(--clr-tertiary);
 }
 
-.h2avis{
+.h1avis{
   margin-top: 30px;
-    color: var(--clr-secondary);
+  color: var(--clr-secondary);
+}
+
+.pop-up-good{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: auto;
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
+  margin: 10px auto;
+  padding: 10px 20px;
+  text-align: center;
 }
 
 .avis-block{
-    width: 80%;
+    width: 70%;
     height: auto;
     background-color: var(--clr-primary);
     padding: 0 50px;
@@ -67,12 +82,56 @@
     height: auto;
     background-color: var(--clr-secondary);
     color: var(--clr-primary);
+    cursor: pointer;
 }
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--clr-primary);
+}
+
+.modal-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+}
+
+.modal-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+}
+
+.modal-main-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+}
+
 
 @media screen and (min-width: 768px) {
   
   .avis{
-    max-height: 100vh;
+    height: 100vh;
     padding:20px 0;
   }
 
@@ -81,8 +140,7 @@
   grid-template-columns: 200px 1fr;
   grid-template-rows: 50px 1fr;
   grid-template-areas: "line1 line2" "line3 line3";
-    width: 90%;
-    height: auto;
+  height: auto;
 }
 
 .line1{
@@ -113,7 +171,12 @@
 </style>
 
 <section id="avis" class="avis">
-  <h1 class="h2avis">Avis</h1>
+  <h1 class="h1avis">Avis</h1>
+  {% for message in app.flashes('success') %}
+    <div class="pop-up-good">
+            {{ message }}
+    </div>
+        {% endfor %}
   {% for avi in avis %}
     <div class="avis-block">
       <div class="line1">
@@ -130,9 +193,89 @@
       </div>
     </div>
   {% endfor %}
-  <a class="addbtn">Donnez-nous votre avis !</a>
+  <a id="openModal" class="addbtn">Donnez-nous votre avis !</a>
+  <div id="modal" class="modal">
+				<div class="modal-header">
+					<h5>
+						Donnez-nous votre avis !
+					</h5>
+					<button type="button" id="closeModal">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
+				</div>
+				<div class="modal-main">
+					<div class="modal-main-form"> 
+          {{ form_start(form) }}
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.lastname)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.lastname)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.lastname)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.firstname)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.firstname)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.firstname)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.rank)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.rank)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.rank)}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          {{form_label(form.message)}}
+        </div>
+        <div class="form-input">
+          {{form_widget(form.message)}}
+        </div>
+        <div class="form-error">
+          {{form_errors(form.message)}}
+        </div>
+      </div>
+      {{ form_row (form.submit) }}
+    </div>
+    {{ form_end(form) }}
+          </div>
+        </div>
 </section>
 
 
 <script src="https://kit.fontawesome.com/105098c44c.js" crossorigin="anonymous"></script>
+<script>
+const openModal = document.getElementById('openModal');
+const closeModal = document.getElementById('closeModal');
+const modal = document.getElementById('modal');
+
+openModal.addEventListener('click', function(){
+    modal.style.display = 'block';
+});
+
+closeModal.addEventListener('click', function(){
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', function(e){
+    if(e.target == modal){
+        modal.style.display = 'none';
+    }
+});
+</script>
 

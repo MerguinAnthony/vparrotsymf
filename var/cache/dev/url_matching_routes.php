@@ -18,7 +18,7 @@ return [
         '/back/gestion-des-avis/nouveau' => [[['_route' => 'app_avis_new', '_controller' => 'App\\Controller\\AvisController::new'], null, null, null, false, false, null]],
         '/back/gestion-des-employes' => [[['_route' => 'app_employee', '_controller' => 'App\\Controller\\EmployeeController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-employes/nouveau' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\EmployeeController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/back/gestion-des-horaires' => [[['_route' => 'app_horaires', '_controller' => 'App\\Controller\\HorairesController::index'], null, null, null, false, false, null]],
         '/connexion' => [[['_route' => 'app_security', '_controller' => 'App\\Controller\\SecurityController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/deconnexion' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, ['GET' => 0], null, false, false, null]],
