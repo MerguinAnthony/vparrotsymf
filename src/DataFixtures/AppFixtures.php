@@ -6,10 +6,10 @@ use Faker\Factory;
 use App\Entity\User;
 use Faker\Generator;
 use DateTimeImmutable;
+use App\Entity\Contact;
 use App\Entity\VparAvis;
 use App\Entity\VparHour;
 use App\Entity\VparService;
-use App\Entity\VparVehicle;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -32,19 +32,19 @@ class AppFixtures extends Fixture
         $services1 = new VparService();
         $services1->setTitle('Mécanique')
             ->setText($this->faker->text(200))
-            ->setImage('https://picsum.photos/200/300');
+            ->setImage('muscular-car-service-worker-repairing-vehicle-65352f0b4570b706327916.jpg');
         $manager->persist($services1);
 
         $services2 = new VparService();
         $services2->setTitle('Carrosserie')
             ->setText($this->faker->text(200))
-            ->setImage('https://picsum.photos/200/300');
+            ->setImage('car-wash-detailing-station-65352f137a251816788387.jpg');
         $manager->persist($services2);
 
         $services3 = new VparService();
         $services3->setTitle('entretients')
             ->setText($this->faker->text(200))
-            ->setImage('https://picsum.photos/200/300');
+            ->setImage('man-polishing-car-inside-car-service-65352f1c378ef318462760.jpg');
         $manager->persist($services3);
 
         $user = new User();
@@ -90,6 +90,18 @@ class AppFixtures extends Fixture
                 ->setSunday(new DateTimeImmutable('08:00:00'));
 
             $manager->persist($hours);
+        }
+
+        for ($c = 0; $c < 5; $c++) {
+            $contact = new Contact();
+            $contact->setFirstname($this->faker->firstName())
+                ->setLastname($this->faker->lastName())
+                ->setPhone('0612345678')
+                ->setEmail($this->faker->email())
+                ->setSubject($this->faker->text(50))
+                ->setMessage($this->faker->text(200));
+
+            $manager->persist($contact);
         }
 
         $manager->flush();

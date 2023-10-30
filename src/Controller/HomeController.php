@@ -45,7 +45,9 @@ class HomeController extends AbstractController
             $manager->persist($avis);
             $manager->flush();
 
-            return $this->redirectToRoute('app_avis');
+            $this->addFlash('success', 'Votre avis a bien été envoyé !');
+
+            return $this->redirectToRoute('home.index');
         }
 
 

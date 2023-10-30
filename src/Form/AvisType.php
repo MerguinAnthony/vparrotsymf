@@ -38,7 +38,7 @@ class AvisType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
-                    'cols' => 40,
+                    'cols' => 35,
                     'rows' => 5,
                 ],
             ])

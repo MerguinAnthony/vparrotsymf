@@ -14,20 +14,6 @@
   color: var(--clr-secondary);
 }
 
-.pop-up-good{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: auto;
-  background-color: var(--clr-secondary);
-  color: var(--clr-primary);
-  margin: 10px auto;
-  padding: 10px 20px;
-  text-align: center;
-}
-
 .avis-block{
     width: 70%;
     height: auto;
@@ -92,7 +78,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     overflow: auto;
     background-color: var(--clr-primary);
 }
@@ -112,7 +98,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
 }
@@ -122,16 +108,98 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
 }
 
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+    width: 100%;
+}
+
+.form-label{
+    font-family: var(--font1);
+    margin: 10px 0;
+}
+
+.form-input{
+    width: 100%;
+    text-align: center;
+}
+    
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid var(--clr-secondary);
+    border-radius: 4px;
+    background-color: var(--clr-tertiary);
+    color: var(--clr-secondary);
+}
+
+.form-error{
+    color: var(--clr-secondary);
+    font-family: var(--font2);
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+#rank-car{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}
+
+#rank-car .fa-car{
+  color: var(--clr-secondary);
+  font-size: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+select{
+  display: none;
+}
+
+#avis_submit{
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  text-align: center;
+  width: 50%;
+  height: auto;
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
+  cursor: pointer;
+  border: none;
+}
+
+#avis_submit:hover{
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary);
+  box-shadow: 0 0 10px var(--clr-tertiary);
+  transition: 0.5s;
+}
 
 @media screen and (min-width: 768px) {
   
+.h1avis{
+  margin-top: 30px;
+  padding: 0;
+}
+
   .avis{
-    height: 100vh;
+    height: auto;
     padding:20px 0;
   }
 
@@ -167,16 +235,23 @@
   text-align: start;
 }
 
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 15%;
+  top: 5%;
+  width: 70%;
+  height: 90%;
+  overflow: auto;
+  background-color: var(--clr-primary);
+}
+
 }
 </style>
 
 <section id="avis" class="avis">
   <h1 class="h1avis">Avis</h1>
-  {% for message in app.flashes('success') %}
-    <div class="pop-up-good">
-            {{ message }}
-    </div>
-        {% endfor %}
   {% for avi in avis %}
     <div class="avis-block">
       <div class="line1">
@@ -235,6 +310,11 @@
         <div class="form-input">
           {{form_widget(form.rank)}}
         </div>
+        <div id="rank-car">
+        {% for i in 1..5 %}
+            <i class="fa-solid fa-car" data-value="{{ i }}"></i>
+        {% endfor %}
+        </div>
         <div class="form-error">
           {{form_errors(form.rank)}}
         </div>
@@ -260,22 +340,52 @@
 
 <script src="https://kit.fontawesome.com/105098c44c.js" crossorigin="anonymous"></script>
 <script>
-const openModal = document.getElementById('openModal');
-const closeModal = document.getElementById('closeModal');
-const modal = document.getElementById('modal');
+    // Ouvrir et fermer la modal
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
 
-openModal.addEventListener('click', function(){
-    modal.style.display = 'block';
-});
+    openModal.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
 
-closeModal.addEventListener('click', function(){
-    modal.style.display = 'none';
-});
-
-window.addEventListener('click', function(e){
-    if(e.target == modal){
+    closeModal.addEventListener('click', function() {
         modal.style.display = 'none';
-    }
-});
-</script>
+    });
 
+    window.addEventListener('click', function(e) {
+        if (e.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Récupérer les voitures
+    const rankCar = document.getElementById('rank-car');
+    const cars = rankCar.children;
+    const rankInput = document.getElementById('{{ form.rank.vars.id }}');
+
+    // Fonction pour mettre à jour la couleur des voitures en fonction de la valeur
+    function updateCarColor() {
+        const value = rankInput.value;
+        for (let i = 0; i < cars.length; i++) {
+            if (i < value) {
+                cars[i].style.color = 'var(--clr-secondary)';
+            } else {
+                cars[i].style.color = 'var(--clr-tertiary)';
+            }
+        }
+    }
+
+    // Ajouter un event listener pour le survol de la souris
+    rankCar.addEventListener('mouseover', function(e) {
+        const target = e.target;
+        if (target.tagName === 'I') {
+            const value = target.getAttribute('data-value');
+            rankInput.value = value;
+            updateCarColor();
+        }
+    });
+
+    // Appeler la fonction lors du chargement initial de la page
+    updateCarColor();
+</script>

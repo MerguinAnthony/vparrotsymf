@@ -71,7 +71,6 @@ class VparVehicle
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[Assert\EqualTo('manuelle' | 'automatique')]
     #[ORM\Column(length: 50)]
     private ?string $gearbox = null;
 
@@ -283,6 +282,7 @@ class VparVehicle
         return $this->gearbox;
     }
 
+    #[Assert\Choice(choices: ['Manuelle', 'Automatique'])]
     public function setGearbox(string $gearbox): static
     {
         $this->gearbox = $gearbox;

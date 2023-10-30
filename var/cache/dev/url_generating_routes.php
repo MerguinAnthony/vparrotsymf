@@ -21,6 +21,7 @@ return [
     'app_avis_desapprove' => [['id'], ['_controller' => 'App\\Controller\\AvisController::desapprove'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-avis/desapprouver']], [], [], []],
     'app_avis_new' => [[], ['_controller' => 'App\\Controller\\AvisController::new'], [], [['text', '/back/gestion-des-avis/nouveau']], [], [], []],
     'app_avis_delete' => [['id'], ['_controller' => 'App\\Controller\\AvisController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-avis/supprimer']], [], [], []],
+    'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'app_employee' => [[], ['_controller' => 'App\\Controller\\EmployeeController::index'], [], [['text', '/back/gestion-des-employes']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\EmployeeController::add'], [], [['text', '/back/gestion-des-employes/nouveau']], [], [], []],
     'app_gestion_employee_edit' => [['id'], ['_controller' => 'App\\Controller\\EmployeeController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-employes/edition']], [], [], []],
