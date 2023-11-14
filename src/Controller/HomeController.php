@@ -18,6 +18,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    /**
+     * Home Page
+     *
+     * @param EntityManagerInterface $manager
+     * @param VparServiceRepository $VparService
+     * @param VparVehicleRepository $VparVehicle
+     * @param VparAvisRepository $VparAvis
+     * @param VparHourRepository $VparHour
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
+     */
     #[Route('/', name: 'home.index', methods: ['GET', 'POST'])]
     public function index(EntityManagerInterface $manager, VparServiceRepository $VparService, VparVehicleRepository $VparVehicle, VparAvisRepository $VparAvis, VparHourRepository $VparHour, Request $request, PaginatorInterface $paginator): Response
     {
@@ -30,7 +42,13 @@ class HomeController extends AbstractController
 
         $services = $VparService->findAll();
 
-        $avisA = $VparAvis->findBy(['approve' => true], ['Date' => 'ASC'], 3);
+        $avisMoyen = $VparAvis->getAverageRank();
+
+        $avisA = $paginator->paginate(
+            $VparAvis->findBy(['approve' => true], ['rank' => 'DESC']),
+            $request->query->getInt('page', 1),
+            3
+        );
 
         $hour = $VparHour->findAll();
 
@@ -65,6 +83,7 @@ class HomeController extends AbstractController
             'avis' => $avisA,
             'hour' => $hour,
             'form' => $form->createView(),
+            'avis_moyen' => $avisMoyen,
         ]);
     }
 }

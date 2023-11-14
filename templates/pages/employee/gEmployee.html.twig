@@ -5,42 +5,66 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}">
 {% endblock %}
 
 {% block header %}
-    {{ parent() }}
+    {% include "partials/_header.html.twig" %}
     {% include "partials/_nav_back.html.twig" %}
 {% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>{{ h1_index }}</h1>
-        {% for message in app.flashes('success') %}
-    <div class="pop-up-good">
-            {{ message }}
+    <h1 class="text-center">{{ h1_index }}</h1>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success w-100 mx-auto my-4 rounded-0 text-center">
+        {{ message }}
     </div>
-        {% endfor %}
+    {% endfor %}
+    <h2 class="list-vehicles text-center">{{ h2_index }}</h2>
+    <div class="d-flex justify-content-center my-4">
+        <a href="{{ path('app_registration') }}" class="btn btn-primary w-50 rounded-0" id="addemployee_submit">{{ add_btn }}</a>
     </div>
-    <h2 class="list-vehicles">{{ h2_index }}</h2>
-    <a href="{{ path('app_registration') }}" id="addemployee_submit">{{ add_btn }}</a>
-    <div class="count">
+    <div class="count d-flex justify-content-center w-25 my-4 mx-auto fs-5">
         {{ count_employee }} {{ users.getTotalItemCount }}
     </div>
-    <table>
+    <table class="table table-striped d-none d-md-table">
         <thead>
             <tr>
-                <th>{{ th_lastname }}<a id="sortlastname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
-                <th>{{ th_firstname }}<a id="sortFirstname"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
-                <th>{{ th_function }}<a id="sortFuction"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
+                <th>{{ th_lastname }}
+                    <a id="sortlastname">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="22px" height="20px">
+                            <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                        </svg>
+                    </a>
+                </th>
+                <th>{{ th_firstname }}
+                    <a id="sortFirstname">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="22px" height="20px">
+                            <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                        </svg>
+                    </a>
+                </th>
+                <th>{{ th_function }}
+                    <a id="sortFuction">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="22px" height="20px">
+                            <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                        </svg>
+                    </a>
+                </th>
                 <th>{{ th_email }}</th>
                 <th class="th-modify"></th>
                 <th class="th-delete"></th>
-                
             </tr>
         </thead>
         <tbody>
@@ -50,19 +74,30 @@
                 <td>{{user.firstname}}</td>
                 <td>{{user.function}}</td>
                 <td>{{user.email}}</td>
-                <td class="th-modify"><a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-modify">{{ td_modify }}</a></td>
-                <td class="th-delete"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-delete">{{ td_delete }}</a></td>
+                <td class="th-modify"><a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a></td>
+                <td class="th-delete"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% for user in users %}
+    <div class="card my-4 w-75 mx-auto d-md-none">
+        <div class="card-header">{{user.lastname}} {{user.firstname}}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{user.email}}</h5>
+            <p class="card-text">{{user.function}}</p>
+            <div class="d-flex justify-content-between">
+                <a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a>
+                <a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     <div>
         {{ knp_pagination_render(users) }}
     </div>
 </div>
-
+<script src="{{asset('assets/scripts/sort.js')}}"></script>
 {% endblock %}
 
-{% block javascripts %}
-    <script src="{{asset('assets/js/sort_backoffice.js')}}"></script>
-{% endblock %}
+

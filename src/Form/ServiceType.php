@@ -19,22 +19,29 @@ class ServiceType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
+                'attr' => [
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
+                ],
             ])
             ->add('text', TextareaType::class, [
                 'label' => 'Paragraphe',
                 'attr' => [
                     'rows' => 10,
                     'cols' => 40,
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false,
+                'attr' => [
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'addBtn',
+                    'class' => 'btn btn-primary rounded-0 my-3 mx-auto d-block',
                 ],
             ]);
     }

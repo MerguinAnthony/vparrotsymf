@@ -16,7 +16,8 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/back/gestion-des-avis' => [[['_route' => 'app_avis', '_controller' => 'App\\Controller\\AvisController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-avis/nouveau' => [[['_route' => 'app_avis_new', '_controller' => 'App\\Controller\\AvisController::new'], null, null, null, false, false, null]],
-        '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
+        '/back/gestion-des-messages' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
+        '/contact' => [[['_route' => 'app_contact_new', '_controller' => 'App\\Controller\\ContactController::add'], null, null, null, false, false, null]],
         '/back/gestion-des-employes' => [[['_route' => 'app_employee', '_controller' => 'App\\Controller\\EmployeeController::index'], null, null, null, false, false, null]],
         '/back/gestion-des-employes/nouveau' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\EmployeeController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
@@ -50,15 +51,16 @@ return [
                         .'|desapprouver/([^/]++)(*:247)'
                         .'|supprimer/([^/]++)(*:273)'
                     .')'
+                    .'|messages/supprimer/([^/]++)(*:309)'
                     .'|employes/(?'
-                        .'|edition/([^/]++)(*:310)'
-                        .'|suppression/([^/]++)(*:338)'
+                        .'|edition/([^/]++)(*:345)'
+                        .'|suppression/([^/]++)(*:373)'
                     .')'
-                    .'|horaires/edition/([^/]++)(*:372)'
-                    .'|services/edition/([^/]++)(*:405)'
+                    .'|horaires/edition/([^/]++)(*:407)'
+                    .'|services/edition/([^/]++)(*:440)'
                     .'|ventes/(?'
-                        .'|edition/([^/]++)(*:439)'
-                        .'|suppression/([^/]++)(*:467)'
+                        .'|edition/([^/]++)(*:474)'
+                        .'|suppression/([^/]++)(*:502)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -74,12 +76,13 @@ return [
         218 => [[['_route' => 'app_avis_approve', '_controller' => 'App\\Controller\\AvisController::approve'], ['id'], null, null, false, true, null]],
         247 => [[['_route' => 'app_avis_desapprove', '_controller' => 'App\\Controller\\AvisController::desapprove'], ['id'], null, null, false, true, null]],
         273 => [[['_route' => 'app_avis_delete', '_controller' => 'App\\Controller\\AvisController::delete'], ['id'], null, null, false, true, null]],
-        310 => [[['_route' => 'app_gestion_employee_edit', '_controller' => 'App\\Controller\\EmployeeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        338 => [[['_route' => 'app_gestion_employee_delete', '_controller' => 'App\\Controller\\EmployeeController::delete'], ['id'], ['GET' => 0], null, false, true, null]],
-        372 => [[['_route' => 'app_gestion_horaires_edit', '_controller' => 'App\\Controller\\HorairesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        405 => [[['_route' => 'app_services_edit', '_controller' => 'App\\Controller\\ServicesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        439 => [[['_route' => 'app_vente_vehicule_edit', '_controller' => 'App\\Controller\\VenteVehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        467 => [
+        309 => [[['_route' => 'app_contact_delete', '_controller' => 'App\\Controller\\ContactController::delete'], ['id'], null, null, false, true, null]],
+        345 => [[['_route' => 'app_gestion_employee_edit', '_controller' => 'App\\Controller\\EmployeeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        373 => [[['_route' => 'app_gestion_employee_delete', '_controller' => 'App\\Controller\\EmployeeController::delete'], ['id'], ['GET' => 0], null, false, true, null]],
+        407 => [[['_route' => 'app_gestion_horaires_edit', '_controller' => 'App\\Controller\\HorairesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        440 => [[['_route' => 'app_services_edit', '_controller' => 'App\\Controller\\ServicesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        474 => [[['_route' => 'app_vente_vehicule_edit', '_controller' => 'App\\Controller\\VenteVehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        502 => [
             [['_route' => 'app_vente_vehicule_delete', '_controller' => 'App\\Controller\\VenteVehiculeController::delete'], ['id'], ['GET' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

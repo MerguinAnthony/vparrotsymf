@@ -1,32 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ title_page }}
+    {{title_page}}
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}">
 {% endblock %}
 
 {% block header %}
-{{ parent() }}
-{% include "partials/_nav_back.html.twig" %}
+    {% include "partials/_header.html.twig" %}
+    {% include "partials/_nav_back.html.twig" %}
 {% endblock %}
 
 {% block body %}
 <div class="container">
     <h1>{{ h1_index }}</h1>
         {% for message in app.flashes('success') %}
-    <div class="pop-up-good">
+    <div class="alert alert-success w-100 mx-auto my-4 rounded-0 text-center">
             {{ message }}
     </div>
         {% endfor %}
     <h2{{ h2_index }}</h2>
-    <table>
+    <table class="table table-striped d-none d-md-table">
         <thead>
             <tr>
                 <th>{{ th_img }}</th>
@@ -38,18 +35,25 @@
         <tbody>
             {% for service in services %}
             <tr>
-                <td class="td-img"><img src="{{asset('assets/img_uploads/services/' ~ service.image)}}" alt="image service"></td>
+                <td class="td-img"><img src="{{ asset('assets/img_uploads/services/' ~ service.image) }}" alt="image service" class="img-fluid" style="max-width: 300px;"></td>
                 <td>{{ service.title }}</td>
                 <td>{{ service.text }}</td>
-                <td class="th-modi"><a href="{{ path('app_services_edit', {'id': service.id}) }}" class="btn btn-modify">{{ td_modify }}</a></td>
+                <td class="th-modi"><a href="{{ path('app_services_edit', {'id': service.id}) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% for service in services %}
+    <div class="card my-4 w-75 mx-auto d-md-none">
+        <img src="{{ asset('assets/img_uploads/services/' ~ service.image) }}" class="card-img-top" alt="image services">
+        <div class="card-body">
+            <h5 class="card-title">{{ service.title }}</h5>
+            <p class="card-text">S{{ service.text }}</p>
+            <a href="{{ path('app_services_edit', {'id': service.id}) }}" class="btn btn-warning d-block w-50 mx-auto text-center rounded-0">{{ td_modify }}</a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
 
-{% block javascripts %}
-    <script src="{{asset('assets/js/sort_backoffice.js')}}"></script>
-{% endblock %}
 

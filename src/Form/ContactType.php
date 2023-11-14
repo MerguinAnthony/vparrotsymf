@@ -20,37 +20,37 @@ class ContactType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email *',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Sujet *',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message *',
                 'attr' => [
-                    'class' => 'form-group',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 mb-3',
                     'cols' => 6,
                     'rows' => 6,
                 ],
@@ -58,7 +58,7 @@ class ContactType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer mon message',
                 'attr' => [
-                    'class' => 'addBtn',
+                    'class' => 'btn btn-primary rounded-0 my-3 mx-auto d-block',
                 ],
             ]);
     }

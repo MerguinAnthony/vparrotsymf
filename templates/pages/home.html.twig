@@ -6,13 +6,10 @@
     {% include "partials/_nav.html.twig" %}
 {% endblock %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{{asset('assets/styles/general_frontoffice.css')}}">
-<link rel="stylesheet" href="{{asset('assets/styles/service_frontoffice.css')}}">
-{% endblock %}
-
 {% block body %}
     {% include "partials/_services.html.twig" %}
     {% include "partials/_ventes.html.twig" %}
     {% include "partials/_avis.html.twig" %}
+    {% include "partials/_footer.html.twig" %}
 {% endblock %}
+

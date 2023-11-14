@@ -1,130 +1,44 @@
-<style>
-.serv {
-  position: relative;
-  background-image: url("assets/img/Sans titre-1.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: auto;
-  color: var(--clr-tertiary);
-  padding-bottom: 20px;
-}
-
-.h1-serv {
-  margin: 30px 0;
-  text-align: center;
-  color: var(--clr-tertiary);
-}
-
-.article {
-  width: 70%;
-  margin: 0 auto;
-}
-
-.h2-serv {
-  text-align: center;
-  color: var(--clr-tertiary);
-  background: var(--clr-secondary);
-  margin-bottom: 20px;
-  text-transform: capitalize;
-}
-
-.art-para {
-  width: 90%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: justify;
-  text-transform: capitalize;
-}
-
-.art-img {
-  display: none;
-}
-
-@media screen and (min-width: 768px) {
-  .serv {
-    height: auto;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .article {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 50px;
-  }
-
-  .article-reverse {
-    flex-direction: row-reverse;
-  }
-
-  h1 {
-    margin-bottom: 50px;
-  }
-
-  .h2-serv {
-    text-align: start;
-    border-radius: 0;
-    background: none;
-  }
-
-  .art-text {
-    width: 75%;
-    text-align: start;
-    padding: 0 20px 0 0;
-  }
-
-  .article-reverse .art-text {
-    padding: 0 0 0 20px;
-  }
-  .art-para {
-    width: 100%;
-    padding: 0;
-  }
-
-  .art-img {
-    width: auto;
-    display: block;
-    text-align: center;
-  }
-
-  .art-img img {
-    width: 250px;
-    height: auto;
-    object-fit: cover;
-  }
-}
-</style>
-
-<section class="serv" id="services">
-  <h1 class="h1-serv">{{h1_serv}}</h1>
-  <div>
-  <article class="article">
-    <div class="art-text">
-      <h2 class="h2-serv">{{services[0].title}}</h2>
-      <p class="art-para">{{services[0].text}}</p>
+<section  id="services" style="background-image: url('assets/img/Sans titre-1.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <h1 class="py-4 text-white">{{h1_serv}}</h1>
+  <div class="container py-4 w-75">
+    <div class="row py-5">
+      <div class="col-lg-8">
+        <div class="article">
+          <h2 class="text-start text-white pb-3">{{services[0].title}}</h2>
+          <p class="text-white">{{services[0].text}}</p>
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="art-img">
+          <img src="{{ asset('assets/img_uploads/services/' ~ services[0].image) }}" alt="clef" class="img-fluid">
+        </div>
+      </div>
     </div>
-    <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/services/' ~ services[0].image) }}" alt="clef">
+    <div class="row py-5">
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="art-img">
+          <img src="{{ asset('assets/img_uploads/services/' ~ services[1].image) }}" alt="clef" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="article">
+          <h2 class="text-start text-white pb-3">{{services[1].title}}</h2>
+          <p class="text-white">{{services[1].text}}</p>
+        </div>
+      </div>
     </div>
-  </article>
-  <article class="article article-reverse">
-    <div class="art-text">
-      <h2 class="h2-serv">{{services[1].title}}</h2>
-      <p class="art-para">{{services[1].text}}</p>
+    <div class="row py-5">
+      <div class="col-lg-8">
+        <div a class="article">
+          <h2 class="text-start text-white pb-3">{{services[2].title}}</h2>
+          <p class="text-white">{{services[2].text}}</p>
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="art-img">
+          <img src="{{ asset('assets/img_uploads/services/' ~ services[2].image) }}" alt="clef" class="img-fluid">
+        </div>
+      </div>
     </div>
-    <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/services/' ~ services[1].image) }}" alt="clef">
-    </div>
-  </article>
-  <article class="article">
-    <div class="art-text">
-      <h2 class="h2-serv">{{services[2].title}}</h2>
-      <p class="art-para">{{services[2].text}}</p>
-    </div>
-    <div class="art-img">
-      <img src="{{ asset('assets/img_uploads/services/' ~ services[2].image) }}" alt="clef">
-    </div>
-  </article>
   </div>
 </section>

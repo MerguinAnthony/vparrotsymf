@@ -1,12 +1,12 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  {{title_page}}
+    {{title_page}}
 {% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/connect_form_backoffice.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}">
 {% endblock %}
 
 {% block header %}
@@ -15,26 +15,27 @@
 
 {% block body %}
 <div class="container">
-  <h1>{{ h1_index }}</h1>
+    <h1 class="my-4">{{ h1_index }}</h1>
     {% if bad_credentials %}
-      <div class="pop-up-bad">
+    <div class="alert alert-danger  w-100 mx-auto my-4 rounded-0 text-center" role="alert">
         {{ bad_credentials_message }}
-      </div>
+    </div>
     {% endif %}
-  <form action="{{ path('app_security') }}" method="post">
-    <h2>{{ h2_index }}</h2>
-    <div class="form-group">
-      <label for="username">{{ connec_email }}</label>
-      <input type="email" id="username" placeholder="exemple@vparrot.fr" name="_username" value="{{last_username}}">
-      <small id="emailHelp">{{ connec_warning }}</small>
-    </div>
-    <div class="form-group">
-      <label for="password">{{ connec_password }}</label>
-      <input type="password" id="password" placeholder="********" autocomplete="off" name="_password">
-    </div>
-    <div class="form-group">
-      <button type="submit">{{ connec_submit }}</button>
-    </div>
-  </form>
+    <form action="{{ path('app_security') }}" method="post">
+        <h2 class="my-4">{{ h2_index }}</h2>
+        <div class="form-group">
+            <label for="username">{{ connec_email }}</label>
+            <input type="email" class="form-control" id="username" placeholder="exemple@vparrot.fr" name="_username" value="{{last_username}}">
+            <small id="emailHelp" class="form-text text-muted">{{ connec_warning }}</small>
+        </div>
+        <div class="form-group">
+            <label for="password">{{ connec_password }}</label>
+            <input type="password" class="form-control" id="password" placeholder="********" autocomplete="off" name="_password">
+        </div>
+        <div class="form-group d-flex justify-content-center w-25 my-4 mx-auto fs-5">
+            <button type="submit" class="btn btn-primary my-4 ">{{ connec_submit }}</button>
+        </div>
+    </form>
 </div>
+
 {% endblock %}

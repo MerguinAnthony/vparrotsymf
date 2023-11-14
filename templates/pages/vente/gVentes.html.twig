@@ -5,38 +5,67 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/tables_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/pagination_backoffice.css')}}"> 
-    <link rel="stylesheet" href="{{asset('assets/styles/sorts_backoffice.css')}}"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}">
 {% endblock %}
 
 {% block header %}
-{{ parent() }}
-{% include "partials/_nav_back.html.twig" %}
+    {% include "partials/_header.html.twig" %}
+    {% include "partials/_nav_back.html.twig" %}
 {% endblock %}
 
 {% block body %}
 <div class="container">
     <h1>{{ h1_index }}</h1>
         {% for message in app.flashes('success') %}
-    <div class="pop-up-good">
+    <div class="alert alert-success w-100 mx-auto my-4 rounded-0 text-center">
             {{ message }}
     </div>
         {% endfor %}
-    <h2 class="list-vehicles">{{ h2_index }}</h2>
-    <a href="{{ path('app_vente_vehicule_new') }}" id="vehicles_submit">{{ add_btn }}</a>
-    <div class="count">
+    <h2>{{ h2_index }}</h2>
+    <div class="d-flex justify-content-center my-4">
+    <a href="{{ path('app_vente_vehicule_new') }}" class="btn btn-primary w-50 rounded-0" id="vehicles_submit">{{ add_btn }}</a>
+    </div>
+    <div class="count d-flex justify-content-center w-50 my-4 mx-auto fs-5">
         {{ count_vehicles }} {{ vehicles.getTotalItemCount }}
     </div>
-    <table>
+    <table class="table table-striped d-none d-md-table">
         <thead>
             <tr>
                 <th>{{ th_img }}</th>
-                <th class="th-date">{{ th_date }}<a id="sortDate"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
-                <th class="th-denom">{{ th_denom }}<a id="sortDenom"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
-                <th class="th-price">{{ th_price }}<a id="sortPrice"><img src="{{asset('assets/img/descending_white.png')}}" alt="filtre"></a></th>
+                <th class="th-date">
+                    {{ th_date }}
+                        <a id="sortDate">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="22px" height="20px">
+                                <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                            </svg>
+                        </a>
+                    </th>
+                <th class="th-denom">
+                    {{ th_denom }}
+                        <a id="sortDenom">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="22px" height="20px">
+                                <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                            </svg>
+                        </a>
+                    </th>
+                <th class="th-price">
+                    {{ th_price }}
+                        <a id="sortPrice">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="22px" height="20px">
+                                <image  x="0px" y="0px" width="22px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAMAAAC+oj0CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAdVBMVEUAAACjJCSjIyOjJCSjIyOiIiKkJCSjIyOjIyOkJCSjJCSkIiKjJCSkJCSiJCSjIyOlIiKiIyOjIyOiIyOiIyOiIyOjICCjIyOkIiKiJCSjIyOjJCSjIyOiJyejIyOiIyOkJSWjIyOiIyOjIyOhIiKjIyP///+8EYF0AAAAJXRSTlMAVvzS01gcgoiIiFqAgFWAWoJW0syHJ9qGj6fm5SGF6CrS/IsmhJnNMwAAAAFiS0dEJloImLUAAAAHdElNRQfnCw0MCy3tHhSMAAAAh0lEQVQY05WQiQ6DIAyG64UFnM5zl5u7+v6vaBGNhhg3PxISvpRCf/B8mgkAIIx4AxGjRDUsiZoFJbAGHXbpZFMH0z/8dNCZ1UdEZcBcbDXJdukf4xQ2ltLRIpYmEv3XOEuqmnVzSh19pgtdb+3dLX/w291zPLyI3uPFD7XfqUYraQNhItOhBybXC2/0rGqUAAAAAElFTkSuQmCC" />
+                            </svg>
+                        </a>
+                    </th>
                 <th class="th-modi"></th>
                 <th class="th-supr"></th>
                 
@@ -45,22 +74,33 @@
         <tbody>
             {% for vehicle in vehicles %}
             <tr>
-                <td class="td-img"><img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule"></td>
+                <td class="td-img"><img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule" class="img-fluid" style="max-width: 300px;"></td>
                 <td class="td-date">{{vehicle.adddate|date('d/m/Y')}}</td>
                 <td class="td-denom">{{vehicle.brand}} {{vehicle.model}} {{vehicle.year}} {{vehicle.power}}cv {{vehicle.fiscalpower}}cv {{vehicle.mileage}}km {{vehicle.energy}}</td>
                 <td class="td-price">{{vehicle.price}}€</td>
-                <td class="th-modi"><a href="{{ path('app_vente_vehicule_edit', {id: vehicle.id }) }}" class="btn btn-modify">{{ td_modify }}</a></td>
-                <td class="th-supr"><a href="{{ path('app_vente_vehicule_delete', {id: vehicle.id }) }}" class="btn btn-delete">{{ td_delete }}</a></td>
+                <td class="th-modi"><a href="{{ path('app_vente_vehicule_edit', {id: vehicle.id }) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a></td>
+                <td class="th-supr"><a href="{{ path('app_vente_vehicule_delete', {id: vehicle.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% for vehicle in vehicles %}
+    <div class="card my-4 w-75 mx-auto d-md-none">
+        <img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule" class="img-fluid">
+        <div class="card-body">
+            <h5 class="card-title">{{vehicle.brand}} {{vehicle.model}} {{vehicle.year}} {{vehicle.power}}cv {{vehicle.fiscalpower}}cv {{vehicle.mileage}}km {{vehicle.energy}}</h5>
+            <p class="card-text">{{vehicle.adddate|date('d/m/Y')}}</p>
+            <p class="card-text">{{vehicle.price}}€</p>
+            <div class="d-flex justify-content-between">
+                <a href="{{ path('app_vente_vehicule_edit', {id: vehicle.id }) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a>
+                <a href="{{ path('app_vente_vehicule_delete', {id: vehicle.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     <div>
         {{ knp_pagination_render(vehicles) }}
     </div>
 </div>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{asset('assets/js/sort_backoffice.js')}}"></script>
+<script src="{{asset('assets/scripts/sort.js')}}"></script>
 {% endblock %}

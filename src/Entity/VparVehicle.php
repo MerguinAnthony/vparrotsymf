@@ -20,34 +20,48 @@ class VparVehicle
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull()]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull()]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $model = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
+    #[Assert\Length(min: 4, max: 4)]
     private ?int $year = null;
 
     #[ORM\Column]
     #[Assert\Positive()]
+    #[Assert\Length(min: 1, max: 6)]
     private ?int $mileage = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull()]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $energy = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(min: 10, max: 1000)]
+    #[Assert\NotNull()]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Assert\Positive()]
+    #[Assert\Length(min: 1, max: 4)]
     private ?int $power = null;
 
     #[ORM\Column]
     #[Assert\Positive()]
+    #[Assert\Length(min: 1, max: 3)]
     private ?int $fiscalpower = null;
 
     #[ORM\Column]
     #[Assert\Positive()]
+    #[Assert\Length(min: 1, max: 10)]
     private ?float $price = null;
 
     #[Vich\UploadableField(mapping: 'VehiclesImage', fileNameProperty: 'imageName1')]
@@ -72,6 +86,7 @@ class VparVehicle
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotNull()]
     private ?string $gearbox = null;
 
     public function getId(): ?int
@@ -282,7 +297,7 @@ class VparVehicle
         return $this->gearbox;
     }
 
-    #[Assert\Choice(choices: ['Manuelle', 'Automatique'])]
+
     public function setGearbox(string $gearbox): static
     {
         $this->gearbox = $gearbox;

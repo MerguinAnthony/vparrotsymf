@@ -1,0 +1,231 @@
+/* Import */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed&display=swap");
+
+/* Variables */
+
+:root {
+  --font1: "Anton", sans-serif;
+  --font2: "Roboto Condensed", sans-serif;
+  --clr-primary: #bebebe;
+  --clr-secondary: #a32323;
+  --clr-tertiary: #fff;
+  --clr-quaternary: #000;
+}
+
+/* General */
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-secondary);
+}
+
+/* Body */
+
+body {
+  font-family: var(--font2);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+  background-color: var(--clr-tertiary);
+  height: auto;
+}
+
+/* Titles */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font1);
+  padding: 0 0 10px 0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--clr-quaternary);
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+h2 {
+  color: var(--clr-secondary);
+}
+
+/* Forms */
+
+.form-control {
+  border: 1px solid var(--clr-secondary);
+}
+
+/* Buttons */
+
+.btn-primary,
+.btn-danger {
+  background-color: var(--clr-secondary);
+  color: var(--clr-tertiary);
+  border: 1px solid var(--clr-secondary);
+}
+
+.btn-success {
+  background-color: #23a325;
+  color: var(--clr-tertiary);
+  border: 1px solid var(--clr-primary);
+}
+
+.btn:hover {
+  background-color: var(--clr-tertiary);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-secondary);
+}
+
+/* Tables */
+
+.table {
+  border: 1px solid var(--clr-secondary);
+}
+
+.td-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sorts */
+
+a {
+  cursor: pointer;
+}
+
+/* Navbar */
+
+/* Styles pour les barres */
+.navbar-toggler {
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin-bottom: 5px;
+  position: relative;
+  background: var(--clr-secondary);
+  border-radius: 3px;
+}
+
+.navbar-toggler span::before,
+.navbar-toggler span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: var(--clr-secondary);
+  border-radius: 3px;
+}
+
+.navbar-toggler span::before {
+  top: -10px;
+}
+
+.navbar-toggler span::after {
+  bottom: -10px;
+}
+
+.navbar-toggler[aria-expanded="true"] span {
+  background: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] span::before {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.navbar-toggler[aria-expanded="true"] span::after {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Image */
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.page-item {
+  margin: 0 2px;
+}
+
+.page-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: var(--clr-secondary);
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.page-link:hover {
+  text-decoration: none;
+  background: var(--clr-primary);
+  color: #fff;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--clr-primary);
+  border-color: var(--clr-secondary);
+}
+
+.page-item.disabled .page-link {
+  color: var(--clr-secondary);
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: var(--clr-primary);
+}

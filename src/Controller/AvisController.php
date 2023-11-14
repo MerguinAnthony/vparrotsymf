@@ -32,7 +32,7 @@ class AvisController extends AbstractController
         $avis = $paginator->paginate(
             $vparAvis->findBy([], ['Date' => 'DESC']),
             $request->query->getInt('page', 1),
-            5
+            3
         );
 
         // Affichage Des avis trier avec la date la plus récente en haut
@@ -47,7 +47,8 @@ class AvisController extends AbstractController
             'nav_item4' => 'Gestion des horaires',
             'nav_item5' => 'Gestion des employés',
             'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Déconnexion',
+            'nav_item7' => 'Messagerie',
+            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion des avis clients',
             'h2_index' => 'Avis clients',
             'add_btn' => 'Ajouter un avis',
@@ -141,7 +142,8 @@ class AvisController extends AbstractController
             'nav_item4' => 'Gestion des horaires',
             'nav_item5' => 'Gestion des employés',
             'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Déconnexion',
+            'nav_item7' => 'Messagerie',
+            'nav_item8' => 'Déconnexion',
             'h1_new' => 'Gestion des avis clients',
             'h2_new' => 'Ajouter un avis',
             'form' => $form->createView(),

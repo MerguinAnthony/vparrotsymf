@@ -3,10 +3,8 @@
 {% block title %}{{ title_page }}{% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{asset('assets/styles/general_backoffice.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/add_modify_form_backoffice.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/btn_backoffice.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/styles/general_form_backoffice.css')}}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{asset('assets/styles/form.css')}}">
 {% endblock %}
 
 {% block header %}
@@ -15,67 +13,9 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-<h1>{{ h1_new }}</h1>
-<h2>{{ h2_new }}</h2>
-{{ form_start(form) }}
-      <div class="form-group">
-        <div class="form-label">
-          {{form_label(form.email)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.email)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.email)}}
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label">
-          {{form_label(form.plainPassword)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.plainPassword)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.plainPassword)}}
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label">
-          {{form_label(form.lastname)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.lastname)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.lastname)}}
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label">
-          {{form_label(form.firstname)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.firstname)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.firstname)}}
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label">
-          {{form_label(form.function)}}
-        </div>
-        <div class="form-input">
-          {{form_widget(form.function)}}
-        </div>
-        <div class="form-error">
-          {{form_errors(form.function)}}
-        </div>
-      </div>
-      {{ form_row (form.submit) }}
-    </div>
-{{ form_end(form) }}
-</div>
+  <div class="container-md w-50 mx-auto">
+    <h1>{{ h1_new }}</h1>
+    <h2>{{ h2_new }}</h2>
+    {{ form(form) }}
+  </div>
 {% endblock %}

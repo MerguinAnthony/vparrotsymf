@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity]
@@ -22,9 +23,13 @@ class VparService
     private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull()]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotNull()]
+    #[Assert\Length(min: 100, max: 1000)]
     private ?string $text = null;
 
     #[Vich\UploadableField(mapping: 'ServicesImage', fileNameProperty: 'image')]

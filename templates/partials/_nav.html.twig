@@ -1,160 +1,29 @@
-<style>
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}"> 
+{% endblock %}
 
-#toggle {
-  display: none;
-}
-
-/**
-  Hamburger
-**/
-.hamburger {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  width: 2em;
-  height: 45px;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.hamburger div {
-  position: relative;
-  width: 30px;
-  height: 7px;
-  border-radius: 3px;
-  background:var(--clr-secondary);
-  margin-top: 5px;
-  transition: all 0.3s ease-in-out;
-}
-  
-/**
-Nav Styles
-**/
-.nav {
-  z-index: 1000;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -100%; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  transform: scale(0);
-}
-.nav-wrapper {
-  position: relative;
-  overflow: hidden;
-  overflow-y: auto;
-  height: 100%;
-}
-nav {
-  text-align: left;
-  background: var(--clr-secondary);
-}
-nav a {
-  position: relative;
-  text-decoration: none;
-  color: var(--clr-tertiary);
-  font-size: 16px;
-  display: inline-block;
-  transition: color 0.2s ease-in-out;
-  letter-spacing: 1px;
-  width: 100%;
-  border-radius: 0;
-  padding: 1em 0;
-}
-
-
-nav a:hover {
-  color: var(--clr-primary);
-  text-decoration: underline;
-  transition: 0.5s;
-}
-nav a:hover:before {
-  height: 100%;
-}
-
-/**
-Animations
-**/
-#toggle:checked + .hamburger .top-bun {
-  transform: rotate(-45deg);
-  margin-top: 25px;
-  background: var(--clr-tertiary);
-}
-
-#toggle:checked + .hamburger .bottom-bun {
-  opacity: 0;
-  transform: rotate(45deg);
-}
-#toggle:checked + .hamburger .meat {
-  transform: rotate(45deg);
-  margin-top: -7px;
-  background: var(--clr-tertiary);
-}
-
-#toggle:checked + .hamburger + .nav {
-  top: 0;
-  transform: scale(1);
-}
-
-@media  (min-width: 767px) {
-
-    .hamburger {
-        display: none;
-    }
-  
-    .nav {
-        position: relative;
-        width: 70vw;
-        overflow: visible;
-        transition: none;
-        transform: scale(1);
-        margin: 0 auto;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 70px;
-        background: transparent;
-        margin-top: 5px;
-        text-align: center;
-    }
-
-    nav a {
-        font-size: 16px;
-        color: black;
-        font-family: var(--font2);
-        color: var(--clr-secondary);
-    }
-
-    nav a:hover {
-  text-decoration: underline;
-  color: var(--clr-primary);
-    }
-    
-    #services{
-      transition: all 1s ease-in-out;
-    }
-
-}
-</style>
-
-<input id="toggle" type="checkbox"></input>
-
-<label for="toggle" class="hamburger">
-  <div class="top-bun"></div>
-  <div class="meat"></div>
-  <div class="bottom-bun"></div>
-</label>
-
-<div class="nav">
-  <div class="nav-wrapper">
-    <nav><a href="/#services">{{nav_item1}}</a>
-      <a href="/#ventes">{{nav_item2}}</a>
-      <a href="/#avis">{{nav_item3}}</a>
-      <a href="/contact">{{nav_item4}}</a>
-    </nav>
+<nav class="navbar navbar-expand-lg my-4" style="background: transparent;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link mx-5 fs-5" style="color: var(--clr-secondary);" href="/#services">{{nav_item1}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-5 fs-5" style="color: var(--clr-secondary);" href="/#ventes">{{nav_item2}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-5 fs-5" style="color: var(--clr-secondary);" href="/#avis">{{nav_item3}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-5 fs-5" style="color: var(--clr-secondary);" href="/contact">{{nav_item4}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

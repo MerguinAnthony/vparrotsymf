@@ -79,6 +79,7 @@ class ComposerStaticInit397f9e6686cbc00e012a7e503f88359a
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\Messenger\\Bridge\\Doctrine\\' => 44,
             'Symfony\\Component\\Messenger\\' => 28,
+            'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 39,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\Intl\\' => 23,
             'Symfony\\Component\\HttpKernel\\' => 29,
@@ -335,6 +336,10 @@ class ComposerStaticInit397f9e6686cbc00e012a7e503f88359a
         'Symfony\\Component\\Messenger\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/messenger',
+        ),
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/google-mailer',
         ),
         'Symfony\\Component\\Mailer\\' => 
         array (

@@ -23,7 +23,6 @@ class Contact
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $firstname = null;
 
-    #[Assert\Length(min: 10, max: 10)]
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 

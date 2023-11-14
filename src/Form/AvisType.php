@@ -20,9 +20,15 @@ class AvisType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
+                'attr' => [
+                    'class' => 'form-control email bg-secondary-subtle rounded-0 mb-3',
+                ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
+                'attr' => [
+                    'class' => 'form-control email bg-secondary-subtle rounded-0 mb-3',
+                ],
             ])
             ->add('rank', ChoiceType::class, [
                 'label' => 'Note',
@@ -34,16 +40,23 @@ class AvisType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                 ],
+                'attr' => [
+                    'class' => 'form-control email bg-secondary-subtle rounded-0 mb-3',
+                ],
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
                     'cols' => 35,
                     'rows' => 5,
+                    'class' => 'form-control email bg-secondary-subtle rounded-0 mb-3',
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
+                'attr' => [
+                    'class' => 'btn btn-primary rounded-0 my-3 mx-auto d-block',
+                ],
             ]);
     }
 
