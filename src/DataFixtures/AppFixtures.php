@@ -48,12 +48,12 @@ class AppFixtures extends Fixture
         $manager->persist($services3);
 
         $user = new User();
-        $user->setEmail('vincent@parrot.com')
+        $user->setEmail('vparrot@amtest.xyz')
             ->setLastname('Parrot')
             ->setFirstname('Vincent')
             ->setFunction('Gérant')
             ->setRoles(['ROLE_ADMIN'])
-            ->setPlainPassword('password');
+            ->setPlainPassword('@Vparrot7');
         $manager->persist($user);
 
         for ($i = 0; $i < 5; $i++) {
