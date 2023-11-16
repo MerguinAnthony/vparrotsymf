@@ -8,11 +8,13 @@ use App\Repository\UserRepository;
 use App\Repository\ContactRepository;
 use App\Repository\VparHourRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\VparVehicleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
@@ -83,7 +85,7 @@ class ContactController extends AbstractController
      * @param VparHourRepository $hour
      * @return Response
      */
-    #[Route('/contact', name: 'app_contact_new')]
+    #[Route('/contact', name: 'app_contact_new', methods: ['GET', 'POST'])]
     public function add(Request $request, EntityManagerInterface $manager, VparHourRepository $hour): Response
     {
         $contact = new Contact();
@@ -108,6 +110,49 @@ class ContactController extends AbstractController
             'controller_name' => 'ContactController',
             'hour' => $hour->findAll(),
             'form' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/contact/{id}', name: 'app_contact_new_vehicule', methods: ['GET', 'POST'])]
+    public function contactVehicles(int $id, VparVehicleRepository $vehicleRepository, Request $request, EntityManagerInterface $manager, VparHourRepository $hour): Response
+    {
+        $vehicle = $vehicleRepository->find($id);
+        $form = $this->createForm(ContactType::class, null, [
+            'data_class' => Contact::class,
+        ]);
+
+        // Ajoutez les données préremplies directement au formulaire
+        $form->get('subject')->setData(sprintf('Demande d\'information - %s %s', $vehicle->getBrand(), $vehicle->getModel()));
+        $form->get('message')->setData(sprintf(
+            'Bonjour,
+je suis intéressé(e) par ce véhicule %s %s.
+Pourriez-vous me fournir plus d\'informations ?',
+            $vehicle->getBrand(),
+            $vehicle->getModel()
+        ));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+            $manager->persist($contact);
+            $manager->flush();
+
+            return $this->redirectToRoute('home.index');
+        }
+
+        return $this->render('pages/contact/contact.html.twig', [
+            'title_page' => 'Contact | V.Parrot',
+            'nav_item1' => 'Services',
+            'nav_item2' => 'Ventes véhicules',
+            'nav_item3' => 'Avis',
+            'nav_item4' => 'Contactez-nous',
+            'h1_contact' => 'Contactez-nous',
+            'controller_name' => 'ContactController',
+            'hour' => $hour->findAll(),
+            'form' => $form->createView(),
+            'selected_vehicle' => $vehicle,
         ]);
     }
 }

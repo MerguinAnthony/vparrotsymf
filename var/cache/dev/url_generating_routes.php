@@ -24,6 +24,7 @@ return [
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/back/gestion-des-messages']], [], [], []],
     'app_contact_delete' => [['id'], ['_controller' => 'App\\Controller\\ContactController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-messages/supprimer']], [], [], []],
     'app_contact_new' => [[], ['_controller' => 'App\\Controller\\ContactController::add'], [], [['text', '/contact']], [], [], []],
+    'app_contact_new_vehicule' => [['id'], ['_controller' => 'App\\Controller\\ContactController::contactVehicles'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/contact']], [], [], []],
     'app_employee' => [[], ['_controller' => 'App\\Controller\\EmployeeController::index'], [], [['text', '/back/gestion-des-employes']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\EmployeeController::add'], [], [['text', '/back/gestion-des-employes/nouveau']], [], [], []],
     'app_gestion_employee_edit' => [['id'], ['_controller' => 'App\\Controller\\EmployeeController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back/gestion-des-employes/edition']], [], [], []],

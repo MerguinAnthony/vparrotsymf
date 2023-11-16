@@ -7,9 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    {% include "partials/_services.html.twig" %}
-    {% include "partials/_ventes.html.twig" %}
-    {% include "partials/_avis.html.twig" %}
-    {% include "partials/_footer.html.twig" %}
+    {% if services is defined and services|length > 0 %}
+        {% include "partials/_services.html.twig" %}
+    {% endif %}
+        {% if cars is defined and cars|length > 0 %}
+        {% include "partials/_ventes.html.twig" %}
+    {% endif %}
+    {% if avis is defined and avis|length > 0 %}
+        {% include "partials/_avis.html.twig" %}
+    {% endif %}
+    {% if hour is defined and hour|length > 0 %}
+        {% include "partials/_footer.html.twig" %}
+    {% endif %}
 {% endblock %}
 

@@ -23,7 +23,7 @@
 				<div class="card-footer d-flex justify-content-around align-items-center">
 					<p class="card-price fs-3" style="color:var(--clr-secondary);">{{ car.price }} €</p>
 					<div id="openModal_{{ car.id }}">
-						<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{{ car.id }}" class="btn btn-primary">En savoir plus</a>
+						<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{{ car.id }}" class="btn btn-primary rounded-0">En savoir plus</a>
 					</div>
 				</div>
 			</div>
@@ -118,7 +118,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-								<a href="{{ path('app_contact') }}" class="btn btn-primary">Nous contacter</a>
+								<a href="{{ path('app_contact_new_vehicule', {'id': car.id}) }}" class="btn btn-primary">Nous contacter</a>
 							</div>
 						</div>
 					</div>
@@ -128,7 +128,6 @@
 	</div>
 	<!-- Carousel img -->
 	<div id="carouselExampleControls_{{ car.id }}" class="carousel slide d-none position-fixed w-75" style="top: 50%; left: 50%; transform: translate(-50%, -50%);" data-bs-ride="carousel">
-		<div class="carousel-overlay"></div>
 			<div id="close_carousel_{{ car.id }}" class="carousel-inner">
 				<div class="carousel-item active">
 						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" class="d-block w-100" alt="photo du véhicule">

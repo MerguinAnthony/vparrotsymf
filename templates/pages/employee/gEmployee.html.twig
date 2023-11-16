@@ -75,7 +75,11 @@
                 <td>{{user.function}}</td>
                 <td>{{user.email}}</td>
                 <td class="th-modify"><a href="{{ path('app_gestion_employee_edit', {id: user.id }) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a></td>
-                <td class="th-delete"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a></td>
+                {% if user.roles == ["ROLE_USER"] %}
+                    <td class="th-delete"><a href="{{ path('app_gestion_employee_delete', {id: user.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a></td>
+                {% else %}
+                    <td class="th-delete"></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
