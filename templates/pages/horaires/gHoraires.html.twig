@@ -15,6 +15,11 @@
 {% endblock %}
 
 {% block body %}
+<style>
+    .equal-columns-table {
+        table-layout: fixed;
+    }
+</style>
     <div class="container">
         <h1>{{ h1_index }}</h1>
         {% for message in app.flashes('success') %}
@@ -23,70 +28,24 @@
         </div>
         {% endfor %}
     </div>
-    <h2>{{ h2_index }}</h2>
-    <table class="table table-striped d-none d-md-table">
+    <table class="table table-striped d-none d-md-table text-center w-50 mx-auto">
         <thead>
             <tr>
-                <th></th>
                 <th>{{ th_1 }}</th>
                 <th>{{ th_2 }}</th>
-                <th>{{ th_3 }}</th>
-                <th>{{ th_4 }}</th>
-                <th>{{ th_5 }}</th>
-                <th>{{ th_6 }}</th>
-                <th>{{ th_7 }}</th>
                 <th class="th-modify"></th>     
             </tr>
         </thead>
         <tbody>
         {% for hours in hour %}
             <tr>
-                {% if hours.id == 1 %}
-                    <td>Ouverture matin</td>
-                {% elseif hours.id == 2 %}
-                    <td>Fermeture matin</td>
-                {% elseif hours.id == 3 %}
-                    <td>Ouverture après-midi</td>
-                {% elseif hours.id == 4 %}
-                    <td>Fermeture après-midi</td>
-                {% endif %} 
-                <td>{{ hours.monday ? hours.monday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.tuesday ? hours.tuesday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.wednesday ? hours.wednesday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.thursday ? hours.thursday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.friday ? hours.friday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.saturday ? hours.saturday|date('H:i') : 'Fermé' }}</td>
-                <td>{{ hours.sunday ? hours.sunday|date('H:i') : 'Fermé' }}</td>
+                <td>{{ hours.days }}</td>
+                <td>{{ hours.hours }}</td>
                 <td class="td-modify"><a href="{{ path('app_gestion_horaires_edit', {id: hours.id }) }}" class="btn btn-warning text-center rounded-0">Modifier</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% for hours in hour %}
-    <div class="card my-4 w-75 mx-auto d-md-none">
-        {% if hours.id == 1 %}
-            <div class="card-header">Ouverture matin</div>
-        {% elseif hours.id == 2 %}
-            <div class="card-header">Fermeture matin</div>
-        {% elseif hours.id == 3 %}
-            <div class="card-header">Ouverture après-midi</div>
-        {% elseif hours.id == 4 %}
-            <div class="card-header">Fermeture après-midi</div>
-        {% endif %}
-        <div class="card-body">
-            <p class="card-text">Lundi : {{ hours.monday ? hours.monday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Mardi : {{ hours.tuesday ? hours.tuesday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Mercredi : {{ hours.wednesday ? hours.wednesday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Jeudi : {{ hours.thursday ? hours.thursday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Vendredi : {{ hours.friday ? hours.friday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Samedi : {{ hours.saturday ? hours.saturday|date('H:i') : 'Fermé' }}</p>
-            <p class="card-text">Dimanche : {{ hours.sunday ? hours.sunday|date('H:i') : 'Fermé' }}</p>
-            <div class="d-flex justify-content-center">
-                <a href="{{ path('app_gestion_horaires_edit', {id: hours.id }) }}" class="btn btn-warning text-center rounded-0">Modifier</a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
 {% endblock %}
 
 

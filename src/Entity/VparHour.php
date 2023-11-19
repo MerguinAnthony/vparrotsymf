@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\VparHourRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,112 +14,39 @@ class VparHour
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $monday = null;
+    #[ORM\Column(length: 10)]
+    #[Assert\NotBlank]
+    private ?string $days = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $tuesday = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $wednesday = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $thursday = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $friday = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $saturday = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $sunday = null;
+    #[ORM\Column(length: 23)]
+    #[Assert\NotBlank]
+    private ?string $hours = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMonday(): ?\DateTimeInterface
+    public function getDays(): ?string
     {
-        return $this->monday;
+        return $this->days;
     }
 
-    public function setMonday(?\DateTimeInterface $monday): self
+    public function setDays(string $days): static
     {
-        $this->monday = $monday;
+        $this->days = $days;
 
         return $this;
     }
 
-    public function getTuesday(): ?\DateTimeInterface
+    public function getHours(): ?string
     {
-        return $this->tuesday;
+        return $this->hours;
     }
 
-    public function setTuesday(?\DateTimeInterface $tuesday): self
+    public function setHours(string $hours): static
     {
-        $this->tuesday = $tuesday;
-
-        return $this;
-    }
-
-    public function getWednesday(): ?\DateTimeInterface
-    {
-        return $this->wednesday;
-    }
-
-    public function setWednesday(?\DateTimeInterface $wednesday): self
-    {
-        $this->wednesday = $wednesday;
-
-        return $this;
-    }
-
-    public function getThursday(): ?\DateTimeInterface
-    {
-        return $this->thursday;
-    }
-
-    public function setThursday(?\DateTimeInterface $thursday): self
-    {
-        $this->thursday = $thursday;
-
-        return $this;
-    }
-
-    public function getFriday(): ?\DateTimeInterface
-    {
-        return $this->friday;
-    }
-
-    public function setFriday(?\DateTimeInterface $friday): self
-    {
-        $this->friday = $friday;
-
-        return $this;
-    }
-
-    public function getSaturday(): ?\DateTimeInterface
-    {
-        return $this->saturday;
-    }
-
-    public function setSaturday(?\DateTimeInterface $saturday): self
-    {
-        $this->saturday = $saturday;
-
-        return $this;
-    }
-
-    public function getSunday(): ?\DateTimeInterface
-    {
-        return $this->sunday;
-    }
-
-    public function setSunday(?\DateTimeInterface $sunday): self
-    {
-        $this->sunday = $sunday;
+        $this->hours = $hours;
 
         return $this;
     }

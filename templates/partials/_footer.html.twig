@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-5 mx-auto mt-4">
+      <div class="col-md-4 mx-auto mt-4">
         <div class="row">
           <div class="col-2">
               <img class="w-50" src="{{asset('assets/img/location-pin_2776067.png')}}" alt="logo">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-5 mx-auto mt-2">
+      <div class="col-md-4 mx-auto mt-2">
         <div class="row">
           <div class="col-2">
               <img class="w-50" src="{{asset('assets/img/smartphone_329446.png')}}" alt="logo">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="row mb-4">
-      <div class="col-md-5 mx-auto mt-2">
+      <div class="col-md-4 mx-auto mt-2">
         <div class="row">
           <div class="col-2">
               <img class="w-50" src="{{asset('assets/img/open_267488.png')}}" alt="logo">
@@ -55,13 +55,13 @@
             <p class="m-0">Dimanche</p>
           </div>
           <div class="col-7">
-            <p class="m-0">{{ hour[0].monday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].monday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].monday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].monday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].tuesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].tuesday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].tuesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].tuesday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].wednesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].wednesday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].wednesday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].wednesday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].thursday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].thursday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].thursday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].thursday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].friday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].friday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].friday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].friday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].saturday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].saturday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].saturday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].saturday|date('H:i')|replace({':': 'h'}) }}</p>
-            <p class="m-0">{{ hour[0].sunday|date('H:i')|replace({':': 'h'}) }} - {{ hour[1].sunday|date('H:i')|replace({':': 'h'}) }} / {{ hour[2].sunday|date('H:i')|replace({':': 'h'}) }} - {{ hour[3].sunday|date('H:i')|replace({':': 'h'}) }}</p>
+            <p class="m-0">{{ hour[0].hours }}</p>
+            <p class="m-0">{{ hour[1].hours }}</p>
+            <p class="m-0">{{ hour[2].hours }}</p>
+            <p class="m-0">{{ hour[3].hours }}</p>
+            <p class="m-0">{{ hour[4].hours }}</p>
+            <p class="m-0">{{ hour[5].hours }}</p>
+            <p class="m-0">{{ hour[6].hours }}</p>
           </div>
         </div>
       </div>

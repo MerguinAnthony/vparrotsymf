@@ -15,7 +15,7 @@ const labelVehicule3 = document.querySelector(
 );
 const checkboxVehicule3 = document.querySelector("#vehicles_image3_delete");
 
-labelVehicule1.textContent = "Supprimer ?";
+labelVehicule2.textContent = "Supprimer ?";
 labelVehicule1.style.color = "var(--clr-secondary)";
 labelVehicule1.style.marginRight = "1rem";
 labelVehicule1.style.marginBottom = "1rem";
@@ -32,30 +32,6 @@ labelVehicule3.style.color = "var(--clr-secondary)";
 labelVehicule3.style.marginRight = "1rem";
 labelVehicule3.style.marginBottom = "1rem";
 labelVehicule3.classList.add("form-check-label");
-
-checkboxVehicule1.addEventListener("change", function () {
-  if (checkboxVehicule1.checked) {
-    labelVehicule1.textContent = "Oui, je veux supprimer l'image";
-  } else {
-    labelVehicule1.textContent = "Supprimer ?";
-  }
-});
-
-checkboxVehicule2.addEventListener("change", function () {
-  if (checkboxVehicule2.checked) {
-    labelVehicule2.textContent = "Oui, je veux supprimer l'image";
-  } else {
-    labelVehicule2.textContent = "Supprimer ?";
-  }
-});
-
-checkboxVehicule3.addEventListener("change", function () {
-  if (checkboxVehicule3.checked) {
-    labelVehicule3.textContent = "Oui, je veux supprimer l'image";
-  } else {
-    labelVehicule3.textContent = "Supprimer ?";
-  }
-});
 
 // Modifier le lien download pour l'image
 
@@ -81,7 +57,8 @@ if (links.length >= 6) {
     "justify-content-center",
     "align-items-center",
     "w-50",
-    "mx-auto"
+    "mx-auto",
+    "rounded-0"
   );
 
   const secondImage = thirdLink.querySelector("img");
@@ -96,7 +73,8 @@ if (links.length >= 6) {
     "justify-content-center",
     "align-items-center",
     "w-50",
-    "mx-auto"
+    "mx-auto",
+    "rounded-0"
   );
 
   const thirdImage = fifthLink.querySelector("img");
@@ -111,6 +89,7 @@ if (links.length >= 6) {
     "justify-content-center",
     "align-items-center",
     "w-50",
-    "mx-auto"
+    "mx-auto",
+    "rounded-0"
   );
 }

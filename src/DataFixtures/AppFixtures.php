@@ -79,15 +79,10 @@ class AppFixtures extends Fixture
             $manager->persist($avis);
         }
 
-        for ($h = 0; $h < 4; $h++) {
+        for ($h = 0; $h < 7; $h++) {
             $hours = new VparHour();
-            $hours->setMonday(new DateTimeImmutable('08:00:00'))
-                ->setTuesday(new DateTimeImmutable('08:00:00'))
-                ->setWednesday(new DateTimeImmutable('08:00:00'))
-                ->setThursday(new DateTimeImmutable('08:00:00'))
-                ->setFriday(new DateTimeImmutable('08:00:00'))
-                ->setSaturday(new DateTimeImmutable('08:00:00'))
-                ->setSunday(new DateTimeImmutable('08:00:00'));
+            $hours->setDays($this->faker->dayOfWeek())
+                ->setHours(8 . 'h' . '-' . 12 . 'h' . ' / ' . 14 . 'h' . '-' . 18 . 'h');
 
             $manager->persist($hours);
         }

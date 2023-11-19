@@ -1,12 +1,8 @@
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{asset('assets/styles/gen.css')}}"> 
-{% endblock %}
-
-<nav class="navbar navbar-expand-lg my-4" style="background: transparent;">
+<nav class="navbar navbar-expand-lg py-4" style="background: var(--clr-tertiary);" id="myNavbar">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span></span>
-    </button>
+  <span></span>
+</button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -27,3 +23,22 @@
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('myNavbar');
+    const headerHeight = {{ headerHeight | default(60) }};
+    const scrollOffset = 50;
+    let isNavbarFixed = false;
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > headerHeight + scrollOffset && !isNavbarFixed) {
+        navbar.classList.add('fixed-top', 'navbar-transition');
+        isNavbarFixed = true;
+      } else if (window.scrollY <= headerHeight + scrollOffset && isNavbarFixed) {
+        navbar.classList.remove('fixed-top', 'navbar-transition');
+        isNavbarFixed = false;
+      }
+    });
+  });
+</script>

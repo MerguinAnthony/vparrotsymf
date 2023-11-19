@@ -22,7 +22,6 @@
             {{ message }}
     </div>
         {% endfor %}
-    <h2>{{ h2_index }}</h2>
     <div class="d-flex justify-content-center my-4">
     <a href="{{ path('app_vente_vehicule_new') }}" class="btn btn-primary w-50 rounded-0" id="vehicles_submit">{{ add_btn }}</a>
     </div>
@@ -74,7 +73,7 @@
         <tbody>
             {% for vehicle in vehicles %}
             <tr>
-                <td class="td-img"><img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule" class="img-fluid" style="max-width: 300px;"></td>
+                <td class="td-img"><img src="{{ asset('assets/img_uploads/vehicles/' ~ vehicle.imageName1) }}" alt="photo du véhicule" class="img-fluid" style="max-height:300px;"></td>
                 <td class="td-date">{{vehicle.adddate|date('d/m/Y')}}</td>
                 <td class="td-denom">{{vehicle.brand}} {{vehicle.model}} {{vehicle.year}} {{vehicle.power}}cv {{vehicle.fiscalpower}}cv {{vehicle.mileage}}km {{vehicle.energy}}</td>
                 <td class="td-price">{{vehicle.price}}€</td>

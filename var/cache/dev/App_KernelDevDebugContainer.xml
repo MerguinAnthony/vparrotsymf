@@ -669,6 +669,8 @@
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="debug.security.firewall" type="service" id="debug.security.firewall" on-invalid="ignore_uninitialized"/>
+        <argument key="debug.security.firewall.authenticator.main" type="service" id="debug.security.firewall.authenticator.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
         <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
@@ -751,6 +753,12 @@
           <argument>reset</argument>
         </argument>
         <argument key="cache.security_is_granted_attribute_expression_language" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="debug.security.firewall" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="debug.security.firewall.authenticator.main" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="monolog.handler.main" type="collection">
@@ -1117,6 +1125,7 @@
         <argument>messenger.bus.default</argument>
       </argument>
       <argument>null</argument>
+      <argument>null</argument>
       <call method="setName">
         <argument>messenger:consume</argument>
       </call>
@@ -1204,6 +1213,7 @@
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id="monolog.logger.messenger" on-invalid="null"/>
       <argument type="service" id="messenger.transport.native_php_serializer" on-invalid="null"/>
+      <argument>null</argument>
       <call method="setName">
         <argument>messenger:failed:retry</argument>
       </call>
@@ -2099,6 +2109,11 @@
             <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/form/Resources/translations/validators.lv.xlf</argument>
             <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/security-core/Resources/translations/security.lv.xlf</argument>
           </argument>
+          <argument key="mk" type="collection">
+            <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/validator/Resources/translations/validators.mk.xlf</argument>
+            <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
+            <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
+          </argument>
           <argument key="mn" type="collection">
             <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
@@ -2609,12 +2624,12 @@
     </service>
     <service id="debug.error_handler_configurator" class="Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator" public="true">
       <tag name="monolog.logger" channel="php"/>
-      <argument type="service" id="monolog.logger.php" on-invalid="null"/>
+      <argument type="service" id="monolog.logger.php"/>
       <argument>null</argument>
       <argument>-1</argument>
       <argument>true</argument>
       <argument>true</argument>
-      <argument type="service" id="monolog.logger.deprecation" on-invalid="null"/>
+      <argument type="service" id="monolog.logger.deprecation"/>
     </service>
     <service id="debug.debug_handlers_listener" class="Symfony\Component\HttpKernel\EventListener\DebugHandlersListener">
       <tag name="kernel.event_subscriber"/>
@@ -2959,14 +2974,6 @@
           <argument>onWorkerRunning</argument>
         </argument>
         <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>Symfony\Component\Messenger\Event\WorkerStartedEvent</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="messenger.listener.stop_worker_signals_listener"/>
-          <argument>onWorkerStarted</argument>
-        </argument>
-        <argument>100</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Messenger\Event\WorkerMessageFailedEvent</argument>
@@ -4272,7 +4279,6 @@
     </service>
     <service id="messenger.listener.stop_worker_signals_listener" class="Symfony\Component\Messenger\EventListener\StopWorkerOnSignalsListener">
       <tag name="monolog.logger" channel="messenger"/>
-      <tag name="kernel.event_subscriber"/>
       <argument>null</argument>
       <argument type="service" id="monolog.logger.messenger" on-invalid="ignore"/>
     </service>
@@ -4976,12 +4982,12 @@
       <argument>null</argument>
       <argument type="service" id="monolog.logger"/>
     </service>
-    <service id="messenger.transport.doctrine.factory" class="Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransportFactory">
-      <tag name="messenger.transport_factory"/>
-      <argument type="service" id="doctrine"/>
-    </service>
     <service id="doctrine.orm.messenger.event_subscriber.doctrine_clear_entity_manager" class="Symfony\Bridge\Doctrine\Messenger\DoctrineClearEntityManagerWorkerSubscriber">
       <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="messenger.transport.doctrine.factory" class="Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransportFactory">
+      <tag name="messenger.transport_factory"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.orm.messenger.doctrine_schema_listener" class="Symfony\Bridge\Doctrine\SchemaListener\MessengerTransportDoctrineSchemaListener">
@@ -5350,6 +5356,9 @@
       <call method="setName">
         <argument>doctrine:migrations:diff</argument>
       </call>
+      <call method="setDescription">
+        <argument>Generate a migration by comparing your current database to your mapping information.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.sync_metadata_command" class="Doctrine\Migrations\Tools\Console\Command\SyncMetadataCommand">
       <tag name="console.command" command="doctrine:migrations:sync-metadata-storage"/>
@@ -5358,6 +5367,9 @@
       <argument>doctrine:migrations:sync-metadata-storage</argument>
       <call method="setName">
         <argument>doctrine:migrations:sync-metadata-storage</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Ensures that the metadata storage is at the latest version.</argument>
       </call>
     </service>
     <service id="doctrine_migrations.versions_command" class="Doctrine\Migrations\Tools\Console\Command\ListCommand">
@@ -5368,6 +5380,9 @@
       <call method="setName">
         <argument>doctrine:migrations:list</argument>
       </call>
+      <call method="setDescription">
+        <argument>Display a list of all available migrations and their status.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.current_command" class="Doctrine\Migrations\Tools\Console\Command\CurrentCommand">
       <tag name="console.command" command="doctrine:migrations:current"/>
@@ -5376,6 +5391,9 @@
       <argument>doctrine:migrations:current</argument>
       <call method="setName">
         <argument>doctrine:migrations:current</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Outputs the current version</argument>
       </call>
     </service>
     <service id="doctrine_migrations.dump_schema_command" class="Doctrine\Migrations\Tools\Console\Command\DumpSchemaCommand">
@@ -5386,6 +5404,9 @@
       <call method="setName">
         <argument>doctrine:migrations:dump-schema</argument>
       </call>
+      <call method="setDescription">
+        <argument>Dump the schema for your database to a migration.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.execute_command" class="Doctrine\Migrations\Tools\Console\Command\ExecuteCommand">
       <tag name="console.command" command="doctrine:migrations:execute"/>
@@ -5394,6 +5415,9 @@
       <argument>doctrine:migrations:execute</argument>
       <call method="setName">
         <argument>doctrine:migrations:execute</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Execute one or more migration versions up or down manually.</argument>
       </call>
     </service>
     <service id="doctrine_migrations.generate_command" class="Doctrine\Migrations\Tools\Console\Command\GenerateCommand">
@@ -5404,6 +5428,9 @@
       <call method="setName">
         <argument>doctrine:migrations:generate</argument>
       </call>
+      <call method="setDescription">
+        <argument>Generate a blank migration class.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.latest_command" class="Doctrine\Migrations\Tools\Console\Command\LatestCommand">
       <tag name="console.command" command="doctrine:migrations:latest"/>
@@ -5412,6 +5439,9 @@
       <argument>doctrine:migrations:latest</argument>
       <call method="setName">
         <argument>doctrine:migrations:latest</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Outputs the latest version</argument>
       </call>
     </service>
     <service id="doctrine_migrations.migrate_command" class="Doctrine\Migrations\Tools\Console\Command\MigrateCommand">
@@ -5422,6 +5452,9 @@
       <call method="setName">
         <argument>doctrine:migrations:migrate</argument>
       </call>
+      <call method="setDescription">
+        <argument>Execute a migration to a specified version or the latest available version.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.rollup_command" class="Doctrine\Migrations\Tools\Console\Command\RollupCommand">
       <tag name="console.command" command="doctrine:migrations:rollup"/>
@@ -5430,6 +5463,9 @@
       <argument>doctrine:migrations:rollup</argument>
       <call method="setName">
         <argument>doctrine:migrations:rollup</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Rollup migrations by deleting all tracked versions and insert the one version that exists.</argument>
       </call>
     </service>
     <service id="doctrine_migrations.status_command" class="Doctrine\Migrations\Tools\Console\Command\StatusCommand">
@@ -5440,6 +5476,9 @@
       <call method="setName">
         <argument>doctrine:migrations:status</argument>
       </call>
+      <call method="setDescription">
+        <argument>View the status of a set of migrations.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.up_to_date_command" class="Doctrine\Migrations\Tools\Console\Command\UpToDateCommand">
       <tag name="console.command" command="doctrine:migrations:up-to-date"/>
@@ -5449,6 +5488,9 @@
       <call method="setName">
         <argument>doctrine:migrations:up-to-date</argument>
       </call>
+      <call method="setDescription">
+        <argument>Tells you if your schema is up-to-date.</argument>
+      </call>
     </service>
     <service id="doctrine_migrations.version_command" class="Doctrine\Migrations\Tools\Console\Command\VersionCommand">
       <tag name="console.command" command="doctrine:migrations:version"/>
@@ -5457,6 +5499,9 @@
       <argument>doctrine:migrations:version</argument>
       <call method="setName">
         <argument>doctrine:migrations:version</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Manually add and delete migration versions from the version table.</argument>
       </call>
     </service>
     <service id="doctrine.migrations.storage.table_storage" class="Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration"/>
@@ -6477,6 +6522,7 @@
       <argument type="service" id="debug.security.access.decision_manager"/>
     </service>
     <service id="debug.security.firewall" class="Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener">
+      <tag name="kernel.reset" method="reset"/>
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
@@ -6674,6 +6720,7 @@
       <argument type="collection"/>
     </service>
     <service id="debug.security.firewall.authenticator.main" class="Symfony\Component\Security\Http\Authenticator\Debug\TraceableAuthenticatorManagerListener">
+      <tag name="kernel.reset" method="reset"/>
       <tag name="container.decorator" id="security.firewall.authenticator.main" inner="debug.security.firewall.authenticator.main.inner"/>
       <argument type="service" id="debug.security.firewall.authenticator.main.inner"/>
     </service>
@@ -6775,7 +6822,7 @@
     <service id="monolog.handler.main" class="Monolog\Handler\StreamHandler">
       <tag name="kernel.reset" method="reset"/>
       <argument>/Users/anthonymerguin/Documents/projet/vparrotsymf/var/log/dev.log</argument>
-      <argument>100</argument>
+      <argument>debug</argument>
       <argument>true</argument>
       <argument>null</argument>
       <argument>false</argument>
@@ -9363,6 +9410,97 @@
       <argument>false</argument>
       <argument type="service_closure" id="console.command.mailer_test"/>
     </service>
+    <service id=".doctrine_migrations.diff_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:diff</argument>
+      <argument type="collection"/>
+      <argument>Generate a migration by comparing your current database to your mapping information.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.diff_command"/>
+    </service>
+    <service id=".doctrine_migrations.sync_metadata_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:sync-metadata-storage</argument>
+      <argument type="collection"/>
+      <argument>Ensures that the metadata storage is at the latest version.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.sync_metadata_command"/>
+    </service>
+    <service id=".doctrine_migrations.versions_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:list</argument>
+      <argument type="collection"/>
+      <argument>Display a list of all available migrations and their status.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.versions_command"/>
+    </service>
+    <service id=".doctrine_migrations.current_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:current</argument>
+      <argument type="collection"/>
+      <argument>Outputs the current version</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.current_command"/>
+    </service>
+    <service id=".doctrine_migrations.dump_schema_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:dump-schema</argument>
+      <argument type="collection"/>
+      <argument>Dump the schema for your database to a migration.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.dump_schema_command"/>
+    </service>
+    <service id=".doctrine_migrations.execute_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:execute</argument>
+      <argument type="collection"/>
+      <argument>Execute one or more migration versions up or down manually.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.execute_command"/>
+    </service>
+    <service id=".doctrine_migrations.generate_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:generate</argument>
+      <argument type="collection"/>
+      <argument>Generate a blank migration class.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.generate_command"/>
+    </service>
+    <service id=".doctrine_migrations.latest_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:latest</argument>
+      <argument type="collection"/>
+      <argument>Outputs the latest version</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.latest_command"/>
+    </service>
+    <service id=".doctrine_migrations.migrate_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:migrate</argument>
+      <argument type="collection"/>
+      <argument>Execute a migration to a specified version or the latest available version.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.migrate_command"/>
+    </service>
+    <service id=".doctrine_migrations.rollup_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:rollup</argument>
+      <argument type="collection"/>
+      <argument>Rollup migrations by deleting all tracked versions and insert the one version that exists.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.rollup_command"/>
+    </service>
+    <service id=".doctrine_migrations.status_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:status</argument>
+      <argument type="collection"/>
+      <argument>View the status of a set of migrations.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.status_command"/>
+    </service>
+    <service id=".doctrine_migrations.up_to_date_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:up-to-date</argument>
+      <argument type="collection"/>
+      <argument>Tells you if your schema is up-to-date.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.up_to_date_command"/>
+    </service>
+    <service id=".doctrine_migrations.version_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>doctrine:migrations:version</argument>
+      <argument type="collection"/>
+      <argument>Manually add and delete migration versions from the version table.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="doctrine_migrations.version_command"/>
+    </service>
     <service id=".var_dumper.command.server_dump.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>server:dump</argument>
       <argument type="collection"/>
@@ -9578,7 +9716,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.qBwC3YE"/>
+      <argument type="service" id=".service_locator.l99X6bh"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -9692,7 +9830,7 @@
         <argument key="make:security:form-login">maker.auto_command.make_security_form_login</argument>
       </argument>
     </service>
-    <service id=".service_locator.qBwC3YE" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.l99X6bh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -9756,19 +9894,19 @@
         <argument key="doctrine.schema_update_command" type="service_closure" id="doctrine.schema_update_command"/>
         <argument key="doctrine.schema_validate_command" type="service_closure" id="doctrine.schema_validate_command"/>
         <argument key="doctrine.mapping_import_command" type="service_closure" id="doctrine.mapping_import_command"/>
-        <argument key="doctrine_migrations.diff_command" type="service_closure" id="doctrine_migrations.diff_command"/>
-        <argument key="doctrine_migrations.sync_metadata_command" type="service_closure" id="doctrine_migrations.sync_metadata_command"/>
-        <argument key="doctrine_migrations.versions_command" type="service_closure" id="doctrine_migrations.versions_command"/>
-        <argument key="doctrine_migrations.current_command" type="service_closure" id="doctrine_migrations.current_command"/>
-        <argument key="doctrine_migrations.dump_schema_command" type="service_closure" id="doctrine_migrations.dump_schema_command"/>
-        <argument key="doctrine_migrations.execute_command" type="service_closure" id="doctrine_migrations.execute_command"/>
-        <argument key="doctrine_migrations.generate_command" type="service_closure" id="doctrine_migrations.generate_command"/>
-        <argument key="doctrine_migrations.latest_command" type="service_closure" id="doctrine_migrations.latest_command"/>
-        <argument key="doctrine_migrations.migrate_command" type="service_closure" id="doctrine_migrations.migrate_command"/>
-        <argument key="doctrine_migrations.rollup_command" type="service_closure" id="doctrine_migrations.rollup_command"/>
-        <argument key="doctrine_migrations.status_command" type="service_closure" id="doctrine_migrations.status_command"/>
-        <argument key="doctrine_migrations.up_to_date_command" type="service_closure" id="doctrine_migrations.up_to_date_command"/>
-        <argument key="doctrine_migrations.version_command" type="service_closure" id="doctrine_migrations.version_command"/>
+        <argument key="doctrine_migrations.diff_command" type="service_closure" id=".doctrine_migrations.diff_command.lazy"/>
+        <argument key="doctrine_migrations.sync_metadata_command" type="service_closure" id=".doctrine_migrations.sync_metadata_command.lazy"/>
+        <argument key="doctrine_migrations.versions_command" type="service_closure" id=".doctrine_migrations.versions_command.lazy"/>
+        <argument key="doctrine_migrations.current_command" type="service_closure" id=".doctrine_migrations.current_command.lazy"/>
+        <argument key="doctrine_migrations.dump_schema_command" type="service_closure" id=".doctrine_migrations.dump_schema_command.lazy"/>
+        <argument key="doctrine_migrations.execute_command" type="service_closure" id=".doctrine_migrations.execute_command.lazy"/>
+        <argument key="doctrine_migrations.generate_command" type="service_closure" id=".doctrine_migrations.generate_command.lazy"/>
+        <argument key="doctrine_migrations.latest_command" type="service_closure" id=".doctrine_migrations.latest_command.lazy"/>
+        <argument key="doctrine_migrations.migrate_command" type="service_closure" id=".doctrine_migrations.migrate_command.lazy"/>
+        <argument key="doctrine_migrations.rollup_command" type="service_closure" id=".doctrine_migrations.rollup_command.lazy"/>
+        <argument key="doctrine_migrations.status_command" type="service_closure" id=".doctrine_migrations.status_command.lazy"/>
+        <argument key="doctrine_migrations.up_to_date_command" type="service_closure" id=".doctrine_migrations.up_to_date_command.lazy"/>
+        <argument key="doctrine_migrations.version_command" type="service_closure" id=".doctrine_migrations.version_command.lazy"/>
         <argument key="var_dumper.command.server_dump" type="service_closure" id=".var_dumper.command.server_dump.lazy"/>
         <argument key="monolog.command.server_log" type="service_closure" id=".monolog.command.server_log.lazy"/>
         <argument key="twig.command.debug" type="service_closure" id=".twig.command.debug.lazy"/>

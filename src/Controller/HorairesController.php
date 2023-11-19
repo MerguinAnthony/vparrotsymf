@@ -22,7 +22,7 @@ class HorairesController extends AbstractController
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/back/gestion-des-horaires', name: 'app_horaires')]
-    public function index(VparHourRepository $VparHour): Response
+    public function index(Request $request, VparHourRepository $VparHour): Response
     {
         $hour = $VparHour->findAll();
 
@@ -32,19 +32,13 @@ class HorairesController extends AbstractController
             'nav_item2' => 'Gestion des ventes',
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion des employés',
+            'nav_item5' => 'Gestion RH',
             'nav_item6' => 'Gestion des avis clients',
             'nav_item7' => 'Messagerie',
             'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion des horaires',
-            'h2_index' => 'Horaires actuels',
-            'th_1' => 'Lundi',
-            'th_2' => 'Mardi',
-            'th_3' => 'Mercredi',
-            'th_4' => 'Jeudi',
-            'th_5' => 'Vendredi',
-            'th_6' => 'Samedi',
-            'th_7' => 'Dimanche',
+            'th_1' => 'Jours',
+            'th_2' => 'Heures d\'ouverture',
             'td_modify' => 'Modifier',
             'hour' => $hour,
         ]);
@@ -81,12 +75,11 @@ class HorairesController extends AbstractController
             'nav_item2' => 'Gestion des ventes',
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion des employés',
+            'nav_item5' => 'Gestion RH',
             'nav_item6' => 'Gestion des avis clients',
             'nav_item7' => 'Messagerie',
             'nav_item8' => 'Déconnexion',
             'h1_edit' => 'Gestion des horaires',
-            'h2_edit' => 'Modification des horaires',
             'form' => $form->createView(),
         ]);
     }

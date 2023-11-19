@@ -44,7 +44,7 @@ class ContactController extends AbstractController
             'nav_item2' => 'Gestion des ventes',
             'nav_item3' => 'Gestion des services',
             'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion des employés',
+            'nav_item5' => 'Gestion RH',
             'nav_item6' => 'Gestion des avis clients',
             'nav_item7' => 'Messagerie',
             'nav_item8' => 'Déconnexion',
@@ -55,6 +55,7 @@ class ContactController extends AbstractController
             'th_phone' => 'Téléphone',
             'th_email' => 'Email',
             'th_message' => 'Message',
+            'td_reply' => 'Répondre',
             'td_delete' => 'Supprimer',
             'messages' => $contact,
         ]);
@@ -97,6 +98,9 @@ class ContactController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
+            $this->addFlash('success', 'Votre message a bien été envoyé ! 
+            Nous vous répondrons dans les plus brefs délais.');
+
             return $this->redirectToRoute('home.index');
         }
 
@@ -138,6 +142,8 @@ Pourriez-vous me fournir plus d\'informations ?',
             $contact = $form->getData();
             $manager->persist($contact);
             $manager->flush();
+
+            $this->addFlash('success',  'Votre message a bien été envoyé ! Nous vous répondrons dans les plus brefs délais.');
 
             return $this->redirectToRoute('home.index');
         }

@@ -39,9 +39,21 @@
 				</div>
 				<div class="modal-body">
 					<div id="open_Carousel_{{ car.id }}" class="d-flex flex-row justify-content-evenly">
+					{% if car.imageName1 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
 						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule" class="img-fluid w-25">
+					{% endif %}
+					{% if car.imageName2 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
 						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" alt="photo du véhicule" class="img-fluid w-25">
+					{% endif %}
+					{% if car.imageName3 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
 						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" alt="photo du véhicule" class="img-fluid w-25">
+					{% endif %}
 					</div>
 					<div class="d-flex flex-row mt-3 fs-6">
 						<p class="border py-1 px-2 mx-2">Année : {{ car.year }}</p>
@@ -130,13 +142,25 @@
 	<div id="carouselExampleControls_{{ car.id }}" class="carousel slide d-none position-fixed w-75" style="top: 50%; left: 50%; transform: translate(-50%, -50%);" data-bs-ride="carousel">
 			<div id="close_carousel_{{ car.id }}" class="carousel-inner">
 				<div class="carousel-item active">
-						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" class="d-block w-100" alt="photo du véhicule">
+				{% if car.imageName1 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule" class="d-block w-100">
+					{% endif %}
 				</div>
 				<div class="carousel-item">
-						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" class="d-block w-100" alt="photo du véhicule">
+						{% if car.imageName2 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName2) }}" alt="photo du véhicule" class="d-block w-100">
+					{% endif %}
 				</div>
 				<div class="carousel-item">
-						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" class="d-block w-100" alt="photo du véhicule">
+						{% if car.imageName3 == null %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" alt="photo du véhicule" class="d-none">
+					{% else %}
+						<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName3) }}" alt="photo du véhicule" class="d-block w-100">
+					{% endif %}
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls_{{ car.id }}" data-bs-slide="prev">
@@ -147,23 +171,34 @@
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Next</span>
 			</button>
-    </div>
-		<script>
-        const open_Carousel_{{ car.id }} = document.getElementById('open_Carousel_{{ car.id }}');
-        const carousel_{{ car.id }} = document.getElementById('carouselExampleControls_{{ car.id }}');
-        const close_carousel_{{ car.id }} = document.getElementById('close_carousel_{{ car.id }}');
+		</div>
+	</div>
+<script>
+    const open_Carousel_{{ car.id }} = document.getElementById('open_Carousel_{{ car.id }}');
+    const carousel_{{ car.id }} = document.getElementById('carouselExampleControls_{{ car.id }}');
+    const close_carousel_{{ car.id }} = document.getElementById('close_carousel_{{ car.id }}');
+    const bodyElement = document.body;
 
-        open_Carousel_{{ car.id }}.style.cursor = 'pointer';
+    open_Carousel_{{ car.id }}.style.cursor = 'pointer';
 
-        open_Carousel_{{ car.id }}.addEventListener('click', function() {
-            carousel_{{ car.id }}.classList.remove('d-none');
-            carousel_{{ car.id }}.style.zIndex = '9999';
-        });
+    open_Carousel_{{ car.id }}.addEventListener('click', function(event) {
+        event.stopPropagation();
+        carousel_{{ car.id }}.classList.remove('d-none');
+        carousel_{{ car.id }}.style.zIndex = '9999';
+    });
 
-        close_carousel_{{ car.id }}.addEventListener('click', function() {
+    close_carousel_{{ car.id }}.addEventListener('click', function(event) {
+        event.stopPropagation(); 
+        carousel_{{ car.id }}.classList.add('d-none');
+    });
+
+    bodyElement.addEventListener('click', function(event) {
+        if (!open_Carousel_{{ car.id }}.contains(event.target) && !carousel_{{ car.id }}.contains(event.target)) {
             carousel_{{ car.id }}.classList.add('d-none');
-        });
-    </script>
+        }
+    });
+</script>
+
 	{% endfor %}
 	<section>
 		<div>

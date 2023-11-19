@@ -97,7 +97,7 @@ class VehiclesType extends AbstractType
                 'label' => 'Image 1 :',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control email bg-secondary-subtle rounded-0 my-3',
+                    'class' => 'form-control bg-secondary-subtle rounded-0 my-3',
                 ],
             ])
             ->add('image2', VichImageType::class, [
@@ -115,7 +115,7 @@ class VehiclesType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-primary rounded-0 my-3 mx-auto d-block',
                 ],

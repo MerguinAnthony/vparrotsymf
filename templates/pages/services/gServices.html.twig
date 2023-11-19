@@ -22,7 +22,6 @@
             {{ message }}
     </div>
         {% endfor %}
-    <h2{{ h2_index }}</h2>
     <table class="table table-striped d-none d-md-table">
         <thead>
             <tr>
@@ -35,7 +34,7 @@
         <tbody>
             {% for service in services %}
             <tr>
-                <td class="td-img"><img src="{{ asset('assets/img_uploads/services/' ~ service.image) }}" alt="image service" class="img-fluid" style="max-width: 300px;"></td>
+                <td><img src="{{ asset('assets/img_uploads/services/' ~ service.image) }}" alt="image service" class="img-fluid" style="max-height:300px;"></td>
                 <td>{{ service.title }}</td>
                 <td>{{ service.text }}</td>
                 <td class="th-modi"><a href="{{ path('app_services_edit', {'id': service.id}) }}" class="btn btn-warning text-center rounded-0">{{ td_modify }}</a></td>

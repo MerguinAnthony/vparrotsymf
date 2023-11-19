@@ -51,7 +51,8 @@
                 <th>{{ th_email }}</th>
                 <th>{{ th_phone }}</th>
                 <th>{{ th_message }}</th>
-                <th class="th-delete"></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -59,22 +60,24 @@
             <tr>
                 <td>{{message.lastname}}</td>
                 <td>{{message.firstname}}</td>
-                <td><a class="text-decoration-none" style="color:var(--clr-secondary)" href="mailto:{{message.email}}">{{message.email}}</a></td>
+                <td>{{message.email}}</a></td>
                 <td><a class="text-decoration-none" style="color:var(--clr-secondary)" href="tel:+33{{message.phone}}">0{{ message.phone}}</a></td>
                 <td>{{message.message}}</td>
-                <td class="th-delete"><a href="{{ path('app_contact_delete', {id: message.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a></td>
+                <td class="th-reply"><a href="mailto:{{message.email}}" class="btn btn-light rounded-0">{{ td_reply }}</a></td>
+                <td class="th-delete"><a href="{{ path('app_contact_delete', {id: message.id }) }}" class="btn btn-primary rounded-0">{{ td_delete }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% for message in messages %}
-    <div class="card my-4 w-75 mx-auto d-md-none">
-        <div class="card-header">{{message.lastname}} {{message.firstname}}</div>
+    <div class="card my-4 w-75 mx-auto d-md-none text-center">
+        <div class="card-header fs-4">{{message.lastname}} {{message.firstname}}</div>
         <div class="card-body">
-            <h5 class="card-title"><a class="text-decoration-none" style="color:var(--clr-secondary)" href="mailto:{{message.email}}">{{message.email}}</a></h5>
+            <h5 class="card-title">{{message.email}}</a></h5>
             <p class="card-text"><a class="text-decoration-none" style="color:var(--clr-secondary)" href="tel:+33{{message.phone}}">0{{message.phone}}</a></p>
-            <p class="card-text">{{message.message}}</p>
-            <div class="d-flex justify-content-center">
+            <p class="card-text text-start">{{message.message}}</p>
+            <div class="d-flex justify-content-around">
+                <a href="mailto:{{message.email}}" class="btn btn-light rounded-0">{{ td_reply }}</a>
                 <a href="{{ path('app_contact_delete', {id: message.id }) }}" class="btn btn-danger rounded-0">{{ td_delete }}</a>
             </div>
         </div>
