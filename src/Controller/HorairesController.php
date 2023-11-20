@@ -28,14 +28,6 @@ class HorairesController extends AbstractController
 
         return $this->render('pages/horaires/gHoraires.html.twig', [
             'title_page' => 'Gestion des horaires | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion des horaires',
             'th_1' => 'Jours',
             'th_2' => 'Heures d\'ouverture',
@@ -71,14 +63,6 @@ class HorairesController extends AbstractController
 
         return $this->render('pages/horaires/gHorairesEdit.html.twig', [
             'title_page' => 'Modification des horaires | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_edit' => 'Gestion des horaires',
             'form' => $form->createView(),
         ]);

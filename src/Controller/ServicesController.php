@@ -26,14 +26,6 @@ class ServicesController extends AbstractController
     {
         return $this->render('pages/services/gServices.html.twig', [
             'title_page' => 'Gestion des services | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion des services',
             'add_btn' => 'Ajouter un nouveau service',
             'th_name' => 'Nom du service',
@@ -75,14 +67,6 @@ class ServicesController extends AbstractController
         }
         return $this->render('pages/services/gServicesEdit.html.twig', [
             'title_page' => 'modification des services | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_edit' => 'Gestion des services',
             'h2_edit' => 'Modification d\'un service',
             'form' => $form->createView(),

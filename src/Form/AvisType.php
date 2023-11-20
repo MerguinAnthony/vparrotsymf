@@ -53,7 +53,7 @@ class AvisType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
+                'label' => 'Soumettre',
                 'attr' => [
                     'class' => 'btn btn-primary rounded-0 my-3 mx-auto d-block',
                 ],

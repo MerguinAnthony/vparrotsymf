@@ -71,13 +71,9 @@ class HomeController extends AbstractController
 
         return $this->render('pages/home.html.twig', [
             'title_page' => 'Accueil | V.Parrot',
-            'nav_item1' => 'Services',
-            'nav_item2' => 'Ventes véhicules',
-            'nav_item3' => 'Avis',
-            'nav_item4' => 'Contactez-nous',
             'h1_serv' => 'Services',
             'h1_vent' => 'Ventes véhicules',
-            'count_vehicles' => 'véhicules vous attendent actuellement !',
+            'count_vehicles' => 'Véhicules à vendre actuellement !',
             'services' => $services,
             'cars' => $vehicles,
             'avis' => $avisA,

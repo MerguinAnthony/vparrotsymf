@@ -19,8 +19,9 @@ Garage V.Parrot - Projet de fin de formation - STUDI - 2023
 3. **Configurer la base de données**
 
    ```bash
-   php bin/console doctrine:database:create
-   php bin/console doctrine:migrations:migrate
+    php bin/console doctrine:database:create
+    php bin/console doctrine:migrations:migrate
+    php bin/console doctrine:fixtures:load
    ```
 
 4. **Lancer le serveur de développement**

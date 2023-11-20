@@ -1,5 +1,5 @@
-<section id="avis" class="py-4 text-capitalize">
-  <h1 class="h1avis">Avis</h1>
+<section id="avis" class="py-4">
+  <h1 class="text-capitalize">Avis</h1>
   <p class="fs-5  text-center">Moyenne des avis :</p>
   <p class="fs-4  text-center fw-bold" style="color:var(--clr-secondary);">{{ avis_moyen|number_format(1, '.', '/') }}/5</p>
   {% for avi in avis %}
@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-10">
           <div class="line2 d-flex justify-content-between">
-            <p class="item-avis fs-5 fw-bold">{{ avi.lastname }} {{ avi.firstname }}</p>
+            <p class="item-avis fs-5 fw-bold text-capitalize">{{ avi.lastname }} {{ avi.firstname }}</p>
             <p class="item-avis pe-5">{{ avi.date|date("d/m/Y") }}</p>
           </div>
           <div class="line3">
@@ -41,7 +41,7 @@
         <div class="modal-body">
           <div class="d-flex justify-content-center align-items-center mx-auto my-2"  id="rank-car">
             {% for i in 1..5 %}
-              <i class="fa-solid fa-car" data-value="{{ i }}"></i>
+              <i class="fa-solid fa-car mx-1" data-value="{{ i }}"></i>
             {% endfor %}
           </div>
           {{ form(form) }}
@@ -55,18 +55,15 @@
 </section>
 <script src="https://kit.fontawesome.com/105098c44c.js" crossorigin="anonymous"></script>
 <script>
-    // Récupérer les voitures
+
     const rankCar = document.getElementById('rank-car');
     const cars = rankCar.children;
     const rankInput = document.getElementById('{{ form.rank.vars.id }}');
     const rankLabel = document.querySelector('label[for="{{ form.rank.vars.id }}"]');
 
-    // Placer la note en display none
-
     rankInput.style.visibility = 'hidden';
     rankLabel.style.display = 'none';
 
-    // Fonction pour mettre à jour la couleur des voitures en fonction de la valeur
     function updateCarColor() {
         const value = rankInput.value;
         for (let i = 0; i < cars.length; i++) {
@@ -78,7 +75,6 @@
         }
     }
 
-    // Ajouter un event listener pour le survol de la souris
     rankCar.addEventListener('mouseover', function(e) {
         const target = e.target;
         if (target.tagName === 'I') {
@@ -88,6 +84,5 @@
         }
     });
 
-    // Appeler la fonction lors du chargement initial de la page
     updateCarColor();
 </script>

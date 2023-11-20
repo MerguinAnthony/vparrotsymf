@@ -40,14 +40,6 @@ class ContactController extends AbstractController
 
         return $this->render('pages/contact/gContact.html.twig', [
             'title_page' => 'messagerie | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Messagerie',
             'count_messages' => 'Nombre de messages reçus :',
             'th_lastname' => 'Nom',
@@ -106,10 +98,6 @@ class ContactController extends AbstractController
 
         return $this->render('pages/contact/contact.html.twig', [
             'title_page' => 'Contact | V.Parrot',
-            'nav_item1' => 'Services',
-            'nav_item2' => 'Ventes véhicules',
-            'nav_item3' => 'Avis',
-            'nav_item4' => 'Contactez-nous',
             'h1_contact' => 'Contactez-nous',
             'controller_name' => 'ContactController',
             'hour' => $hour->findAll(),
@@ -150,10 +138,6 @@ Pourriez-vous me fournir plus d\'informations ?',
 
         return $this->render('pages/contact/contact.html.twig', [
             'title_page' => 'Contact | V.Parrot',
-            'nav_item1' => 'Services',
-            'nav_item2' => 'Ventes véhicules',
-            'nav_item3' => 'Avis',
-            'nav_item4' => 'Contactez-nous',
             'h1_contact' => 'Contactez-nous',
             'controller_name' => 'ContactController',
             'hour' => $hour->findAll(),

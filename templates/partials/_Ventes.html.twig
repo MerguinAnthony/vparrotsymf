@@ -1,10 +1,44 @@
-<section class="py-4 text-capitalize" id="ventes" style="background:var(--clr-secondary);">
+<section class="py-4" id="ventes" style="background:var(--clr-secondary);">
 	<h1 class="text-white">Ventes</h1>
 	<div class="pb-4 text-white text-center fs-5">
 		{{ cars.getTotalItemCount }} {{ count_vehicles }}
 	</div>
+    <div class="row text-center d-flex justify-content-center mb-4">
+			<div class="col-md-3">
+				<div class="mb-2 w-50	mx-auto">
+					<label for="minPrice" class="form-label text-white">Prix</label>
+					<input type="number" class="form-control" name="minPrice" id="minPrice" placeholder="min" min="0">
+				</div>
+				<div class="mb-2 w-50	mx-auto">
+					<input type="number" class="form-control" name="Maxprice" id="Maxprice" placeholder="max" min="1">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="mb-2 w-50	mx-auto">
+					<label for="minMileage" class="form-label text-white">Kilomètres</label>
+					<input type="number" class="form-control" name="minMileage" id="minMileage" placeholder="min" min="0">
+				</div>
+				<div class="mb-2 w-50	mx-auto">
+					<input type="number" class="form-control" name="MaxMileage" id="MaxMileage" placeholder="max" min="1">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="mb-2 w-50	mx-auto">
+					<label for="minyear" class="form-label text-white">Année</label>
+					<input type="number" class="form-control" name="minyear" id="minyear" placeholder="min" min="1850">
+        </div>
+				<div class="mb-2 w-50	mx-auto">
+					<input type="number" class="form-control" name="Maxyear" id="Maxyear" placeholder="max" min="1851">
+				</div>
+      </div>
+    </div>
+    <div class="row">
+			<div class="col-md-12">
+					<button type="submit" class="btn btn-light d-flex mx-auto mb-4 rounded-0" id="sortButton">Trier</button>
+			</div>
+    </div>
 	{% for car in cars %}
-	<div class="card mb-4 mx-auto rounded-0 w-75">
+	<div class="card mb-4 mx-auto rounded-0 w-75" id="card">
 		<div class="row">
 			<div class="col-md-4">
 				<img src="{{ asset('assets/img_uploads/vehicles/' ~ car.imageName1) }}" alt="photo du véhicule" class="img-fluid">
@@ -12,16 +46,16 @@
 			<div class="col-md-8">
 				<div class="card-body">
 					<h3 class="card-title">{{ car.brand }} {{ car.model }} {{ car.power }} ch</h3>
-					<p class="card-text">Année : {{ car.year }}</p>
+					<p class="card-text" id="sort-year">Année : {{ car.year }}</p>
 					<p class="card-text">Carburant : {{ car.energy }}</p>
-					<p class="card-text">Kilometrage : {{ car.mileage }} km</p>
+					<p class="card-text" id="sort-mileage">Kilometrage : {{ car.mileage }} <span>km</span></p>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12">
 				<div class="card-footer d-flex justify-content-around align-items-center">
-					<p class="card-price fs-3" style="color:var(--clr-secondary);">{{ car.price }} €</p>
+					<p class="card-price fs-3" style="color:var(--clr-secondary);" id="sort-price">{{ car.price }} <span>€</span></p>
 					<div id="openModal_{{ car.id }}">
 						<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{{ car.id }}" class="btn btn-primary rounded-0">En savoir plus</a>
 					</div>
@@ -206,4 +240,33 @@
 		</div>
 	</section>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let sortButton = document.getElementById('sortButton');
+    let minPrice = document.getElementById('minPrice');
+    let Maxprice = document.getElementById('Maxprice');
+    let minMileage = document.getElementById('minMileage');
+    let MaxMileage = document.getElementById('MaxMileage');
+    let minyear = document.getElementById('minyear');
+    let Maxyear = document.getElementById('Maxyear');
+    let cards = document.querySelectorAll('.card');
+
+    sortButton.addEventListener('click', function () {
+        cards.forEach(function (card) {
+            let cardPrice = parseFloat(card.querySelector('#sort-price').textContent);
+            let cardMileage = parseFloat(card.querySelector('#sort-mileage').textContent);
+            let cardYear = parseInt(card.querySelector('#sort-year').textContent, 10);
+
+            if (cardPrice < parseFloat(minPrice.value) || cardPrice > parseFloat(Maxprice.value)) {
+                card.classList.add('d-none');
+            } else if (cardMileage < parseFloat(minMileage.value) || cardMileage > parseFloat(MaxMileage.value)) {
+                card.classList.add('d-none');
+            } else if (cardYear < parseInt(minyear.value) || cardYear > parseInt(Maxyear.value)) {
+                card.classList.add('d-none');
+            } else {
+                card.classList.remove('d-none');
+            }
+        });
+    });
+});
+</script>

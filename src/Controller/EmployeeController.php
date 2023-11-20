@@ -37,14 +37,6 @@ class EmployeeController extends AbstractController
 
         return $this->render('pages/employee/gEmployee.html.twig', [
             'title_page' => 'Gestion des employés | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion RH',
             'add_btn' => 'Ajouter un nouvel employé',
             'count_employee' => 'Nombre d\'employés au sein de l\'entreprise :',
@@ -87,14 +79,6 @@ class EmployeeController extends AbstractController
 
         return $this->render('pages/employee/gEmployeeNew.html.twig', [
             'title_page' => 'Ajout salarié | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_new' => 'Gestion des employés',
             'h2_new' => 'Ajouter un Nouvel employé',
             'form' => $form->createView(),
@@ -131,14 +115,6 @@ class EmployeeController extends AbstractController
 
         return $this->render('pages/employee/gEmployeeEdit.html.twig', [
             'title_page' => 'modification d\'un employé | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_edit' => 'Gestion des employés',
             'h2_edit' => 'Modifier un employé',
             'form' => $form->createView(),

@@ -41,14 +41,6 @@ class AvisController extends AbstractController
 
         return $this->render('pages/avis/gAvis.html.twig', [
             'title_page' => 'Gestion des avis | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_index' => 'Gestion des avis clients',
             'add_btn' => 'Ajouter un avis',
             'count_vehicles' => 'Nombre d\'avis :',
@@ -135,14 +127,6 @@ class AvisController extends AbstractController
         }
         return $this->render('pages/avis/gAvisNew.html.twig', [
             'title_page' => 'Gestion des avis | V.Parrot',
-            'nav_item1' => 'Retour vers le site',
-            'nav_item2' => 'Gestion des ventes',
-            'nav_item3' => 'Gestion des services',
-            'nav_item4' => 'Gestion des horaires',
-            'nav_item5' => 'Gestion RH',
-            'nav_item6' => 'Gestion des avis clients',
-            'nav_item7' => 'Messagerie',
-            'nav_item8' => 'Déconnexion',
             'h1_new' => 'Gestion des avis clients',
             'h2_new' => 'Ajouter un avis',
             'form' => $form->createView(),
