@@ -42,7 +42,7 @@ Garage V.Parrot - Projet de fin de formation - STUDI - 2023
 
 - Ouvrir le navigateur et accéder à l'adresse `http://localhost:8000`.
 - Vous devriez voir la page d'accueil.
-- Connectez-vous à l'adresse `http://localhost:8000/connexion`avec les identifiants suivants :
+- Connectez-vous à l'adresse `http://localhost:8000/connexion` ou `https://amtest.xyz`avec les identifiants suivants :
   - Email : `vparrot@amtest.xyz`
   - Mot de passe : `@Vparrot7`
 - Vous devriez voir le dashboard de l'application.
