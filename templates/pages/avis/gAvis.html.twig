@@ -28,7 +28,7 @@
     <div class="count d-flex justify-content-center w-25 my-4 mx-auto fs-5">
         {{ count_vehicles }} {{ avis.getTotalItemCount }}
     </div>
-    <table class="table table-striped d-none d-md-table">
+    <table class="table table-striped d-none d-lg-table">
         <thead>
             <tr>
                 <th class="th-date ml-3">{{ td_date }}
@@ -93,7 +93,7 @@
         </tbody>
     </table>
     {% for avi in avis %}
-    <div class="card my-4 w-75 mx-auto d-md-none">
+    <div class="card my-4 w-75 mx-auto d-lg-none">
         <div class="card-header">{{ avi.lastname}} {{ avi.firstname }}</div>
         <div class="card-body">
             <h5 class="card-title">{{avi.date|date('d-m-Y')}}</h5>
@@ -115,6 +115,21 @@
     </div>
 </div>
 <script src="{{asset('assets/scripts/sort.js')}}"></script>
+<script>
+// Supprimer "Previous" et "Next" et les remplacer par "Précédent" et "Suivant"
+document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.querySelectorAll('button, a, span'); // Vous pouvez ajuster le sélecteur en fonction de votre HTML
+
+    elements.forEach(function(element) {
+        // Remplacer "Previous" par "Précédent"
+        element.innerHTML = element.innerHTML.replace(/Previous/g, 'Précédent');
+        
+        // Remplacer "Next" par "Suivant"
+        element.innerHTML = element.innerHTML.replace(/Next/g, 'Suivant');
+    });
+});
+
+</script>
 {% endblock %}
 
 

@@ -33,12 +33,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home.index', methods: ['GET', 'POST'])]
     public function index(EntityManagerInterface $manager, VparServiceRepository $VparService, VparVehicleRepository $VparVehicle, VparAvisRepository $VparAvis, VparHourRepository $VparHour, Request $request, PaginatorInterface $paginator): Response
     {
-
         $vehicles = $paginator->paginate(
             $VparVehicle->findBy([], ['updatedAt' => 'DESC']),
             $request->query->getInt('page', 1),
             3
         );
+
 
         $services = $VparService->findAll();
 

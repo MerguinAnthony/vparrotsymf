@@ -209,6 +209,9 @@ a {
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
 }
+span.page-link {
+  content: "précédent";
+}
 
 .page-link:hover {
   text-decoration: none;

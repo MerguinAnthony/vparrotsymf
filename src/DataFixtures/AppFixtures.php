@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        for ($a = 0; $a < 5; $a++) {
+        for ($a = 0; $a < 10; $a++) {
             $avis = new VparAvis();
             $avis->setDate(new DateTimeImmutable())
                 ->setLastname($this->faker->lastName())

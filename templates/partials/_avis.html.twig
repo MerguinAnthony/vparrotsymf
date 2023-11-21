@@ -85,4 +85,18 @@
     });
 
     updateCarColor();
+
+    // Supprimer "Previous" et "Next" et les remplacer par "Précédent" et "Suivant"
+document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.querySelectorAll('button, a, span'); // Vous pouvez ajuster le sélecteur en fonction de votre HTML
+
+    elements.forEach(function(element) {
+        // Remplacer "Previous" par "Précédent"
+        element.innerHTML = element.innerHTML.replace(/Previous/g, 'Précédent');
+        
+        // Remplacer "Next" par "Suivant"
+        element.innerHTML = element.innerHTML.replace(/Next/g, 'Suivant');
+    });
+});
+
 </script>
