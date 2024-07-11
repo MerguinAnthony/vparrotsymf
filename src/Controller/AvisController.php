@@ -32,7 +32,7 @@ class AvisController extends AbstractController
         $avis = $paginator->paginate(
             $vparAvis->findBy([], ['Date' => 'DESC']),
             $request->query->getInt('page', 1),
-            3
+            5
         );
 
         // Affichage Des avis trier avec la date la plus récente en haut
